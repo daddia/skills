@@ -1,19 +1,13 @@
 ---
 name: review-design
-description: >
-  Reviews a work-package design.md for implementation readiness — checking that
-  the design is implementable, APIs are fully specified, error handling covers
-  all failure modes, and the test strategy is defined. Amends the document and
-  appends a verdict. Use when the user mentions "review the design for {epic}",
-  "is the WP design ready", or "check the design before the sprint". Do NOT use
-  to review product strategy — use review-product. Do NOT use to review code —
-  use review-code.
+description: |
+  Reviews a work-package design.md for implementation readiness — checking that the design is implementable, APIs are fully specified, error handling covers all failure modes, and the test strategy is defined. Amends the document and appends a verdict. Use when the user mentions "review the design for {epic}", "is the WP design ready", or "check the design before the sprint". Do NOT use to review product strategy — use review-product. Do NOT use to review code — use review-code.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<path-to-design.md>'
+argument-hint: <path-to-design.md>
 ---
 
 # Review Work-Package Design
@@ -93,6 +87,7 @@ reference `contracts.md`, the reference must be specific (section and type
 name, not just a link).
 
 **Runtime flow coverage.** Does the sequence or flow diagram cover:
+
 - The happy path?
 - At least one error path per external call?
 - The state after each mutation (what does the caller see when the call
@@ -176,4 +171,4 @@ unambiguous. Then append:
 - The BFF availability contract (`getProductAvailability`) is listed as
   "draft" in the OpenAPI spec. If the schema changes after implementation
   starts, §3 will need revision. Owner: BFF squad.
-</example>
+  </example>

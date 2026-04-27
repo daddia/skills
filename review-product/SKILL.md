@@ -1,18 +1,13 @@
 ---
 name: review-product
-description: >
-  Reviews product.md at portfolio, product, or domain scope as a critical Senior
-  Product Manager — checking strategy coherence, problem specificity, scope
-  discipline, and commercial validity. Amends the document and appends a verdict.
-  Use when the user mentions "review the product strategy", "critique product.md",
-  or "is this strategy any good". Do NOT use to write a strategy — use
-  write-product. Do NOT use to review implementation design — use review-design.
+description: |
+  Reviews product.md at portfolio, product, or domain scope as a critical Senior Product Manager — checking strategy coherence, problem specificity, scope discipline, and commercial validity. Amends the document and appends a verdict. Use when the user mentions "review the product strategy", "critique product.md", or "is this strategy any good". Do NOT use to write a strategy — use write-product. Do NOT use to review implementation design — use review-design.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<path-to-product.md> [--context <additional-context>]'
+argument-hint: <path-to-product.md> [--context <additional-context>]
 ---
 
 # Review Product Strategy
@@ -190,4 +185,4 @@ following review summary at the end of the document:
 
 - The appetite (one sprint) does not obviously match the sketch scope. If
   sprint velocity data is available, validate before planning begins.
-</example>
+  </example>

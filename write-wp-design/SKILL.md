@@ -1,19 +1,13 @@
 ---
 name: write-wp-design
-description: >
-  Drafts a work-package design.md in walking-skeleton mode (foundation sprint,
-  2–4 pages) or TDD mode (sprint 2+, 5–10 pages). Use when the user mentions
-  "design", "TDD", "technical design", "write the design for {epic}", or "how
-  should we implement {story}". Walking-skeleton names the slice, files, and
-  acceptance gates. TDD adds runtime flows, exact signatures, and cross-squad
-  coordination. Do NOT re-narrate solution.md patterns — cite them. Do NOT
-  include business context — use write-product.
+description: |
+  Drafts a work-package design.md in walking-skeleton mode (foundation sprint, 2–4 pages) or TDD mode (sprint 2+, 5–10 pages). Use when the user mentions "design", "TDD", "technical design", "write the design for {epic}", or "how should we implement {story}". Walking-skeleton names the slice, files, and acceptance gates. TDD adds runtime flows, exact signatures, and cross-squad coordination. Do NOT re-narrate solution.md patterns — cite them. Do NOT include business context — use write-product.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<work-package-path> [--mode walking-skeleton|tdd]'
+argument-hint: <work-package-path> [--mode walking-skeleton|tdd]
 ---
 
 # Write Work-Package Design Document
@@ -26,11 +20,11 @@ the owning domain or product solution document.
 The **parent solution** is the solution.md that covers the domain or product
 this work package belongs to:
 
-| Work package context | Parent solution path |
-| --- | --- |
-| Under a domain | `domain/{d}/solution.md` |
+| Work package context          | Parent solution path                   |
+| ----------------------------- | -------------------------------------- |
+| Under a domain                | `domain/{d}/solution.md`               |
 | Under a portfolio sub-product | `product/{p}/architecture/solution.md` |
-| Under a single product | `architecture/solution.md` |
+| Under a single product        | `architecture/solution.md`             |
 
 References to "solution.md" throughout this skill mean the parent solution
 for this work package's context.
@@ -115,13 +109,8 @@ The design.md MUST NOT contain:
 
 Write as a Markdown file with YAML frontmatter, saved as `work/{d}/{wp}/design.md`.
 
-Use `template-walking-skeleton.md` for walking-skeleton mode, `template-tdd.md`
-for TDD mode.
-
-See `examples/cart-wp01-walking-skeleton.md` for a walking-skeleton example and
-`examples/cart-wp02-tdd.md` for a TDD example.
+Use `template.md` as your structural scaffold.
 
 <example>
-See `examples/cart-wp01-walking-skeleton.md` (walking-skeleton mode)
-See `examples/cart-wp02-tdd.md` (TDD mode)
+See `examples/walking-skeleton.md` (walking-skeleton mode)
 </example>

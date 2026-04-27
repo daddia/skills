@@ -1,18 +1,13 @@
 ---
 name: write-roadmap
-description: >
-  Drafts roadmap.md at portfolio, product, or domain scope using outcome-based
-  phases with exit criteria, not epic lists. Portfolio scope sequences multiple
-  products; product scope phases a single product; domain scope phases a bounded
-  context. Use when the user mentions "write the roadmap for {name}", "create the
-  delivery roadmap", or "sequence the phases". Do NOT use to list epics — use
-  write-backlog. Do NOT use before product.md exists — use write-product first.
+description: |
+  Drafts roadmap.md at portfolio, product, or domain scope using outcome-based phases with exit criteria, not epic lists. Portfolio scope sequences multiple products; product scope phases a single product; domain scope phases a bounded context. Use when the user mentions "write the roadmap for {name}", "create the delivery roadmap", or "sequence the phases". Do NOT use to list epics — use write-backlog. Do NOT use before product.md exists — use write-product first.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain> [<name>]'
+argument-hint: "<scope: portfolio|product|domain> [<name>]"
 ---
 
 # Write Delivery Roadmap
@@ -96,9 +91,4 @@ Write as a Markdown file with YAML frontmatter.
 - Product scope (within a portfolio): save as `product/{name}/roadmap.md`
 - Domain scope: save as `domain/{name}/roadmap.md`
 
-Use `template.md` as your structural scaffold. See `examples/cart-roadmap.md`
-for a domain-scope roadmap at the expected depth.
-
-<example>
-See `examples/cart-roadmap.md`
-</example>
+Use `template.md` as your structural scaffold.

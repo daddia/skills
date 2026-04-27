@@ -1,18 +1,13 @@
 ---
 name: create-mr
-description: >
-  Creates a merge request or pull request for the current branch after
-  implementation is complete. Use when the user mentions "create an MR", "open
-  a PR", "raise a pull request", or "merge this branch". Generates a title,
-  description, labels, and reviewer suggestions from the diff and any linked
-  story. Do NOT use for code review — use review-code. Do NOT use before
-  implementation is done — use implement first.
+description: |
+  Creates a merge request or pull request for the current branch after implementation is complete. Use when the user mentions "create an MR", "open a PR", "raise a pull request", or "merge this branch". Generates a title, description, labels, and reviewer suggestions from the diff and any linked story. Do NOT use for code review — use review-code. Do NOT use before implementation is done — use implement first.
 allowed-tools:
   - Read
   - Bash
   - Glob
   - Grep
-argument-hint: '[story-id]'
+argument-hint: "[story-id]"
 ---
 
 # Create Merge Request

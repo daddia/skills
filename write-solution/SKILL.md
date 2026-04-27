@@ -1,19 +1,13 @@
 ---
 name: write-solution
-description: >
-  Drafts solution.md in stub mode (Phase 0, two sections) or full arc42-lite
-  mode (Phase 2+, ten sections). Use when the user mentions "solution design",
-  "architecture", "how will this work", or "what should we build". Stub mode
-  produces a Phase 0 anchor with [NEEDS CLARIFICATION] placeholders; full mode
-  reverse-engineers the architecture from a shipped walking skeleton. Do NOT use
-  for business strategy — use write-product. Do NOT use for sprint TDD — use
-  write-wp-design.
+description: |
+  Drafts solution.md in stub mode (Phase 0, two sections) or full arc42-lite mode (Phase 2+, ten sections). Use when the user mentions "solution design", "architecture", "how will this work", or "what should we build". Stub mode produces a Phase 0 anchor with [NEEDS CLARIFICATION] placeholders; full mode reverse-engineers the architecture from a shipped walking skeleton. Do NOT use for business strategy — use write-product. Do NOT use for sprint TDD — use write-wp-design.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain> <name> [--stage stub|full]'
+argument-hint: "<scope: portfolio|product|domain> <name> [--stage stub|full]"
 ---
 
 # Write Solution Document
@@ -97,19 +91,15 @@ The solution.md MUST NOT contain:
 
 Write as a Markdown file with YAML frontmatter.
 
-| Scope | Save path |
-| --- | --- |
-| `portfolio` | `architecture/solution.md` |
-| `product` (single-product workspace) | `architecture/solution.md` |
+| Scope                                    | Save path                                 |
+| ---------------------------------------- | ----------------------------------------- |
+| `portfolio`                              | `architecture/solution.md`                |
+| `product` (single-product workspace)     | `architecture/solution.md`                |
 | `product <name>` (portfolio sub-product) | `product/{name}/architecture/solution.md` |
-| `domain <name>` | `domain/{name}/solution.md` |
+| `domain <name>`                          | `domain/{name}/solution.md`               |
 
-Use `template-stub.md` for stub stage, `template-full.md` for full stage.
-
-See `examples/space-solution.md` for a platform-scope full-mode example and
-`examples/cart-solution.md` for a domain-scope full-mode example.
+Use `template.md` as your structural scaffold.
 
 <example>
-See `examples/space-solution.md` (platform scope, full mode)
-See `examples/cart-solution.md` (domain scope, full mode)
+See `examples/solution.md` (domain scope, stub mode)
 </example>

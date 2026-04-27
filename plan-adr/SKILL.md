@@ -1,17 +1,12 @@
 ---
 name: plan-adr
-description: >
-  Identifies the architecture decisions that need ADRs and produces a
-  prioritised adr-plan.md before technical design proceeds. Use when the user
-  mentions "plan ADRs", "what ADRs do we need", "identify architecture
-  decisions for {domain}", or "which decisions need documenting". Produces a
-  list of proposed ADRs — does not write full ADRs. Do NOT use to write an
-  ADR — use write-adr. Do NOT use to review an existing ADR — use review-adr.
+description: |
+  Identifies the architecture decisions that need ADRs and produces a prioritised adr-plan.md before technical design proceeds. Use when the user mentions "plan ADRs", "what ADRs do we need", "identify architecture decisions for {domain}", or "which decisions need documenting". Produces a list of proposed ADRs — does not write full ADRs. Do NOT use to write an ADR — use write-adr. Do NOT use to review an existing ADR — use review-adr.
 allowed-tools:
   - Read
   - Glob
   - Grep
-argument-hint: '<epic-id-or-domain>'
+argument-hint: <epic-id-or-domain>
 ---
 
 # Plan Architecture Decision Records
@@ -22,7 +17,6 @@ need ADRs for `$ARGUMENTS` before technical design can proceed.
 ## Supporting files
 
 - Output template: [template.md](template.md)
-- Worked example: [examples/cart-domain.md](examples/cart-domain.md)
 
 ## Steps
 

@@ -1,12 +1,7 @@
 ---
 name: refactor-code
-description: >
-  Performs targeted code refactoring to address issues raised in a code
-  review or to improve quality without changing behaviour. Use when the
-  user mentions "refactor", "fix the review comments", "address the
-  feedback", "clean this up", or "fix the issues from the code review".
-  Do NOT use to add new features — use implement for that. Do NOT use to
-  review code — use review-code for that.
+description: |
+  Performs targeted code refactoring to address issues raised in a code review or to improve quality without changing behaviour. Use when the user mentions "refactor", "fix the review comments", "address the feedback", "clean this up", or "fix the issues from the code review". Do NOT use to add new features — use implement for that. Do NOT use to review code — use review-code for that.
 allowed-tools:
   - Read
   - Write
@@ -14,7 +9,7 @@ allowed-tools:
   - Bash
   - Glob
   - Grep
-argument-hint: '[branch-or-file-or-review-output]'
+argument-hint: "[branch-or-file-or-review-output]"
 ---
 
 # Refactor Code

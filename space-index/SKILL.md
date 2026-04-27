@@ -1,16 +1,10 @@
 ---
 name: space-index
-description: >
-  Identifies the right skill for a vague or open-ended request. Use when the
-  user asks "which skill should I use?", "what can I do?", or "how do I start
-  this?". Presents a CI-generated index of all stable skills with names,
-  artefacts, phases, roles, and trigger conditions so the agent can route to
-  the correct skill. Do NOT use to produce a delivery artefact -- use
-  write-product, write-solution, write-backlog, or write-wp-design for that.
-  Do NOT use to implement a story -- use implement.
+description: |
+  Identifies the right skill for a vague or open-ended request. Use when the user asks "which skill should I use?", "what can I do?", or "how do I start this?". Presents a CI-generated index of all stable skills with names, artefacts, phases, roles, and trigger conditions so the agent can route to the correct skill. Do NOT use to produce a delivery artefact -- use write-product, write-solution, write-backlog, or write-wp-design for that. Do NOT use to implement a story -- use implement.
 allowed-tools:
   - Read
-argument-hint: '<query>'
+argument-hint: <query>
 ---
 
 # Space Index

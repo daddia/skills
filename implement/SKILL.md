@@ -1,12 +1,7 @@
 ---
 name: implement
-description: >
-  Implements code for a story or task against an approved design.md and
-  backlog.md. Use when the user mentions "implement", "build", "code this
-  story", "write the code for {story}", or "make this feature work". Reads the
-  design document first, then makes targeted changes following existing
-  patterns. Do NOT use before design is approved — use write-wp-design first.
-  Do NOT use for code review — use review-code after implementation.
+description: |
+  Implements code for a story or task against an approved design.md and backlog.md. Use when the user mentions "implement", "build", "code this story", "write the code for {story}", or "make this feature work". Reads the design document first, then makes targeted changes following existing patterns. Do NOT use before design is approved — use write-wp-design first. Do NOT use for code review — use review-code after implementation.
 allowed-tools:
   - Read
   - Write
@@ -14,7 +9,7 @@ allowed-tools:
   - Bash
   - Glob
   - Grep
-argument-hint: '<story-id>'
+argument-hint: <story-id>
 ---
 
 # Implement Feature

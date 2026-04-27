@@ -1,18 +1,13 @@
 ---
 name: write-retrospective
-description: >
-  Drafts a retrospective.md capturing what went well, what did not, and what
-  to change, for a sprint or epic. Routes insights to the correct delivery
-  track. Use when the user mentions "write a retrospective", "sprint retro",
-  "epic retrospective", "what did we learn", or "end of sprint reflection".
-  Do NOT use to update product strategy — use refine-product. Do NOT use to
-  collect delivery metrics — use write-metrics-report.
+description: |
+  Drafts a retrospective.md capturing what went well, what did not, and what to change, for a sprint or epic. Routes insights to the correct delivery track. Use when the user mentions "write a retrospective", "sprint retro", "epic retrospective", "what did we learn", or "end of sprint reflection". Do NOT use to update product strategy — use refine-product. Do NOT use to collect delivery metrics — use write-metrics-report.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: sprint|epic|phase> <id-or-name>'
+argument-hint: "<scope: sprint|epic|phase> <id-or-name>"
 ---
 
 # Write Retrospective
@@ -77,12 +72,12 @@ Every action must have:
 
 ## §5 Routing table
 
-| Track | Receives insights about |
-| --- | --- |
-| Strategy | Product direction changes, feature gaps, market signals, scope decisions |
-| Architecture | Structural decisions that need ADRs, tech-stack updates, solution drift |
-| Discovery | Estimation accuracy, design gaps, missing acceptance criteria, story breakdowns |
-| Delivery | Process quality, review cycle time, tooling friction, DoD compliance |
+| Track        | Receives insights about                                                         |
+| ------------ | ------------------------------------------------------------------------------- |
+| Strategy     | Product direction changes, feature gaps, market signals, scope decisions        |
+| Architecture | Structural decisions that need ADRs, tech-stack updates, solution drift         |
+| Discovery    | Estimation accuracy, design gaps, missing acceptance criteria, story breakdowns |
+| Delivery     | Process quality, review cycle time, tooling friction, DoD compliance            |
 
 Every action in §4 must map to exactly one track. If an action spans two
 tracks, split it.
@@ -98,7 +93,7 @@ tracks, split it.
 - The routing table in §5 must cover every action in §4 — no orphan actions
 - Epic and phase retrospectives must review the artefacts produced
   (product.md, solution.md, backlog.md) for drift or gaps and create
-  refine-* actions where needed
+  refine-\* actions where needed
 
 ## Output format
 
@@ -133,16 +128,17 @@ slip.
 
 ## Actions
 
-| ID | Finding | Action | Owner | Track |
-| -- | --- | --- | --- | --- |
-| R01 | BFF dependency not ready at sprint start | Add a "dependencies confirmed" gate to Architecture approval checklist | Architect | Architecture |
-| R02 | Design passed with vague error handling | Add error-path coverage as a blocking criterion in review-design | Delivery Lead | Discovery |
-| R03 | Two stories deferred — scope needs rebalancing | Refine CART01 backlog to move deferred stories to CART02 with updated deps | Delivery Lead | Discovery |
+| ID  | Finding                                        | Action                                                                     | Owner         | Track        |
+| --- | ---------------------------------------------- | -------------------------------------------------------------------------- | ------------- | ------------ |
+| R01 | BFF dependency not ready at sprint start       | Add a "dependencies confirmed" gate to Architecture approval checklist     | Architect     | Architecture |
+| R02 | Design passed with vague error handling        | Add error-path coverage as a blocking criterion in review-design           | Delivery Lead | Discovery    |
+| R03 | Two stories deferred — scope needs rebalancing | Refine CART01 backlog to move deferred stories to CART02 with updated deps | Delivery Lead | Discovery    |
 
 ## Routing
 
-| Track | Actions routed |
-| --- | --- |
-| Architecture | R01 |
-| Discovery | R02, R03 |
+| Track        | Actions routed |
+| ------------ | -------------- |
+| Architecture | R01            |
+| Discovery    | R02, R03       |
+
 </example>

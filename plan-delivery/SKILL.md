@@ -1,18 +1,13 @@
 ---
 name: plan-delivery
-description: >
-  Produces a delivery-plan.md that sequences the Phase-0 artefacts for a new
-  portfolio, product, or domain before the foundation sprint starts. Use when
-  the user mentions "plan delivery for {name}", "sequence the artefacts", or
-  "how do I start this?". Do NOT use to author any individual artefact — use
-  write-product, write-solution, write-roadmap, write-backlog, or
-  write-contracts for that.
+description: |
+  Produces a delivery-plan.md that sequences the Phase-0 artefacts for a new portfolio, product, or domain before the foundation sprint starts. Use when the user mentions "plan delivery for {name}", "sequence the artefacts", or "how do I start this?". Do NOT use to author any individual artefact — use write-product, write-solution, write-roadmap, write-backlog, or write-contracts for that.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain> <name>'
+argument-hint: "<scope: portfolio|product|domain> <name>"
 ---
 
 # Plan Delivery
@@ -25,11 +20,11 @@ and producing a `delivery-plan.md` that records the sequence and its outputs.
 
 Scope is passed as `$0`, name as `$1`:
 
-| Scope | Path prefix for artefacts |
-| --- | --- |
-| `portfolio` | `product/` |
-| `product <name>` | `product/{name}/` |
-| `domain <name>` | `domain/{name}/` |
+| Scope            | Path prefix for artefacts |
+| ---------------- | ------------------------- |
+| `portfolio`      | `product/`                |
+| `product <name>` | `product/{name}/`         |
+| `domain <name>`  | `domain/{name}/`          |
 
 The steps below reference `{prefix}` — substitute the path prefix from the
 table above based on the scope passed by the caller.
@@ -53,7 +48,7 @@ solution.md lives at `{prefix}solution.md` (i.e. `domain/{name}/solution.md`).
    Invoke `write-solution` with the matching scope. Output:
    - `portfolio` / `product`: `{prefix}architecture/solution.md`
    - `domain`: `{prefix}solution.md`
-   Stubs §1 (context) and §2 (quality goals) only.
+     Stubs §1 (context) and §2 (quality goals) only.
 
 4. **Roadmap — `write-roadmap`.**
    Invoke `write-roadmap` with the matching scope. Output: `{prefix}roadmap.md`.
@@ -67,7 +62,7 @@ solution.md lives at `{prefix}solution.md` (i.e. `domain/{name}/solution.md`).
    Invoke `write-contracts` with the matching scope. Output:
    - `portfolio` / `product`: `{prefix}contracts.md` (or `{prefix}architecture/contracts.md`)
    - `domain`: `{prefix}contracts.md`
-   Stubs sections that are not yet specified.
+     Stubs sections that are not yet specified.
 
 7. **Record the delivery plan.**
    Write `delivery-plan.md` using `template.md` as the scaffold. List each

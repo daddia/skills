@@ -1,19 +1,13 @@
 ---
 name: refine-backlog
-description: >
-  Refines backlog.md by applying five grooming activities: prioritise, break
-  down, estimate, define acceptance criteria, and remove. Works at domain
-  (epic) or work-package (story) scope. Use when the user mentions "refine the
-  backlog", "groom the backlog", "re-prioritise the epics", "the stories need
-  AC", or "the backlog is stale". Do NOT use to write a backlog from scratch
-  — use write-backlog. Do NOT use for a critical quality review — use
-  review-backlog.
+description: |
+  Refines backlog.md by applying five grooming activities: prioritise, break down, estimate, define acceptance criteria, and remove. Works at domain (epic) or work-package (story) scope. Use when the user mentions "refine the backlog", "groom the backlog", "re-prioritise the epics", "the stories need AC", or "the backlog is stale". Do NOT use to write a backlog from scratch — use write-backlog. Do NOT use for a critical quality review — use review-backlog.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain|work-package> <name> [--context <notes>]'
+argument-hint: "<scope: portfolio|product|domain|work-package> <name> [--context <notes>]"
 ---
 
 # Refine Backlog
@@ -43,12 +37,12 @@ A backlog refinement MUST NOT:
 
 Scope is passed as `$0`:
 
-| Scope | Meaning | Save path |
-| --- | --- | --- |
-| `portfolio` | Portfolio-level epic backlog | `product/backlog.md` |
-| `product <name>` | Sub-product epic backlog | `product/{name}/backlog.md` |
-| `domain <name>` | Domain-level epic backlog | `domain/{name}/backlog.md` |
-| `work-package <wp>` | Sprint story backlog | `work/{wp}/backlog.md` |
+| Scope               | Meaning                      | Save path                   |
+| ------------------- | ---------------------------- | --------------------------- |
+| `portfolio`         | Portfolio-level epic backlog | `product/backlog.md`        |
+| `product <name>`    | Sub-product epic backlog     | `product/{name}/backlog.md` |
+| `domain <name>`     | Domain-level epic backlog    | `domain/{name}/backlog.md`  |
+| `work-package <wp>` | Sprint story backlog         | `work/{wp}/backlog.md`      |
 
 - `portfolio`, `product`, `domain` — refines the epic breakdown table and epic detail entries. Focus: epics.
 - `work-package` — refines the stories section in `work/{wp}/backlog.md`.
@@ -195,30 +189,30 @@ the end of the document:
 
 ### Removed
 
-| Item | Reason |
-| ---- | ------ |
-| CART03-07 | Duplicate of CART03-04; consolidated AC into CART03-04 |
+| Item      | Reason                                                               |
+| --------- | -------------------------------------------------------------------- |
+| CART03-07 | Duplicate of CART03-04; consolidated AC into CART03-04               |
 | CART03-09 | Implementation detail (internal cache key naming) — not a user story |
 
 ### Split
 
-| Original | Split into | Reason |
-| -------- | ---------- | ------ |
+| Original           | Split into                            | Reason                                                                           |
+| ------------------ | ------------------------------------- | -------------------------------------------------------------------------------- |
 | CART03-05 (13 pts) | CART03-05 (5 pts) + CART03-10 (8 pts) | Two distinct integration boundaries: mini-cart revalidation and cart page reload |
 
 ### Reprioritised
 
-| Item | Old rank | New rank | Reason |
-| ---- | -------- | -------- | ------ |
-| CART03-02 | 4 | 1 | Blocks three downstream stories; must ship first |
-| CART03-06 | 1 | 3 | No dependents; deprioritised to unblock CART03-02 |
+| Item      | Old rank | New rank | Reason                                            |
+| --------- | -------- | -------- | ------------------------------------------------- |
+| CART03-02 | 4        | 1        | Blocks three downstream stories; must ship first  |
+| CART03-06 | 1        | 3        | No dependents; deprioritised to unblock CART03-02 |
 
 ### Estimates updated
 
-| Item | Old | New | Reason |
-| ---- | --- | --- | ------ |
-| CART03-03 | TBD | 5 | Design.md §3.2 clarified the scope; estimate is now stable |
-| CART03-08 | 3 | 8 | AC expanded after review; original estimate was for a stub only |
+| Item      | Old | New | Reason                                                          |
+| --------- | --- | --- | --------------------------------------------------------------- |
+| CART03-03 | TBD | 5   | Design.md §3.2 clarified the scope; estimate is now stable      |
+| CART03-08 | 3   | 8   | AC expanded after review; original estimate was for a stub only |
 
 ### AC added or improved
 

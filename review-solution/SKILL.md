@@ -1,19 +1,13 @@
 ---
 name: review-solution
-description: >
-  Reviews solution.md as a Senior Solution Architect, checking structural
-  soundness, section completeness, NFR specificity, ADR coverage, and drift
-  from what was actually built. Amends the document and appends a verdict.
-  Use when the user mentions "review the architecture", "is the solution
-  sound", or "review solution.md for {name}". Do NOT use to update
-  solution.md incrementally — use refine-solution. Do NOT use to review
-  product strategy — use review-product.
+description: |
+  Reviews solution.md as a Senior Solution Architect, checking structural soundness, section completeness, NFR specificity, ADR coverage, and drift from what was actually built. Amends the document and appends a verdict. Use when the user mentions "review the architecture", "is the solution sound", or "review solution.md for {name}". Do NOT use to update solution.md incrementally — use refine-solution. Do NOT use to review product strategy — use review-product.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<path-to-solution.md>'
+argument-hint: <path-to-solution.md>
 ---
 
 # Review Solution Architecture
@@ -189,4 +183,4 @@ None.
 
 - §6: The data model does not cover the CartViewModel invalidation flow.
   Flagged for the next refine-solution pass.
-</example>
+  </example>

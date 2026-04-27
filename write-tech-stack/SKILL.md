@@ -1,18 +1,13 @@
 ---
 name: write-tech-stack
-description: >
-  Drafts tech-stack.md defining the technology choices for a product or domain,
-  with rationale and trade-offs for each decision. Use when the user mentions
-  "define the tech stack", "document technology choices", "tech stack for
-  {product}", or "what technology should we use". Do NOT use for full solution
-  architecture — use write-solution. Do NOT use for individual technical
-  decisions — use write-adr for consequential choices.
+description: |
+  Drafts tech-stack.md defining the technology choices for a product or domain, with rationale and trade-offs for each decision. Use when the user mentions "define the tech stack", "document technology choices", "tech stack for {product}", or "what technology should we use". Do NOT use for full solution architecture — use write-solution. Do NOT use for individual technical decisions — use write-adr for consequential choices.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain> <name>'
+argument-hint: "<scope: portfolio|product|domain> <name>"
 ---
 
 # Write Technology Stack
@@ -27,12 +22,12 @@ places on future decisions.
 
 Scope is passed as `$0`:
 
-| Scope | Meaning | Save path |
-| --- | --- | --- |
-| `portfolio` | Cross-product technology overview | `architecture/tech-stack.md` |
-| `product <name>` | Sub-product stack (portfolio) | `product/{name}/architecture/tech-stack.md` |
-| `product` | Single-product stack | `architecture/tech-stack.md` |
-| `domain <name>` | Domain-specific stack additions | `domain/{name}/tech-stack.md` |
+| Scope            | Meaning                           | Save path                                   |
+| ---------------- | --------------------------------- | ------------------------------------------- |
+| `portfolio`      | Cross-product technology overview | `architecture/tech-stack.md`                |
+| `product <name>` | Sub-product stack (portfolio)     | `product/{name}/architecture/tech-stack.md` |
+| `product`        | Single-product stack              | `architecture/tech-stack.md`                |
+| `domain <name>`  | Domain-specific stack additions   | `domain/{name}/tech-stack.md`               |
 
 ## Negative constraints
 
@@ -69,17 +64,17 @@ tech-stack.md MUST NOT contain:
 
 Cover at least the applicable categories from the following list:
 
-| Category | What it covers |
-| --- | --- |
-| Language / Runtime | Primary programming language(s) and version constraints |
-| Framework / Library | Core application frameworks (e.g. React, Next.js, Express) |
-| Data and Storage | Database(s), cache, object storage, search |
+| Category                   | What it covers                                              |
+| -------------------------- | ----------------------------------------------------------- |
+| Language / Runtime         | Primary programming language(s) and version constraints     |
+| Framework / Library        | Core application frameworks (e.g. React, Next.js, Express)  |
+| Data and Storage           | Database(s), cache, object storage, search                  |
 | Infrastructure and Hosting | Cloud provider, compute model (serverless, containers, VMs) |
-| CI/CD | Build, test, deploy pipeline |
-| Testing | Unit, integration, E2E frameworks; coverage tooling |
-| Observability | Logging, metrics, tracing, error monitoring |
-| Security | Auth mechanisms, secret management, scanning |
-| Developer Experience | Local dev, hot reload, monorepo tooling, package manager |
+| CI/CD                      | Build, test, deploy pipeline                                |
+| Testing                    | Unit, integration, E2E frameworks; coverage tooling         |
+| Observability              | Logging, metrics, tracing, error monitoring                 |
+| Security                   | Auth mechanisms, secret management, scanning                |
+| Developer Experience       | Local dev, hot reload, monorepo tooling, package manager    |
 
 ## Quality rules
 
@@ -118,8 +113,9 @@ maturity risk; mitigated by phased rollout and feature-flag wrapper.
 
 ### Related decisions
 
-| ADR | Decision |
-| --- | --- |
+| ADR      | Decision                             |
+| -------- | ------------------------------------ |
 | ADR-0001 | Next.js App Router over Pages Router |
-| ADR-0002 | SWR for client-side data fetching |
+| ADR-0002 | SWR for client-side data fetching    |
+
 </example>

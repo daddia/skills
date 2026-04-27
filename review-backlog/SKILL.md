@@ -1,18 +1,13 @@
 ---
 name: review-backlog
-description: >
-  Reviews backlog.md at domain or work-package scope as a Senior Delivery Lead,
-  checking strategic alignment, AC completeness, dependency integrity, and sprint
-  feasibility. Amends the backlog and appends a verdict. Use when the user mentions
-  "review the backlog", "is this backlog ready", "backlog quality review for
-  {name}", or "are these stories ready". Do NOT use for incremental grooming —
-  use refine-backlog. Do NOT use to write a backlog — use write-backlog.
+description: |
+  Reviews backlog.md at domain or work-package scope as a Senior Delivery Lead, checking strategic alignment, AC completeness, dependency integrity, and sprint feasibility. Amends the backlog and appends a verdict. Use when the user mentions "review the backlog", "is this backlog ready", "backlog quality review for {name}", or "are these stories ready". Do NOT use for incremental grooming — use refine-backlog. Do NOT use to write a backlog — use write-backlog.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain|work-package> <name>'
+argument-hint: "<scope: portfolio|product|domain|work-package> <name>"
 ---
 
 # Review Backlog
@@ -84,6 +79,7 @@ Apply the same epic-quality criteria as domain scope. Additionally check:
 - Cross-product/product dependencies are explicit with named owner squads
 
 ### Domain scope (epics)
+
 Does every Now-phase epic trace to a product outcome in `product.md §7`? An
 epic with no outcome link is either undocumented scope or scope that should
 not exist. Flag any epic not traceable to the product strategy.
@@ -256,4 +252,4 @@ None.
 - CART03-07 depends on the BFF availability endpoint which is still draft.
   If the endpoint slips, this story cannot be completed. Owner: BFF squad.
   This risk is captured in the domain backlog §10 but has no mitigation date.
-</example>
+  </example>

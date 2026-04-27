@@ -1,18 +1,13 @@
 ---
 name: review-roadmap
-description: >
-  Reviews roadmap.md at portfolio, product, or domain scope as a Senior Delivery
-  Lead — checking phase coherence, exit-criteria testability, sequencing rationale,
-  feasibility, and dependency completeness. Amends and appends a verdict. Use when
-  the user mentions "review the roadmap", "is this roadmap credible", or "critique
-  the delivery plan". Do NOT use for post-sprint updates — use refine-roadmap.
-  Do NOT use to write a roadmap — use write-roadmap.
+description: |
+  Reviews roadmap.md at portfolio, product, or domain scope as a Senior Delivery Lead — checking phase coherence, exit-criteria testability, sequencing rationale, feasibility, and dependency completeness. Amends and appends a verdict. Use when the user mentions "review the roadmap", "is this roadmap credible", or "critique the delivery plan". Do NOT use for post-sprint updates — use refine-roadmap. Do NOT use to write a roadmap — use write-roadmap.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<path-to-roadmap.md>'
+argument-hint: <path-to-roadmap.md>
 ---
 
 # Review Delivery Roadmap
@@ -208,4 +203,4 @@ None.
 - Phase 3 total estimate (87 points) at observed sprint velocity (28 pts)
   implies ~10 weeks, not the 8 weeks in the roadmap. No evidence of a plan
   to close this gap. Flagged; owner: Delivery Lead.
-</example>
+  </example>

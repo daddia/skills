@@ -1,18 +1,13 @@
 ---
 name: refine-roadmap
-description: >
-  Refines roadmap.md to reflect delivery reality — advancing phase status,
-  recording exit-criteria evidence, updating cross-dependency statuses, and
-  adjusting phase contents when sprint outcomes diverge from plan. Use when the
-  user mentions "update the roadmap after this sprint", "advance the phase", or
-  "the roadmap is out of date". Do NOT use for a critical credibility review —
-  use review-roadmap. Do NOT use to write from scratch — use write-roadmap.
+description: |
+  Refines roadmap.md to reflect delivery reality — advancing phase status, recording exit-criteria evidence, updating cross-dependency statuses, and adjusting phase contents when sprint outcomes diverge from plan. Use when the user mentions "update the roadmap after this sprint", "advance the phase", or "the roadmap is out of date". Do NOT use for a critical credibility review — use review-roadmap. Do NOT use to write from scratch — use write-roadmap.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<path-to-roadmap.md> [--context <sprint-notes-or-gate-evidence>]'
+argument-hint: <path-to-roadmap.md> [--context <sprint-notes-or-gate-evidence>]
 ---
 
 # Refine Delivery Roadmap
@@ -188,4 +183,4 @@ weeks based on BFF slip.
 
 - BFF slip (above) may push Phase 3 close to 2026-07-18 (was 2026-07-04).
   Owner: BFF squad. Escalated to product lead.
-</example>
+  </example>

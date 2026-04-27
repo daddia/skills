@@ -1,12 +1,7 @@
 ---
 name: validate
-description: >
-  Performs a final stakeholder validation that an epic is complete against its
-  backlog.md acceptance criteria. Use when the user mentions "validate {epic}",
-  "final review of {epic}", "check {epic} is complete", or "acceptance review".
-  Confirms every story's EARS and Gherkin criteria hold and the phase exit
-  criteria in roadmap.md are met. Do NOT use for code review — use review-code.
-  Do NOT use to review design docs before implementation — use review-docs.
+description: |
+  Performs a final stakeholder validation that an epic is complete against its backlog.md acceptance criteria. Use when the user mentions "validate {epic}", "final review of {epic}", "check {epic} is complete", or "acceptance review". Confirms every story's EARS and Gherkin criteria hold and the phase exit criteria in roadmap.md are met. Do NOT use for code review — use review-code. Do NOT use to review design docs before implementation — use review-docs.
 allowed-tools:
   - Read
   - Write
@@ -16,7 +11,7 @@ allowed-tools:
   - Shell
   - SemanticSearch
   - Task
-argument-hint: '<epic-id>'
+argument-hint: <epic-id>
 ---
 
 # Validate Epic Completion

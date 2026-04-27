@@ -1,18 +1,13 @@
 ---
 name: refine-docs
-description: >
-  Documents the sprint-end refinement session: promotes WP-local ADR
-  candidates into solution.md, archives superseded work-package design
-  sections, and produces a refine-session.md recording every decision made.
-  Use when the user mentions "refine docs", "promote ADRs", or "end of sprint
-  cleanup". Do NOT use before implementation is complete — use implement first.
-  Do NOT use to review docs before a sprint — use review-docs for that.
+description: |
+  Documents the sprint-end refinement session: promotes WP-local ADR candidates into solution.md, archives superseded work-package design sections, and produces a refine-session.md recording every decision made. Use when the user mentions "refine docs", "promote ADRs", or "end of sprint cleanup". Do NOT use before implementation is complete — use implement first. Do NOT use to review docs before a sprint — use review-docs for that.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<work-package-path> [--scope portfolio|product|domain] [--name <name>]'
+argument-hint: <work-package-path> [--scope portfolio|product|domain] [--name <name>]
 ---
 
 # Refine Docs
@@ -30,12 +25,12 @@ from the work-package path).
 
 Scope resolution:
 
-| Flag | Target solution.md |
-| --- | --- |
-| `--scope domain --name cart` | `domain/cart/solution.md` |
-| `--scope product --name space` | `product/space/architecture/solution.md` |
-| `--scope portfolio` | `architecture/solution.md` |
-| (no flag) | Walk up from the WP path to find the nearest solution.md |
+| Flag                           | Target solution.md                                       |
+| ------------------------------ | -------------------------------------------------------- |
+| `--scope domain --name cart`   | `domain/cart/solution.md`                                |
+| `--scope product --name space` | `product/space/architecture/solution.md`                 |
+| `--scope portfolio`            | `architecture/solution.md`                               |
+| (no flag)                      | Walk up from the WP path to find the nearest solution.md |
 
 The ADR register path follows the same scope logic: portfolio/product ADRs live
 at `architecture/decisions/register.md`; domain ADRs may live at
@@ -81,8 +76,8 @@ register as configured.
   entries and close open questions.
 - Archived design sections must remain readable; only the comment prefix is
   added, never a deletion.
-   - Each ADR promoted in this session must be cross-referenced in both the
-     `solution.md` ADR log and the workspace ADR register (see Scope section).
+  - Each ADR promoted in this session must be cross-referenced in both the
+    `solution.md` ADR log and the workspace ADR register (see Scope section).
 - Do not create ADR files speculatively — only formalise decisions that were
   actually made and implemented during the sprint.
 

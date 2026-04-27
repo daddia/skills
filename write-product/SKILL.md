@@ -1,19 +1,13 @@
 ---
 name: write-product
-description: >
-  Drafts product.md at portfolio, product, or domain scope. Portfolio scope
-  binds multiple products with thesis, sequencing, and commercial model. Product
-  scope produces a pitch (Phase 0, ≤2 pages) or full strategy (Phase 2+, ≤5
-  pages). Use when the user mentions "product doc", "PRD", "product strategy",
-  or "what are we building". Do NOT include tech stack — use write-solution.
-  Do NOT use for roadmaps — use write-roadmap. Do NOT review an existing
-  strategy — use review-product.
+description: |
+  Drafts product.md at portfolio, product, or domain scope. Portfolio scope binds multiple products with thesis, sequencing, and commercial model. Product scope produces a pitch (Phase 0, ≤2 pages) or full strategy (Phase 2+, ≤5 pages). Use when the user mentions "product doc", "PRD", "product strategy", or "what are we building". Do NOT include tech stack — use write-solution. Do NOT use for roadmaps — use write-roadmap. Do NOT review an existing strategy — use review-product.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain> <name> [--stage pitch|product]'
+argument-hint: "<scope: portfolio|product|domain> <name> [--stage pitch|product]"
 ---
 
 # Write Product Document
@@ -53,7 +47,7 @@ frontmatter:
 
 ```yaml
 type: Product Strategy
-scope: portfolio   # portfolio | product | domain
+scope: portfolio # portfolio | product | domain
 ```
 
 For domain scope, also include `parent_product:` pointing to the owning
@@ -147,10 +141,8 @@ and `scope: portfolio|product|domain`.
 - Product scope (within a portfolio): save as `product/{name}/product.md`
 - Domain scope: save as `domain/{name}/product.md`
 
-Use `template-portfolio.md` for portfolio scope, `template-pitch.md` for
-pitch stage, `template-product.md` for product stage.
+Use `template.md` as your structural scaffold.
 
 <example>
-See `examples/cart-product.md` (domain scope, product stage)
-See `examples/space-product.md` (product scope, product stage)
+See `examples/product.md` (domain scope, pitch stage)
 </example>

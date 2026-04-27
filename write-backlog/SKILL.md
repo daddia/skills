@@ -1,18 +1,13 @@
 ---
 name: write-backlog
-description: >
-  Drafts a domain-level or work-package backlog.md. Use when the user mentions
-  "backlog", "epic list", "stories", "decompose", or "write the backlog for
-  {domain}". Domain scope defaults to the Now phase only — use --depth full for
-  all phases. Work-package scope produces EARS + Gherkin acceptance criteria
-  per the canonical story schema. Do NOT use for solution architecture — use
-  write-solution. Do NOT use for roadmaps — use write-roadmap.
+description: |
+  Drafts a domain-level or work-package backlog.md. Use when the user mentions "backlog", "epic list", "stories", "decompose", or "write the backlog for {domain}". Domain scope defaults to the Now phase only — use --depth full for all phases. Work-package scope produces EARS + Gherkin acceptance criteria per the canonical story schema. Do NOT use for solution architecture — use write-solution. Do NOT use for roadmaps — use write-roadmap.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain|work-package> <name> [--depth full]'
+argument-hint: "<scope: portfolio|product|domain|work-package> <name> [--depth full]"
 ---
 
 # Write Backlog
@@ -24,12 +19,12 @@ domain, or work-package scope.
 
 Scope is passed as `$0`, the name as `$1` (where applicable), depth as `--depth`:
 
-| Scope | Meaning | Save path |
-| --- | --- | --- |
-| `portfolio` | Epic-level backlog for the whole portfolio | `product/backlog.md` |
-| `product <name>` | Epic-level backlog for a sub-product | `product/{name}/backlog.md` |
-| `domain <name>` | Epic-level backlog for a bounded context | `domain/{name}/backlog.md` |
-| `work-package <wp>` | Story-level backlog for a work package | `work/{wp}/backlog.md` |
+| Scope               | Meaning                                    | Save path                   |
+| ------------------- | ------------------------------------------ | --------------------------- |
+| `portfolio`         | Epic-level backlog for the whole portfolio | `product/backlog.md`        |
+| `product <name>`    | Epic-level backlog for a sub-product       | `product/{name}/backlog.md` |
+| `domain <name>`     | Epic-level backlog for a bounded context   | `domain/{name}/backlog.md`  |
+| `work-package <wp>` | Story-level backlog for a work package     | `work/{wp}/backlog.md`      |
 
 Depth (`--depth`) applies to portfolio/product/domain scope only:
 
@@ -66,7 +61,7 @@ Depth (`--depth`) applies to portfolio/product/domain scope only:
 1. Read the parent epic entry in the owning backlog.md, plus `work/{wp}/design.md` and `solution.md`
 2. Write a summary: epic ID, phase, priority, estimate, scope, deliverables, dependencies, downstream consumers
 3. Define conventions table
-4. Write each story using the canonical schema (see template-work-package.md §3):
+4. Write each story using the canonical schema:
    - Status, Priority, Estimate, Epic, Labels, Depends on, Deliverable, Design (section link), Acceptance (EARS), Acceptance (Gherkin)
 5. Build traceability: stories to solution sections + stories to product outcomes
 6. Write the Definition of Done
@@ -89,12 +84,9 @@ Depth (`--depth`) applies to portfolio/product/domain scope only:
 Write as a Markdown file with YAML frontmatter. Save path is determined by scope
 (see Scope and save path table above).
 
-Use `template-domain.md` or `template-work-package.md` as the scaffold.
-
-See `examples/cart-domain-backlog.md` (domain scope) and
-`examples/cart-wp01-backlog.md` (work-package scope) for worked examples.
+Use `template.md` as your structural scaffold.
 
 <example>
-See `examples/cart-domain-backlog.md` (domain scope)
-See `examples/cart-wp01-backlog.md` (work-package scope)
+See `examples/domain-backlog.md` (domain scope)
+See `examples/wp01-backlog.md` (work-package scope)
 </example>

@@ -1,18 +1,13 @@
 ---
 name: refine-product
-description: >
-  Refines product.md on a regular cadence by recording sprint learnings, updating
-  metric baselines, closing resolved open questions, and advancing scope status.
-  Works at portfolio, product, or domain scope. Use when the user mentions "update
-  the product strategy after this sprint", "refine product.md", "the product doc
-  is stale", or "record what we learned". Do NOT use for a critical quality review
-  — use review-product. Do NOT use to write from scratch — use write-product.
+description: |
+  Refines product.md on a regular cadence by recording sprint learnings, updating metric baselines, closing resolved open questions, and advancing scope status. Works at portfolio, product, or domain scope. Use when the user mentions "update the product strategy after this sprint", "refine product.md", "the product doc is stale", or "record what we learned". Do NOT use for a critical quality review — use review-product. Do NOT use to write from scratch — use write-product.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<path-to-product.md> [--context <sprint-notes-or-research>]'
+argument-hint: <path-to-product.md> [--context <sprint-notes-or-research>]
 ---
 
 # Refine Product Strategy
@@ -180,4 +175,4 @@ None.
 - §9 Stakeholders RACI: Cart & Checkout squad lead changed last week;
   RACI not updated here because the caller did not confirm the new lead.
   Needs a follow-up.
-</example>
+  </example>

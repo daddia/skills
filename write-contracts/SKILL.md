@@ -1,18 +1,13 @@
 ---
 name: write-contracts
-description: >
-  Produces contracts.md for a domain as an executable index of types, Zod
-  schemas, API route contracts, and analytics event payloads. Use when the user
-  asks for "contracts", "types", "schema", or "interface definitions" for a
-  domain. Output is TypeScript / Zod / OpenAPI source with one worked example
-  per contract, not prose. Do NOT use for solution architecture — use
-  write-solution. Do NOT use for work-package design — use write-wp-design.
+description: |
+  Produces contracts.md for a domain as an executable index of types, Zod schemas, API route contracts, and analytics event payloads. Use when the user asks for "contracts", "types", "schema", or "interface definitions" for a domain. Output is TypeScript / Zod / OpenAPI source with one worked example per contract, not prose. Do NOT use for solution architecture — use write-solution. Do NOT use for work-package design — use write-wp-design.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<scope: portfolio|product|domain> <name>'
+argument-hint: "<scope: portfolio|product|domain> <name>"
 ---
 
 # Write Contracts Document
@@ -75,17 +70,11 @@ Each section has exactly one worked example.
 
 Write as a Markdown file with YAML frontmatter.
 
-| Scope | Save path |
-| --- | --- |
-| `portfolio` | `architecture/contracts.md` |
-| `product` (single-product workspace) | `contracts.md` |
+| Scope                                    | Save path                     |
+| ---------------------------------------- | ----------------------------- |
+| `portfolio`                              | `architecture/contracts.md`   |
+| `product` (single-product workspace)     | `contracts.md`                |
 | `product <name>` (portfolio sub-product) | `product/{name}/contracts.md` |
-| `domain <name>` | `domain/{name}/contracts.md` |
+| `domain <name>`                          | `domain/{name}/contracts.md`  |
 
 Use `template.md` as your structural scaffold.
-
-See `examples/cart-contracts.md` for a domain-scope example.
-
-<example>
-See `examples/cart-contracts.md` (domain scope)
-</example>

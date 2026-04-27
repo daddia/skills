@@ -1,18 +1,13 @@
 ---
 name: refine-solution
-description: >
-  Refines solution.md after a sprint or phase to reflect what was built —
-  updating the building-block view, runtime sequences, data model, risk
-  register, ADR log, and emergent patterns. Use when the user mentions
-  "update the solution architecture", "the solution.md has drifted", or
-  "refine the architecture after this sprint". Do NOT write from scratch —
-  use write-solution. Do NOT conduct a quality review — use review-solution.
+description: |
+  Refines solution.md after a sprint or phase to reflect what was built — updating the building-block view, runtime sequences, data model, risk register, ADR log, and emergent patterns. Use when the user mentions "update the solution architecture", "the solution.md has drifted", or "refine the architecture after this sprint". Do NOT write from scratch — use write-solution. Do NOT conduct a quality review — use review-solution.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: '<path-to-solution.md> [--context <sprint-notes>]'
+argument-hint: <path-to-solution.md> [--context <sprint-notes>]
 ---
 
 # Refine Solution Architecture
@@ -144,4 +139,4 @@ Amend `solution.md` directly. Then append:
 
 - §5: The mini-cart revalidation path is not yet documented in runtime views.
   This is a gap — flagged for review-solution or next refinement pass.
-</example>
+  </example>
