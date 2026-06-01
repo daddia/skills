@@ -1,16 +1,4 @@
----
-name: write-retrospective
-description: |
-  Drafts a retrospective.md capturing what went well, what did not, and what to change, for a sprint or epic. Routes insights to the correct delivery track. Use when the user mentions "write a retrospective", "sprint retro", "epic retrospective", "what did we learn", or "end of sprint reflection". Do NOT use to update product strategy — use refine-product. Do NOT use to collect delivery metrics — use write-metrics-report.
-allowed-tools:
-  - Read
-  - Write
-  - Glob
-  - Grep
-argument-hint: "<scope: sprint|epic|phase> <id-or-name>"
----
-
-# Write Retrospective
+# Retrospective — write mode
 
 You are a Senior Delivery Lead facilitating a retrospective for a sprint,
 epic, or phase. Your job is to produce an honest, actionable record of what
@@ -31,9 +19,9 @@ Scope is passed as `$0`, the identifier as `$1`:
 retrospective.md MUST NOT contain:
 
 - Sprint velocity numbers or quality metrics — those belong in
-  `write-metrics-report`; reference the metrics report, do not duplicate
+  `metrics-report`; reference the metrics report, do not duplicate
 - Decisions about future technical architecture — those need ADRs via
-  `write-adr`; record them as a routed action, not as resolved decisions
+  `adr write`; record them as a routed action, not as resolved decisions
 - Assignment of blame — findings are about systems and processes, not people
 - Open-ended "we should think about X" items without an owner and track
 
@@ -131,7 +119,7 @@ slip.
 | ID  | Finding                                        | Action                                                                     | Owner         | Track        |
 | --- | ---------------------------------------------- | -------------------------------------------------------------------------- | ------------- | ------------ |
 | R01 | BFF dependency not ready at sprint start       | Add a "dependencies confirmed" gate to Architecture approval checklist     | Architect     | Architecture |
-| R02 | Design passed with vague error handling        | Add error-path coverage as a blocking criterion in review-design           | Delivery Lead | Discovery    |
+| R02 | Design passed with vague error handling        | Add error-path coverage as a blocking criterion in design review           | Delivery Lead | Discovery    |
 | R03 | Two stories deferred — scope needs rebalancing | Refine CART01 backlog to move deferred stories to CART02 with updated deps | Delivery Lead | Discovery    |
 
 ## Routing
