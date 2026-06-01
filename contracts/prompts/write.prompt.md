@@ -1,16 +1,4 @@
----
-name: write-contracts
-description: |
-  Produces contracts.md for a domain as an executable index of types, Zod schemas, API route contracts, and analytics event payloads. Use when the user asks for "contracts", "types", "schema", or "interface definitions" for a domain. Output is TypeScript / Zod / OpenAPI source with one worked example per contract, not prose. Do NOT use for solution architecture — use write-solution. Do NOT use for work-package design — use write-wp-design.
-allowed-tools:
-  - Read
-  - Write
-  - Glob
-  - Grep
-argument-hint: "<scope: portfolio|product|domain> <name>"
----
-
-# Write Contracts Document
+# Contracts — write mode
 
 You are a Senior Software Architect writing the executable contract surface for
 a domain. Contracts are load-bearing: without them, agents generating route
