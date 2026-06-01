@@ -3,7 +3,7 @@ name: feature
 description: >
   Use when the user wants to implement a story or task in code against approved
   design.md and work/{epic}/tasks.md. Do NOT use for code review (code-review),
-  refactor after review (code-refactor), writing tasks (tasks), or design
+  address review feedback (code-review fix), writing tasks (tasks), or design
   (design write).
 license: MIT
 allowed-tools:

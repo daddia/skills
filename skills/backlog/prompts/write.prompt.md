@@ -40,7 +40,7 @@ Do not save until every check passes. Fix failures and re-run mentally:
 - [ ] Now-phase epics align with roadmap current phase and product §7 outcomes
 - [ ] DRAFTING AIDE block removed
 
-Optional: run `bash scripts/check-epic-paths.sh docs/product/backlog.md` if the file exists.
+Optional: run `bash scripts/check-epic-paths.sh docs/product/backlog.md` from the backlog skill directory if the file exists.
 
 ## Output
 

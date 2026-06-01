@@ -21,6 +21,14 @@ argument-hint: "<epic-slug|epic-id>"
 Read [../backlog/references/delivery-conventions.md](../backlog/references/delivery-conventions.md)
 when resolving `{epic}`.
 
+## Sub-agents
+
+When the epic has many tasks (roughly >5) or complex Gherkin, spawn **ac-evidence-verifier**
+([agents/ac-evidence-verifier.md](agents/ac-evidence-verifier.md)) to build the acceptance
+matrix before writing the report and updating tasks.md.
+
+For eval runs on skills in this repo, use root **eval-grader** (`agents/eval-grader.md`).
+
 ## Gotchas
 
 - **Code review ≠ validate** — review judges the diff; validate judges epic done-ness vs AC.

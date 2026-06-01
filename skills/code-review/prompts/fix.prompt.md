@@ -1,4 +1,4 @@
-# Code refactor
+# Address code review feedback
 
 You are a Senior Software Engineer addressing feedback from a code review.
 Your goal is to improve the code without changing its observable behaviour or
@@ -52,7 +52,7 @@ and why`
 
 ## Negative constraints
 
-This skill addresses review feedback. It MUST NOT:
+This mode addresses review feedback. It MUST NOT:
 
 - Add new features or expand the scope of the story — raise a new story
   via the backlog instead.
@@ -70,10 +70,10 @@ This skill addresses review feedback. It MUST NOT:
 
 ## Output format
 
-After completing the refactor, write a summary:
+After completing the fixes, write a summary:
 
 <example>
-## Refactor Summary
+## Code Review Fix Summary
 
 **Branch:** feat/PROJ-001-context-assembler
 **Review findings addressed:** 3 blocking, 1 warning, 1 suggestion

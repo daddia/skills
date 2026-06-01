@@ -1,6 +1,6 @@
 <!--
 DRAFTING AIDE — DELETE THIS BLOCK BEFORE SAVING THE OUTPUT FILE.
-DO NOT INCLUDE in the space-index routing response:
+DO NOT INCLUDE in the skills-index routing response:
   - Implementation details of any recommended skill → direct the user to that skill's SKILL.md
   - Multiple simultaneous recommendations without a clear primary → pick one
   - Business rationale for why a skill exists → descriptions are sufficient

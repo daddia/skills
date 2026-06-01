@@ -1,5 +1,5 @@
 ---
-name: space-index
+name: skills-index
 description: >
   Use when the user asks which skill to use, how to start delivery, or what to
   do next without naming a skill. Routes to product, backlog, tasks, design, etc.
@@ -10,6 +10,6 @@ allowed-tools:
 argument-hint: <query>
 ---
 
-# Space index
+# Skills index
 
 Follow [prompts/run.prompt.md](prompts/run.prompt.md).

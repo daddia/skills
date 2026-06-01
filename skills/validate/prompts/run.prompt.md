@@ -48,6 +48,9 @@ You need the following for the target epic:
 
 ### Phase 2: Build the acceptance matrix
 
+If the epic has many tasks, spawn **ac-evidence-verifier** (see validate SKILL.md)
+and merge its matrix. Otherwise build the matrix yourself.
+
 For every task in `work/{epic}/tasks.md`, build a table:
 
 | Task     | Criterion                    | Evidence                             | Status                |

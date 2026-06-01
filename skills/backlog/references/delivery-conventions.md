@@ -75,7 +75,8 @@ Cite `solution.md §{N.M}` — do not re-narrate architecture in `design.md`.
 | `tasks.md`, Gherkin AC | **tasks** |
 | Implement code | **feature** |
 | PR / branch code review | **code-review** |
+| Address code review feedback | **code-review** `fix` |
 | Epic done vs AC + roadmap gates | **validate** |
 | Sprint plan or retro | **sprint** |
 | Pre-sprint doc review / post-sprint doc pass | **docs** |
-| Which skill to use? | **space-index** |
+| Which skill to use? | **skills-index** |
