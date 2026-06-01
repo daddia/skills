@@ -1,11 +1,10 @@
 ---
-type: Backlog
-level: work-package
+type: Tasks
 ---
 
-# Backlog -- Checkout Foundations (CHK01)
+# Tasks -- Checkout Foundations (CHK01)
 
-Sprint-level backlog for `work/checkout/01-foundations/`, implementing CHK01 from `docs/product/backlog.md`.
+Tasks for `work/checkout/01-foundations/`, implementing CHK01 from `docs/product/backlog.md`.
 
 Companion artefacts: `./design.md` · `docs/architecture/solution.md`
 
@@ -14,13 +13,13 @@ Companion artefacts: `./design.md` · `docs/architecture/solution.md`
 - **Epic.** CHK01 -- Checkout foundation and scaffold
 - **Phase.** Now / Alpha
 - **Priority.** P0 (blocks CHK02+)
-- **Estimate.** 13 points across 4 stories
+- **Estimate.** 13 points across 4 tasks
 
 **Scope.** Module scaffold, orders API client, `OrderViewModel` + mapper, `placeOrder` Server Action (stub), `(checkout)` route group, checkout page shell, loading skeleton.
 
 **Out of scope (this WP).** Live payment form (CHK02), confirmation page (CHK03), guest checkout (CHK05).
 
-## 2. Stories
+## 3. Tasks
 
 - [ ] **[CHK01-01] Checkout module scaffold and view-model types**
   - **Status:** Not started | **Priority:** P0 | **Estimate:** 2

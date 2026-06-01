@@ -1,7 +1,7 @@
 ---
 name: feature
 description: |
-  Implements a story against approved design.md and backlog.md. Use when the
+  Implements a task against approved design.md and tasks.md. Use when the
   user mentions implement story, build the feature, or feature implementation.
   Do NOT use for code review — use code-review. Do NOT use for refactor after
   review — use code-refactor.
@@ -17,7 +17,7 @@ argument-hint: "<mode: implement> <story-id>"
 # Feature
 
 Implements a story with approved requirements and design, against `design.md`
-and `backlog.md`.
+and `tasks.md`.
 
 ## Router
 

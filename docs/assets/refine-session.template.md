@@ -1,7 +1,7 @@
 <!--
 DRAFTING AIDE — DELETE THIS BLOCK BEFORE SAVING THE OUTPUT FILE.
 DO NOT INCLUDE in the refine-session.md output:
-  - Story-level acceptance criteria → remains in work/{wp}/backlog.md
+  - Story-level acceptance criteria → remains in work/{wp}/tasks.md
   - Future scope or new stories → open a separate story instead
   - Re-narrated design content already in solution.md → cite by section
   - ADR bodies → write those in architecture/decisions/ADR-NNNN.md

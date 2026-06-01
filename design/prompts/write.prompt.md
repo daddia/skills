@@ -29,7 +29,7 @@ The design.md MUST NOT contain:
   → cite `solution.md §{N.M}` instead; do not re-narrate
 - Business rationale → belongs in `product.md`
 - Phase sequencing or epic ordering → belongs in `roadmap.md`
-- Story-level acceptance criteria → belongs in this WP's `backlog.md`
+- Story-level acceptance criteria → belongs in `tasks.md` (use **tasks** skill after design)
 
 **Delete the `DRAFTING AIDE` comment block before saving the output file.**
 
@@ -37,16 +37,15 @@ The design.md MUST NOT contain:
 
 <artifacts>
 [Provided by the caller:
-  Walking-skeleton mode: epic scope, list of stories from the parent backlog.md,
-  parent solution.md (for pattern references)
-  TDD mode: parent backlog.md (parent epic entry), work/{wp}/design.md context
+  Walking-skeleton mode: epic scope from docs/product/backlog.md, parent solution.md
+  TDD mode: parent epic in backlog.md, work/{wp}/design.md context
   (if updating), docs/architecture/solution.md, relevant codebase
   files, Figma link (if applicable)]
 </artifacts>
 
 ## Steps (walking-skeleton mode)
 
-1. Read the parent solution.md and the parent epic entry in the owning backlog.md
+1. Read the parent solution.md and the parent epic in docs/product/backlog.md
 2. Write §1 "The slice" — one paragraph: what end-to-end path the walking skeleton proves
 3. Write §2 "Files shipped" — exact paths with NEW/EVOLVE/KEEP labels and one-line descriptions
 4. Write §3 "Acceptance gates" — four subsections:
@@ -62,7 +61,7 @@ The design.md MUST NOT contain:
 ## Steps (TDD mode)
 
 1. Read all context before writing anything
-2. Write §1 "Scope" — in scope, out of scope, capabilities this WP delivers (link to backlog.md stories)
+2. Write §1 "Scope" — in scope, out of scope, capabilities this WP delivers (link to tasks.md when it exists)
 3. Write §2 "Architecture fit" — how this WP plugs into the parent solution.md; cite solution sections inline, do NOT re-narrate
 4. Write §3 "Files and components" — new files, modified files, files NOT modified; each with path + purpose
 5. Write §4 "Data contracts" — TypeScript signatures, Zod schemas, types introduced; code fences only

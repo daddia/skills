@@ -29,7 +29,7 @@ docs/
         └── ADR-NNNN-{title}.md
 ```
 
-Work-package artefacts live under `work/{wp}/` (`design.md`, `backlog.md`, etc.).
+Work-package artefacts live under `work/{wp}/` (`design.md`, `tasks.md`, etc.).
 
 Each skill documents default paths under `docs/`. If you name a different path in your prompt, the agent uses that instead.
 
@@ -56,7 +56,8 @@ Source: [github.com/daddia/space](https://github.com/daddia/space) under `packag
 | ----- | ----- | -------- |
 | **product** | write, review, refine | `docs/product/product.md` |
 | **roadmap** | write, review, refine | `docs/product/roadmap.md` |
-| **backlog** | write, review, refine | `docs/product/backlog.md` or `work/{wp}/backlog.md` |
+| **backlog** | write, review, refine | `docs/product/backlog.md` |
+| **tasks** | write, review, refine | `work/{wp}/tasks.md` |
 | **solution** | write, review, refine | `docs/architecture/solution.md` |
 | **design** | write, review | `work/{wp}/design.md` |
 | **docs** | review, refine | review / `refine-session.md` |
@@ -69,13 +70,14 @@ Source: [github.com/daddia/space](https://github.com/daddia/space) under `packag
 | **retrospective** | write | `retrospective.md` |
 | **space-index** | run | routing |
 
-Invoke with mode first, e.g. `/product write --stage pitch`, `/backlog write work-package checkout-01`. Override paths in natural language when needed (e.g. "write product.md to `docs/acme/product.md`").
+Invoke with mode first, e.g. `/product write --stage pitch`, `/tasks write work/checkout/01-foundations`. Override paths in natural language when needed.
 
 ## Planning & strategy
 
 - **product** — Pitch or full `product.md`.
 - **roadmap** — Outcome-based phases with exit criteria.
-- **backlog** — Epic-level under `docs/product/`; stories under `work/{wp}/`.
+- **backlog** — Product backlog (epics by default) at `docs/product/backlog.md`.
+- **tasks** — Work-package tasks from design/spec at `work/{wp}/tasks.md`.
 
 ## Architecture & design
 
@@ -85,7 +87,7 @@ Invoke with mode first, e.g. `/product write --stage pitch`, `/backlog write wor
 
 ## Implementation
 
-- **feature**, **code-review**, **code-refactor**, **validate**, **create-mr**
+- **feature**, **code-review**, **code-refactor**, **validate**, **create-mr** (consume `tasks.md` for AC)
 
 ## Review & refine
 

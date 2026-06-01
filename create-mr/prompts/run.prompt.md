@@ -9,7 +9,7 @@ An MR description MUST NOT:
 
 - Include implementation detail beyond what is in the diff → solution.md or work/{wp}/design.md
 - Include business rationale or commercial context → product.md
-- Restate acceptance criteria verbatim — reference the backlog.md story IDs instead
+- Restate acceptance criteria verbatim — reference the tasks.md task IDs instead
 - Contain secrets, credentials, or environment-specific values
 
 ## Context

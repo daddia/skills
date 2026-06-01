@@ -32,7 +32,7 @@ path instead of the default.
 ## Cross-artifact boundaries
 
 Do NOT put in `solution.md`: business strategy → `docs/product/product.md`; story
-AC → `work/{wp}/backlog.md`; phase sequencing → `docs/product/roadmap.md`.
+AC → `work/{wp}/tasks.md`; phase sequencing → `docs/product/roadmap.md`.
 
 ## Supporting files
 
@@ -40,7 +40,7 @@ AC → `work/{wp}/backlog.md`; phase sequencing → `docs/product/roadmap.md`.
 
 ## Related skills
 
-- `product`, `backlog`, `design`, `adr`
+- `product`, `backlog`, `tasks`, `design`, `adr`
 
 ## Router
 

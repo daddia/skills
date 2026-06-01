@@ -1,6 +1,5 @@
 ---
-type: Backlog
-level: work-package
+type: Tasks
 version: '0.1'
 owner: <!-- squad -->
 status: Draft
@@ -13,10 +12,10 @@ related:
 
 <!--
 DRAFTING AIDE — DELETE BEFORE SAVING.
-§3 stories with EARS + Gherkin; §4 traceability and DoD.
+§3 tasks with EARS + Gherkin; §4 traceability and DoD.
 -->
 
-# Backlog -- {Work package}
+# Tasks -- {Work package}
 
 ## 1. Summary
 
@@ -32,10 +31,10 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 
 | Convention | Value |
 | ---------- | ----- |
-| Story ID | `{EPIC-ID}-{nn}` |
+| Task ID | `{EPIC-ID}-{nn}` |
 | Acceptance | EARS + Gherkin per SKILL.md |
 
-## 3. Stories
+## 3. Tasks
 
 - [ ] **[{EPIC-ID}-01] {Title}**
   - **Status:** Not started | **Priority:** P0 | **Estimate:**
@@ -56,10 +55,10 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 
 ## 4. Traceability and DoD
 
-### Stories to solution sections
+### Tasks to solution sections
 
-| Story | solution.md |
-| ----- | ----------- |
+| Task | solution.md |
+| ---- | ----------- |
 
 ### Definition of Done
 

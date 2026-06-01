@@ -49,6 +49,6 @@ Defaults: solution `docs/architecture/solution.md`, register
 
 refine-session.md MUST NOT contain:
 
-- Story-level AC → remain in `work/{wp}/backlog.md`
+- Story-level AC → remain in `work/{wp}/tasks.md`
 - Future work not implemented → new story instead
 - Re-narration of design already in solution.md — reference by section

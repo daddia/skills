@@ -10,7 +10,7 @@ status: Draft
 last_updated: <!-- YYYY-MM-DD -->
 related:
   - <!-- solution.md -->
-  - <!-- backlog.md -->
+  - work/{wp}/tasks.md
   - docs/architecture/solution.md
 ---
 
@@ -21,7 +21,7 @@ DO NOT INCLUDE in this design.md:
     → cite solution.md §{N.M} instead; do not re-narrate
   - Business rationale                  → product.md
   - Phase sequencing                    → roadmap.md
-  - Story-level acceptance criteria     → this work package's backlog.md
+  - Story-level acceptance criteria     → work/{wp}/tasks.md (tasks skill)
 
 Walking-skeleton mode (2–4 pages): §1 The slice, §2 Files shipped,
   §3 Acceptance gates, §4 What was NOT delivered, §5 Open questions, §6 Handoff.
@@ -47,7 +47,7 @@ Walking-skeleton: one paragraph naming the end-to-end path this sprint proves
 and what does NOT yet work.
 
 TDD: in-scope capabilities, explicit out-of-scope deferrals, and a map from
-capabilities to story IDs in backlog.md.
+capabilities to task IDs in tasks.md.
 -->
 
 [NEEDS CLARIFICATION]

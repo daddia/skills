@@ -22,7 +22,7 @@ level: epic
 | Convention | Value |
 | ---------- | ----- |
 | Epic ID | `CHK{nn}` |
-| Story ID | `CHK{nn}-{nn}` (work-package backlog) |
+| Task ID | `CHK{nn}-{nn}` (`work/{wp}/tasks.md`) |
 | Priority | P0–P2 |
 | Estimation | Fibonacci points |
 

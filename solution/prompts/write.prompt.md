@@ -18,7 +18,7 @@ Default: `docs/architecture/solution.md`. If the user names another path, use it
 solution.md MUST NOT contain:
 
 - Commercial rationale, personas, positioning → `docs/product/product.md`
-- Story-level acceptance criteria → `work/{wp}/backlog.md`
+- Story-level acceptance criteria → `work/{wp}/tasks.md`
 - Phase sequencing → `docs/product/roadmap.md`
 
 ## Context

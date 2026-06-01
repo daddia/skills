@@ -3,7 +3,8 @@ name: design
 description: |
   work-package design.md: write (walking-skeleton or TDD) or review (implementation
   readiness). Use for technical design, TDD, review design before sprint. Cite
-  solution.md — do not re-narrate. Do NOT use for product strategy — use product.
+  solution.md — do not re-narrate. Do NOT use for product backlog — use backlog.
+  Do NOT write tasks.md — use tasks after design.
 allowed-tools:
   - Read
   - Write

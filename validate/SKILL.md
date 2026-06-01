@@ -1,7 +1,7 @@
 ---
 name: validate
 description: |
-  Final stakeholder validation that an epic is complete against backlog.md AC and
+  Final stakeholder validation that an epic is complete against tasks.md AC and
   roadmap phase exit criteria. Use when validating epic completion.
 allowed-tools:
   - Read

@@ -38,7 +38,7 @@ A design review MUST NOT:
 [Provided by the caller:
   Required: the design.md to review
   Recommended: solution.md (to check for consistency with architectural
-  patterns), backlog.md (to check story-design traceability)
+  patterns), tasks.md (to check task-design traceability, if present)
   Optional: docs/architecture/solution.md (API shapes in §6–§7), existing codebase]
 </artifacts>
 
@@ -96,7 +96,7 @@ error response? "Handle errors gracefully" is not a specification.
 `solution.md §2`), does the design describe how it is met? An NFR that is
 not addressed in the design will not be met in the implementation.
 
-**Story-to-design traceability.** Does every story in `backlog.md` have a
+**Task-to-design traceability.** Does every task in `tasks.md` have a
 named design section it maps to? An engineer picking up a story must be able
 to find the relevant design section without searching.
 

@@ -7,7 +7,7 @@ production-ready and every acceptance criterion is satisfied.
 
 A validation report MUST NOT:
 
-- Write new acceptance criteria — it verifies criteria already in backlog.md
+- Write new acceptance criteria — it verifies criteria already in tasks.md
 - Include implementation detail → solution.md or work/{wp}/design.md
 - Reopen decisions that were closed during the sprint → raise a follow-up story instead
 - Include business rationale → product.md
@@ -25,28 +25,28 @@ You need the following for the target epic:
 
 | Input                 | Location                         | Required    |
 | --------------------- | -------------------------------- | ----------- |
-| Backlog               | `product/backlog.md`             | Yes         |
-| Requirements          | `work/{EPIC_ID}/requirements.md` | If exists   |
-| Design                | `work/{EPIC_ID}/design.md`       | If exists   |
+| Product backlog       | `docs/product/backlog.md`        | Yes         |
+| Tasks (per WP)        | `work/{wp}/tasks.md`             | Yes         |
+| Design                | `work/{wp}/design.md`            | If exists   |
 | Application code      | `{repo}:src/`                    | Yes         |
-| Solution architecture | `architecture/solution.md`       | If relevant |
-| ADRs                  | `architecture/decisions/`        | If relevant |
+| Solution architecture | `docs/architecture/solution.md`  | If relevant |
+| ADRs                  | `docs/architecture/decisions/`   | If relevant |
 
 ## Steps
 
 ### Phase 1: Gather context
 
-1. Read `product/backlog.md` and locate the target epic and all its stories
-2. Read the requirements document for the epic if one exists
-3. Read the design document for the epic if one exists
+1. Read `docs/product/backlog.md` and locate the target epic and its work packages
+2. Read each `work/{wp}/tasks.md` for that epic and collect all tasks
+3. Read `work/{wp}/design.md` for each work package if it exists
 4. Read the solution architecture if the epic touches architectural boundaries
 5. Read any relevant ADRs referenced by the design or requirements
 
 ### Phase 2: Build the acceptance matrix
 
-For every story in the epic, build a table of acceptance criteria with columns:
+For every task in the epic (from work-package `tasks.md` files), build a table:
 
-| Story    | Criterion                    | Evidence                             | Status                |
+| Task     | Criterion                    | Evidence                             | Status                |
 | -------- | ---------------------------- | ------------------------------------ | --------------------- |
 | CF-XX-YY | Description of the criterion | File path, test name, or observation | pass / fail / partial |
 
@@ -88,22 +88,21 @@ If a design document exists:
 | Environment    | New environment variables added to `.env.example`                           |
 | Dependencies   | No unused or undeclared dependencies                                        |
 
-### Phase 6: Update the backlog
+### Phase 6: Update tasks and backlog
 
-Based on the acceptance matrix, update `product/backlog.md`:
+Based on the acceptance matrix, update each `work/{wp}/tasks.md`:
 
 1. **Completed criteria**: Check the box `- [x]`
 2. **Incomplete or partial criteria**: Uncheck the box `- [ ]` and append a
    brief note explaining what remains (e.g. `-- not wired to scheduler`)
-3. **Story status**: Update the story status in the epic summary table:
+3. **Task status**: Update the task status:
    - All criteria pass -> `done`
    - Some criteria fail or partial -> `in-progress`
-   - No criteria pass -> `backlog`
-4. **New backlog items**: If validation reveals work not covered by existing
-   stories (bugs, missing integration, undocumented gaps), add new stories to
-   the epic following the existing ID and format conventions
-5. **Epic status**: Summarise the overall epic status at the top of the epic
-   section if all stories are done
+   - No criteria pass -> `not started`
+4. **New tasks**: If validation reveals work not covered, add tasks to the
+   relevant `work/{wp}/tasks.md` following existing ID and format conventions
+5. **Epic status**: Update epic status in `docs/product/backlog.md` when all
+   work packages for the epic are complete
 
 ### Phase 7: Produce the validation report
 
@@ -116,7 +115,7 @@ Based on the acceptance matrix, update `product/backlog.md`:
   file patterns, grep for key terms, review related modules)
 - Deviations from the design are findings, not automatic failures -- document
   the deviation and whether it is acceptable
-- Backlog updates must preserve the existing format and conventions exactly
+- Task and product backlog updates must preserve existing format and conventions
 
 ## Output format
 

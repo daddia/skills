@@ -39,7 +39,7 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 | Convention | Value |
 | ---------- | ----- |
 | Epic ID | `{PREFIX}{nn}` |
-| Story ID | `{PREFIX}{nn}-{nn}` (in work-package backlogs) |
+| Task ID | `{PREFIX}{nn}-{nn}` (in `work/{wp}/tasks.md` via **tasks** skill) |
 | Status | Not started, In progress, In review, Done, Blocked |
 | Priority | P0–P3 |
 | Estimation | Fibonacci story points |

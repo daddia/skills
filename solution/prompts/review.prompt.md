@@ -26,7 +26,7 @@ A solution review MUST NOT:
 - Invent new architectural decisions without grounding in the product
   context or existing ADRs
 - Add business rationale or commercial framing → belongs in `product.md`
-- Add story-level acceptance criteria → belongs in `work/{wp}/backlog.md`
+- Add story-level acceptance criteria → belongs in `work/{wp}/tasks.md`
 - Rewrite the solution wholesale — it raises findings and amends unambiguous
   gaps directly; major restructuring requires `write mode`
 

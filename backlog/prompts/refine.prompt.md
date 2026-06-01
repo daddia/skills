@@ -1,53 +1,24 @@
 # Backlog — refine mode
 
-Backlog refinement for epic or work-package level.
+Refine the **product backlog** at `docs/product/backlog.md` (or user-named path).
 
 Read [SKILL.md](../SKILL.md) for path resolution.
 
-## Paths
+## The five activities (epics)
 
-Epic default: `docs/product/backlog.md`. Work package: `work/{wp}/backlog.md`.
-User-named paths override defaults.
-
-## Level
-
-- **Epic** — refine epic breakdown and epic detail
-- **Work package** — refine sprint-ready stories
-
-## The five activities
-
-Apply all five to every item in scope:
-
-### 1. Prioritise
-
-- **Epic:** rank by value, risk, and dependencies
-- **Work package:** unblockers first; ready stories above blocked ones
-
-### 2. Break down
-
-- **Epic:** split if more than one integration boundary or phase objective
-- **Work package:** split if estimate > 8 or multiple testable behaviours per story
-
-### 3. Estimate
-
-Fill or update estimates; TBD only with a spike story.
-
-### 4. Define acceptance criteria
-
-- **Epic:** verifiable scope and deliverables
-- **Work package:** full EARS + Gherkin per SKILL.md
-
-### 5. Remove
-
-Defer or remove items misaligned with product §5 or roadmap. Record removals in the session summary.
+1. **Prioritise** — value, risk, dependencies
+2. **Break down** — split epics spanning multiple integration boundaries or phase objectives
+3. **Estimate** — epic points; TBD only with a spike noted in backlog
+4. **Define acceptance** — verifiable epic scope and deliverables (not full Gherkin — use **tasks** for WP)
+5. **Remove** — defer items misaligned with product §5 or roadmap; record in summary
 
 ## Steps
 
-1. Read backlog and context (product.md §5, roadmap current phase)
-2. Remove → break down → prioritise → estimate → tighten AC
+1. Read backlog.md, product.md §5, roadmap.md current phase
+2. Remove → break down → prioritise → estimate → tighten epic scope
 3. Update `version`, `last_updated`, `status: Refined`
-4. Report changes and sprint-ready verdict in chat
+4. Report changes and planning-ready verdict
 
 ## Output
 
-Amend backlog.md only. Report removed, split, reprioritised, estimates, AC, verdict, blockers.
+Amend product backlog only. Report removed, split, reprioritised, estimates, verdict, blockers.
