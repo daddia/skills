@@ -21,7 +21,9 @@ below to identify the best match and direct them to the right skill.
 | --- | --- | --- | --- | --- | --- | --- |
 | adr | Architecture decisions: plan, write, or review ADRs and adr-plan.md | ADR / adr-plan | architecture | architect | solution.md | ADR-NNNN.md |
 | backlog | backlog.md: write, review, or refine epics and stories | backlog.md | strategy / discovery / refine | delivery | product.md, roadmap.md, solution.md | backlog.md |
-| feature | implement, review, or refactor against design and backlog | code | delivery | engineer | design.md, backlog.md | code |
+| feature | Implements a story against design.md and backlog.md | code | delivery | engineer | design.md, backlog.md | code |
+| code-review | Comprehensive code review of a branch or PR | code review | delivery | engineer | design.md, backlog.md | review |
+| code-refactor | Refactoring to address code review feedback without behaviour change | code | delivery | engineer | review, code | code |
 | contracts | Produces contracts.md — types, Zod schemas, API contracts | contracts.md | architecture | architect | solution.md | contracts.md |
 | create-mr | Creates merge request for current branch after implementation | MR description | delivery | engineer | — | MR description |
 | design | work-package design.md: write or review | design.md | discovery | architect | solution.md, backlog.md | design.md |

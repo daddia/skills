@@ -43,7 +43,7 @@ standards, relevant existing codebase files]
 
 ## Negative constraints
 
-Feature **implement** mode writes code against an approved design. It MUST NOT:
+This skill writes code against an approved design. It MUST NOT:
 
 - Modify architectural patterns, NFRs, or cross-cutting concerns — those live
   in `solution.md` and should be raised as a new ADR via `adr write`, not

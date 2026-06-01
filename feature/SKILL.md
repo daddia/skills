@@ -1,23 +1,27 @@
 ---
 name: feature
 description: |
-  Feature delivery modes: implement (story against design+backlog), review
-  (branch/PR), refactor (address review feedback without behaviour change). Use
-  for implement story, code review, refactor after review.
+  Implements a story against approved design.md and backlog.md. Use when the
+  user mentions implement story, build the feature, or feature implementation.
+  Do NOT use for code review — use code-review. Do NOT use for refactor after
+  review — use code-refactor.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
   - Shell
-argument-hint: "<mode: implement|review|refactor> <story-id|branch|target>"
+argument-hint: "<mode: implement> <story-id>"
 ---
 
 # Feature
 
-Implementation and review against `design.md` and `backlog.md`.
+Implements a story with approved requirements and design, against `design.md`
+and `backlog.md`.
 
 ## Router
 
-1. Mode: `implement`, `review`, or `refactor`.
-2. Matching prompt under [prompts/](prompts/).
+1. Mode is `implement` (default when user says "feature implement").
+2. Follow [prompts/implement.prompt.md](prompts/implement.prompt.md).
+
+Pass story id and context after the mode token.

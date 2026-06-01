@@ -50,7 +50,9 @@ Each topic skill uses `prompts/{mode}.prompt.md` for mode-specific instructions.
 | **design** | write, review | `design.md` (work package) |
 | **docs** | review, refine | review / `refine-session.md` |
 | **adr** | plan, write, review | `adr-plan.md`, `ADR-NNNN.md` |
-| **feature** | implement, review, refactor | code |
+| **feature** | implement | code |
+| **code-review** | run | code review |
+| **code-refactor** | run | code |
 | **contracts** | write | `contracts.md` |
 | **tech-stack** | write | `tech-stack.md` |
 | **delivery** | plan | `delivery-plan.md` |
@@ -87,7 +89,9 @@ Invoke with mode as the first argument, e.g. `/backlog write domain checkout`.
 
 ## Implementation
 
-- **feature** — Implement, review, or refactor against `design.md` and `backlog.md`.
+- **feature** — Implement a story against `design.md` and `backlog.md`.
+- **code-review** — Review a branch or PR against design and acceptance criteria.
+- **code-refactor** — Address review feedback without changing behaviour.
 - **validate** — Epic completion validation against AC and roadmap gates.
 - **create-mr** — Open merge request with generated description.
 
