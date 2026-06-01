@@ -64,12 +64,16 @@ These skills sit at the front of the delivery loop — defining what to build, w
   npx skills@latest add daddia/skills/write-roadmap
   ```
 
-- **write-backlog** — Draft a domain-level or work-package `backlog.md`. Work-package
-  scope produces EARS + Gherkin acceptance criteria per story.
+- **backlog** — `backlog.md` artefact with three modes: **write** (draft epics/stories),
+  **review** (readiness gate), **refine** (groom). Work-package write produces EARS +
+  Gherkin acceptance criteria per story.
 
   ```bash
-  npx skills@latest add daddia/skills/write-backlog
+  npx skills@latest add daddia/skills/backlog
   ```
+
+  Legacy aliases `write-backlog`, `review-backlog`, and `refine-backlog` redirect to the
+  same prompts with a fixed mode.
 
 ## Architecture & Design
 
@@ -178,11 +182,7 @@ Document and code review skills, role-aware and structured.
   npx skills@latest add daddia/skills/review-adr
   ```
 
-- **review-backlog** — Review `backlog.md` as a Senior Delivery Lead — strategic alignment, AC clarity, story-level estimability.
-
-  ```bash
-  npx skills@latest add daddia/skills/review-backlog
-  ```
+- **backlog** (review mode) — See **backlog** above; use review mode or alias `review-backlog`.
 
 - **review-design** — Review a work-package `design.md` for implementation readiness — implementable, APIs and contracts referenced, scope clear.
 
@@ -227,12 +227,7 @@ Sprint-end and cadence skills that close the loop and roll learnings forward.
   npx skills@latest add daddia/skills/refine-solution
   ```
 
-- **refine-backlog** — Refine `backlog.md` by applying five grooming activities:
-  prioritise, break down, estimate, define acceptance criteria, slice.
-
-  ```bash
-  npx skills@latest add daddia/skills/refine-backlog
-  ```
+- **backlog** (refine mode) — See **backlog** above; use refine mode or alias `refine-backlog`.
 
 - **refine-docs** — Document the sprint-end refinement session: promote work-package
   ADR candidates into `solution.md`, archive superseded design sections, capture every

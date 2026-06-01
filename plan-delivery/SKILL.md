@@ -1,7 +1,7 @@
 ---
 name: plan-delivery
 description: |
-  Produces a delivery-plan.md that sequences the Phase-0 artefacts for a new portfolio, product, or domain before the foundation sprint starts. Use when the user mentions "plan delivery for {name}", "sequence the artefacts", or "how do I start this?". Do NOT use to author any individual artefact — use write-product, write-solution, write-roadmap, write-backlog, or write-contracts for that.
+  Produces a delivery-plan.md that sequences the Phase-0 artefacts for a new portfolio, product, or domain before the foundation sprint starts. Use when the user mentions "plan delivery for {name}", "sequence the artefacts", or "how do I start this?". Do NOT use to author any individual artefact — use write-product, write-solution, write-roadmap, backlog (write mode), or write-contracts for that.
 allowed-tools:
   - Read
   - Write
@@ -54,8 +54,8 @@ solution.md lives at `{prefix}solution.md` (i.e. `domain/{name}/solution.md`).
    Invoke `write-roadmap` with the matching scope. Output: `{prefix}roadmap.md`.
    Uses the product strategy and solution stub as inputs.
 
-5. **Backlog — `write-backlog`.**
-   Invoke `write-backlog` with the matching scope. Output: `{prefix}backlog.md`.
+5. **Backlog — `backlog` write mode.**
+   Invoke `backlog` with mode `write` and the matching scope. Output: `{prefix}backlog.md`.
    Now-phase epics only (default depth).
 
 6. **Contracts stub — `write-contracts`.**
