@@ -1,16 +1,15 @@
 ---
 type: Design
-level: work-package
 mode: <!-- walking-skeleton | tdd -->
-work_package: <!-- e.g. 01-foundations -->
-epic: <!-- e.g. FEAT01 -->
+epic: <!-- kebab-case from title or short title, max two words -->
+epic_id: <!-- e.g. CHK01 -->
 version: '0.1'
 owner: <!-- team or squad name -->
 status: Draft
 last_updated: <!-- YYYY-MM-DD -->
 related:
   - <!-- solution.md -->
-  - work/{wp}/tasks.md
+  - work/{epic}/tasks.md
   - docs/architecture/solution.md
 ---
 
@@ -21,7 +20,7 @@ DO NOT INCLUDE in this design.md:
     → cite solution.md §{N.M} instead; do not re-narrate
   - Business rationale                  → product.md
   - Phase sequencing                    → roadmap.md
-  - Story-level acceptance criteria     → work/{wp}/tasks.md (tasks skill)
+  - Story-level acceptance criteria     → work/{epic}/tasks.md (tasks skill)
 
 Walking-skeleton mode (2–4 pages): §1 The slice, §2 Files shipped,
   §3 Acceptance gates, §4 What was NOT delivered, §5 Open questions, §6 Handoff.
@@ -34,10 +33,7 @@ TDD mode (5–10 pages): §1 Scope, §2 Architecture fit, §3 Files and componen
 
 # Design -- {Epic Title} ({EPIC-ID})
 
-<!-- Walking-skeleton: "Walking-skeleton design for the {Epic Title} work package."
-     TDD: "TDD-mode design for the {Epic Title} work package." -->
-
-This work package implements {EPIC-ID}. Architecture-wide patterns are authoritative in
+Design for epic {EPIC-ID} at `work/{epic}/`. Architecture-wide patterns are authoritative in
 [`solution.md`](solution.md) and are not repeated here.
 
 ## 1. Scope / The slice
@@ -77,7 +73,7 @@ Walking-skeleton: four subsections:
   3.3 Error path exercised (typed error surface renders)
   3.4 Scaffolds complete and quality gates pass (typecheck, unit tests)
 
-TDD: the subset of solution.md §2.1 quality goals this work package must satisfy,
+TDD: the subset of solution.md §2.1 quality goals this epic must satisfy,
 plus layer-specific acceptance criteria.
 -->
 
@@ -87,7 +83,7 @@ plus layer-specific acceptance criteria.
 
 <!--
 TDD mode: TypeScript signatures, Zod schemas, and types introduced by this work
-package. Code fences only — no prose descriptions of shapes.
+epic. Code fences only — no prose descriptions of shapes.
 
 Walking-skeleton mode: omit or note "No new contracts; schema stable from foundation."
 -->
@@ -98,15 +94,15 @@ Walking-skeleton mode: omit or note "No new contracts; schema stable from founda
 
 <!--
 Walking-skeleton §4 + §6: explicit list of what this sprint did NOT ship
-(so later sprints do not assume it was done), then what the next work package
+(so later sprints do not assume it was done), then what the next epic
 can safely assume is ready.
 
-TDD §11: what is stable when this work package closes; what comes next.
+TDD §11: what is stable when this epic closes; what comes next.
 -->
 
 **Not delivered:**
 
-- <!-- capability deferred to a later work package -->
+- <!-- capability deferred to a later epic -->
 
 **Stable on close:**
 

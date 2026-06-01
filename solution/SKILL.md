@@ -32,7 +32,7 @@ path instead of the default.
 ## Cross-artifact boundaries
 
 Do NOT put in `solution.md`: business strategy → `docs/product/product.md`; story
-AC → `work/{wp}/tasks.md`; phase sequencing → `docs/product/roadmap.md`.
+AC → `work/{epic}/tasks.md`; phase sequencing → `docs/product/roadmap.md`.
 
 ## Supporting files
 

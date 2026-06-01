@@ -7,7 +7,7 @@ allowed-tools:
   - Read
   - Glob
   - Grep
-argument-hint: <epic-id>
+argument-hint: "<epic-slug|epic-id>"
 ---
 
 # Validate

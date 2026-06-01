@@ -1,30 +1,9 @@
 # Tasks — refine mode
 
-Refine `tasks.md` so the team can start the next sprint without ambiguity.
+Refine `work/{epic}/tasks.md`. Resolve `{epic}` from argument or backlog.
 
-Read [SKILL.md](../SKILL.md) for path resolution.
+Read [SKILL.md](../SKILL.md).
 
-## Path
+Apply: prioritise, break down, estimate, tighten Gherkin (EARS per SKILL.md), remove misaligned tasks.
 
-Default: `work/{wp}/tasks.md`. User-named paths override.
-
-## The five activities
-
-Apply to every task in scope:
-
-1. **Prioritise** — unblockers first; ready tasks above blocked ones
-2. **Break down** — split if estimate > 8 or multiple testable behaviours per task
-3. **Estimate** — fill or update; TBD only with a spike task
-4. **Define acceptance criteria** — tighten Gherkin; add or trim EARS per SKILL.md (not both saying the same thing)
-5. **Remove** — defer tasks misaligned with design or epic; record in summary
-
-## Steps
-
-1. Read tasks.md, design.md, parent epic
-2. Remove → break down → prioritise → estimate → tighten Gherkin; add EARS only where rules need them
-3. Update `version`, `last_updated`, `status: Refined`
-4. Report changes and sprint-ready verdict
-
-## Output
-
-Amend tasks.md only. Report removed, split, reprioritised, estimates, AC, verdict, blockers.
+Update `version`, `last_updated`, `status: Refined`. Report sprint-ready verdict.

@@ -8,15 +8,15 @@ production-ready and every acceptance criterion is satisfied.
 A validation report MUST NOT:
 
 - Write new acceptance criteria — it verifies criteria already in tasks.md
-- Include implementation detail → solution.md or work/{wp}/design.md
+- Include implementation detail → solution.md or work/{epic}/design.md
 - Reopen decisions that were closed during the sprint → raise a follow-up story instead
 - Include business rationale → product.md
 
 ## Context
 
 <artifacts>
-[Provided by the caller: epic ID, backlog, requirements document, design
-document, and access to the application codebase]
+[Provided by the caller: epic slug or epic ID (resolve slug via backlog),
+backlog, tasks.md, design document, and access to the application codebase]
 </artifacts>
 
 ## Inputs
@@ -26,8 +26,8 @@ You need the following for the target epic:
 | Input                 | Location                         | Required    |
 | --------------------- | -------------------------------- | ----------- |
 | Product backlog       | `docs/product/backlog.md`        | Yes         |
-| Tasks (per WP)        | `work/{wp}/tasks.md`             | Yes         |
-| Design                | `work/{wp}/design.md`            | If exists   |
+| Tasks                 | `work/{epic}/tasks.md`           | Yes         |
+| Design                | `work/{epic}/design.md`          | If exists   |
 | Application code      | `{repo}:src/`                    | Yes         |
 | Solution architecture | `docs/architecture/solution.md`  | If relevant |
 | ADRs                  | `docs/architecture/decisions/`   | If relevant |
@@ -36,15 +36,15 @@ You need the following for the target epic:
 
 ### Phase 1: Gather context
 
-1. Read `docs/product/backlog.md` and locate the target epic and its work packages
-2. Read each `work/{wp}/tasks.md` for that epic and collect all tasks
-3. Read `work/{wp}/design.md` for each work package if it exists
+1. Read `docs/product/backlog.md` — locate the epic row (Epic ID, Title, Work path `work/{epic}/`)
+2. Read `work/{epic}/tasks.md` and collect all tasks
+3. Read `work/{epic}/design.md` if it exists
 4. Read the solution architecture if the epic touches architectural boundaries
 5. Read any relevant ADRs referenced by the design or requirements
 
 ### Phase 2: Build the acceptance matrix
 
-For every task in the epic (from work-package `tasks.md` files), build a table:
+For every task in `work/{epic}/tasks.md`, build a table:
 
 | Task     | Criterion                    | Evidence                             | Status                |
 | -------- | ---------------------------- | ------------------------------------ | --------------------- |
@@ -90,7 +90,7 @@ If a design document exists:
 
 ### Phase 6: Update tasks and backlog
 
-Based on the acceptance matrix, update each `work/{wp}/tasks.md`:
+Based on the acceptance matrix, update `work/{epic}/tasks.md`:
 
 1. **Completed criteria**: Check the box `- [x]`
 2. **Incomplete or partial criteria**: Uncheck the box `- [ ]` and append a
@@ -100,9 +100,8 @@ Based on the acceptance matrix, update each `work/{wp}/tasks.md`:
    - Some criteria fail or partial -> `in-progress`
    - No criteria pass -> `not started`
 4. **New tasks**: If validation reveals work not covered, add tasks to the
-   relevant `work/{wp}/tasks.md` following existing ID and format conventions
-5. **Epic status**: Update epic status in `docs/product/backlog.md` when all
-   work packages for the epic are complete
+   `work/{epic}/tasks.md` following existing ID and format conventions
+5. **Epic status**: Update epic status in `docs/product/backlog.md` when the epic is complete
 
 ### Phase 7: Produce the validation report
 

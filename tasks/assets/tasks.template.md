@@ -1,12 +1,14 @@
 ---
 type: Tasks
+epic: <!-- kebab-case from title or short title, max two words -->
+epic_id: <!-- e.g. CHK01 -->
 version: '0.1'
 owner: <!-- squad -->
 status: Draft
 last_updated: <!-- YYYY-MM-DD -->
 related:
   - docs/product/backlog.md
-  - work/{wp}/design.md
+  - work/{epic}/design.md
   - docs/architecture/solution.md
 ---
 
@@ -15,7 +17,7 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 §3 tasks: Gherkin required; EARS optional (see SKILL.md).
 -->
 
-# Tasks -- {Work package}
+# Tasks -- {Epic title} ({EPIC-ID})
 
 ## 1. Summary
 
@@ -51,11 +53,6 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
       Then
     ```
 
-  <!-- Optional: include only with --ears or when EARS clarifies a rule Gherkin cannot carry alone
-  - **Acceptance (EARS):**
-    - WHEN , THE SYSTEM SHALL .
-  -->
-
 ## 4. Traceability and DoD
 
 ### Tasks to solution sections
@@ -70,4 +67,4 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 
 ## 5. Handoff
 
-<!-- What this WP leaves stable; what comes next -->
+<!-- What this epic leaves stable; what comes next -->

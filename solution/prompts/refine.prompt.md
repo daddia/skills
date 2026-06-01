@@ -34,7 +34,7 @@ A solution refinement MUST NOT:
 [Provided by the caller:
   Required: the solution.md to refine
   Recommended: work/sprint-{id}/retrospective.md, design.md from the sprint's
-  work packages, codebase changes (file names, new modules, changed APIs)
+  epic work folders under work/{epic}/, codebase changes (file names, new modules, changed APIs)
   Optional: docs/architecture/decisions/register.md]
 </artifacts>
 

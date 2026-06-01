@@ -1,13 +1,15 @@
 ---
 type: Design
-level: work-package
+epic: checkout-foundation
+epic_id: CHK01
+level: walking-skeleton
 ---
 
-# Design -- Checkout foundations (walking skeleton)
+# Design -- Checkout Foundation (CHK01)
 
-Walking-skeleton design for `work/checkout/01-foundations/`, implementing CHK01 from `docs/product/backlog.md`.
+Walking-skeleton design for `work/checkout-foundation/`, epic CHK01 from `docs/product/backlog.md`.
 
-Architecture-wide patterns (server-owned order state, idempotent placement, error taxonomy) are authoritative in `docs/architecture/solution.md` and are not repeated here.
+Architecture-wide patterns are authoritative in `docs/architecture/solution.md` and are not repeated here.
 
 ## 1. The slice
 
@@ -29,8 +31,8 @@ Prove one round-trip: cart → place order → confirmation redirect with a trac
 
 ### 3.4 Scaffolds and quality gates
 
-## 4. What this WP did NOT deliver
+## 4. What this epic did NOT deliver
 
 ## 5. Open questions closed
 
-## 6. Handoff to next WP
+## 6. Handoff to next epic

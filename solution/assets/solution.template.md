@@ -17,14 +17,14 @@ DO NOT INCLUDE in solution.md:
   - Strategic thesis or product principles      → product.md
   - Positioning or messaging                    → product.md
   - User quotes                                 → product.md
-  - Story-level acceptance criteria             → work/{wp}/tasks.md
+  - Story-level acceptance criteria             → work/{epic}/tasks.md
   - Phase sequencing or epic ordering           → roadmap.md
 -->
 
 # Solution -- {Name}
 
 {Name} solution design. Captures the architecture, cross-cutting concepts,
-data contracts, and key decisions that apply across work packages.
+data contracts, and key decisions that apply across epics.
 For product context, problem statement, and commercial scope see
 [`product.md`](product.md).
 
@@ -86,7 +86,7 @@ the quality goal it satisfies. -->
 ## 4. Building block view
 
 <!-- C4 Level 2 (containers) and selectively Level 3 (components).
-     Show the directory / module layout that every work package will extend. -->
+     Show the directory / module layout that every epic will extend. -->
 
 [NEEDS CLARIFICATION]
 

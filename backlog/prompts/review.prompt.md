@@ -2,14 +2,13 @@
 
 Critical review of the **product backlog** for planning readiness.
 
-Read [SKILL.md](../SKILL.md) for path resolution.
+Read [SKILL.md](../SKILL.md) for path resolution and epic work folders.
 
 ## Path
 
 Default: `docs/product/backlog.md`. User-named paths override.
 
-For story-level Gherkin and sprint feasibility, use **tasks review** on
-`work/{wp}/tasks.md` — not this skill.
+For Gherkin and sprint feasibility, use **tasks review** on `work/{epic}/tasks.md`.
 
 ## Context
 
@@ -23,23 +22,17 @@ Optional: sprint retrospective notes]
 
 1. Read backlog.md and context
 2. Check alignment with product.md §4–§5 and roadmap current phase
-3. Apply epic criteria below; amend unambiguous fixes; report verdict
+3. Verify each epic has a valid `work/{epic}/` path (title or short title slug, max two words)
+4. Apply epic criteria; amend unambiguous fixes; report verdict
 
 ## Epic review criteria
 
-- Every Now-phase epic traces to product.md §7 outcomes
-- No Now-phase epic contradicts product §5 No-gos or roadmap deferred items
+- Now-phase epics trace to product.md §7 outcomes
+- No contradiction with product §5 or roadmap deferred items
 - Epic granularity: one integration boundary / phase objective per epic
-- Next/Later epics are lightweight unless `--depth full` was used
-- Dependency graph matches epic table; no cycles; critical path is sound
-- Now-phase epics have estimates (or explicit spike) — not TBD without plan
-- Minimum viable slice is truly minimal
-- Delivery risks distinct from solution.md §10.1
-- If stories appear in product backlog: they are high-level only; flag full Gherkin here as misplaced (belongs in tasks.md)
-
-## Universal criteria
-
-Internal consistency, naming vs solution.md, currency, length discipline for Now vs Later phases.
+- Work paths are unique and match title or short title slugs
+- Dependencies and estimates sound
+- Stories in product backlog are high-level only — flag full Gherkin as misplaced
 
 ## Verdict
 

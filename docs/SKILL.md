@@ -1,19 +1,19 @@
 ---
 name: docs
 description: |
-  Pre-sprint alignment (review) or sprint-end documentation pass (refine).
-  Default product and solution paths under docs/. Work-package paths under work/.
+  Pre-sprint alignment (review) or sprint-end documentation pass (refine) for an epic.
+  Product and solution under docs/; epic artefacts under work/{epic}/.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: "<mode: review|refine> <work-package-path> [--context <notes>]"
+argument-hint: "<mode: review|refine> <epic> [--context <notes>]"
 ---
 
 # Docs
 
-Sprint-end and pre-sprint passes on product + solution and work-package design.
+Pre-sprint and sprint-end passes on product, solution, and epic design.
 
 ## Default paths
 
@@ -22,12 +22,14 @@ Sprint-end and pre-sprint passes on product + solution and work-package design.
 | Product | `docs/product/product.md` |
 | Solution | `docs/architecture/solution.md` |
 | ADR register | `docs/architecture/decisions/register.md` |
-| WP design | `work/{wp}/design.md` |
-| Refine session | `work/{wp}/refine-session.md` |
+| Epic design | `work/{epic}/design.md` |
+| Refine session | `work/{epic}/refine-session.md` |
+
+`{epic}` is the title or short title slug (max two words) — see **backlog** SKILL.md.
 
 ## Path resolution
 
-If the user names different paths in their request, use those instead of the defaults.
+User-named paths override defaults.
 
 ## Supporting files
 
@@ -36,4 +38,5 @@ If the user names different paths in their request, use those instead of the def
 ## Router
 
 1. Mode: `review` or `refine`.
-2. Follow the matching prompt under [prompts/](prompts/).
+2. Resolve `{epic}` from argument or backlog.
+3. One prompt under [prompts/](prompts/).

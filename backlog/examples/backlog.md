@@ -22,17 +22,18 @@ level: epic
 | Convention | Value |
 | ---------- | ----- |
 | Epic ID | `CHK{nn}` |
-| Task ID | `CHK{nn}-{nn}` (`work/{wp}/tasks.md`) |
+| Epic work path | `work/{epic}/` — kebab-case from title or short title, max two words |
+| Task ID | `CHK{nn}-{nn}` in `work/{epic}/tasks.md` |
 | Priority | P0–P2 |
 | Estimation | Fibonacci points |
 
 ## 3. Epic breakdown
 
-| Epic | Title | Phase | Priority | Deps | Points | Work package | Status |
-| ---- | ----- | ----- | -------- | ---- | ------ | ------------ | ------ |
-| CHK01 | Checkout foundation | Now | P0 | - | 13 | `work/checkout/01-foundations/` | Done |
-| CHK02 | Payment and placement | Now | P0 | CHK01 | 18 | `work/checkout/02-placement/` | Not started |
-| CHK03 | Order confirmation | Now | P0 | CHK02 | 8 | `work/checkout/03-confirmation/` (planned) | Not started |
+| Epic ID | Title | Phase | Priority | Deps | Points | Work path | Status |
+| ------- | ----- | ----- | -------- | ---- | ------ | --------- | ------ |
+| CHK01 | Checkout Foundation | Now | P0 | - | 13 | `work/checkout-foundation/` | Done |
+| CHK02 | Payment Placement | Now | P0 | CHK01 | 18 | `work/payment-placement/` | Not started |
+| CHK03 | Order Confirmation | Now | P0 | CHK02 | 8 | `work/order-confirmation/` | Not started |
 
 ## 4. Critical path
 

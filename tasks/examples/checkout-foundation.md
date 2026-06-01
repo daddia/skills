@@ -1,23 +1,25 @@
 ---
 type: Tasks
+epic: checkout-foundation
+epic_id: CHK01
 ---
 
-# Tasks -- Checkout Foundations (CHK01)
+# Tasks -- Checkout Foundation (CHK01)
 
-Tasks for `work/checkout/01-foundations/`, implementing CHK01 from `docs/product/backlog.md`.
+Tasks for `work/checkout-foundation/`, epic CHK01 from `docs/product/backlog.md`.
 
 Companion artefacts: `./design.md` · `docs/architecture/solution.md`
 
 ## 1. Summary
 
-- **Epic.** CHK01 -- Checkout foundation and scaffold
+- **Epic.** CHK01 -- Checkout Foundation
 - **Phase.** Now / Alpha
 - **Priority.** P0 (blocks CHK02+)
 - **Estimate.** 13 points across 4 tasks
 
 **Scope.** Module scaffold, orders API client, `OrderViewModel` + mapper, `placeOrder` Server Action (stub), `(checkout)` route group, checkout page shell, loading skeleton.
 
-**Out of scope (this WP).** Live payment form (CHK02), confirmation page (CHK03), guest checkout (CHK05).
+**Out of scope (this epic).** Live payment form (CHK02), confirmation page (CHK03), guest checkout (CHK05).
 
 ## 3. Tasks
 

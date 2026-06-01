@@ -14,6 +14,7 @@ related:
 <!--
 DRAFTING AIDE — DELETE BEFORE SAVING.
 §3 epic breakdown table; §4 epic detail for Now-phase epics.
+Epic work path: work/{epic}/ — slug from title or short title, max two words, kebab-case.
 -->
 
 # Backlog -- {Name}
@@ -39,15 +40,16 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 | Convention | Value |
 | ---------- | ----- |
 | Epic ID | `{PREFIX}{nn}` |
-| Task ID | `{PREFIX}{nn}-{nn}` (in `work/{wp}/tasks.md` via **tasks** skill) |
+| Epic work path | `work/{epic}/` (title or short title slug, max two words) |
+| Task ID | `{PREFIX}{nn}-{nn}` in `work/{epic}/tasks.md` |
 | Status | Not started, In progress, In review, Done, Blocked |
 | Priority | P0–P3 |
 | Estimation | Fibonacci story points |
 
 ## 3. Epic breakdown
 
-| Epic | Title | Phase | Priority | Deps | Points | Work package | Status |
-| ---- | ----- | ----- | -------- | ---- | ------ | ------------ | ------ |
+| Epic ID | Title | Phase | Priority | Deps | Points | Work path | Status |
+| ------- | ----- | ----- | -------- | ---- | ------ | --------- | ------ |
 
 ## 4. Epic detail (Now phase)
 
@@ -59,7 +61,7 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 
 **Dependencies.**
 
-**Status.** **Work package:** `work/{wp}/`
+**Status.** **Work path:** `work/{epic}/`
 
 ## 5. Dependency graph
 

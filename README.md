@@ -27,12 +27,19 @@ docs/
     └── decisions/
         ├── register.md
         └── ADR-NNNN-{title}.md
+
+work/
+├── checkout-foundation/     # epic — slug from title (max two words)
+│   ├── design.md
+│   ├── tasks.md
+│   └── refine-session.md
+└── sprint-3/
+    ├── plan.md
+    └── retrospective.md
 ```
 
-Work-package artefacts live under `work/{wp}/` (`design.md`, `tasks.md`, etc.).
-Sprint artefacts live under `work/sprint-{id}/` (`plan.md`, `retrospective.md`).
-
-Each skill documents default paths under `docs/`. If you name a different path in your prompt, the agent uses that instead.
+Each skill documents default paths under `docs/` and `work/{epic}/`. Epic folder
+`{epic}` is kebab-case from the epic title or short title (max two words). Override paths in your prompt when needed.
 
 Skills follow the [Agent Skills](https://github.com/agentskills/agentskills) layout:
 `SKILL.md`, `prompts/` for mode instructions, `assets/*.template.md` for artefact
@@ -58,41 +65,45 @@ Source: [github.com/daddia/space](https://github.com/daddia/space) under `packag
 | **product** | write, review, refine | `docs/product/product.md` |
 | **roadmap** | write, review, refine | `docs/product/roadmap.md` |
 | **backlog** | write, review, refine | `docs/product/backlog.md` |
-| **tasks** | write, review, refine | `work/{wp}/tasks.md` |
+| **tasks** | write, review, refine | `work/{epic}/tasks.md` |
 | **solution** | write, review, refine | `docs/architecture/solution.md` |
-| **design** | write, review | `work/{wp}/design.md` |
-| **docs** | review, refine | review / `refine-session.md` |
+| **design** | write, review | `work/{epic}/design.md` |
+| **docs** | review, refine | review / `work/{epic}/refine-session.md` |
 | **adr** | plan, write, review | `register.md`, `ADR-NNNN.md` |
+| **sprint** | plan, retrospective | `work/sprint-{id}/plan.md`, `retrospective.md` |
 | **feature** | implement | code |
 | **code-review** | run | code review |
 | **code-refactor** | run | code |
 | **validate** | run | validation report |
 | **create-mr** | run | MR / PR |
-| **sprint** | plan, retrospective | `work/sprint-{id}/plan.md`, `retrospective.md` |
 | **space-index** | run | routing |
 
-Invoke with mode first, e.g. `/product write --stage pitch`, `/sprint plan 3`, `/sprint retrospective 3`. Override paths in natural language when needed.
+Invoke with mode first, e.g. `/product write --stage pitch`, `/tasks write checkout-foundation`, `/sprint plan 3`.
 
 ## Planning & strategy
 
 - **product** — Pitch or full `product.md`.
 - **roadmap** — Outcome-based phases with exit criteria.
-- **backlog** — Product backlog (epics by default) at `docs/product/backlog.md`.
-- **tasks** — Work-package tasks from design/spec at `work/{wp}/tasks.md`.
+- **backlog** — Product backlog (epics); optional `--stories` for small products.
 
-## Architecture & design
+## Architecture & delivery per epic
 
 - **solution** — Stub or full arc42-lite architecture.
 - **adr** — Proposed rows in `register.md`; full ADRs as `ADR-NNNN-{title}.md`.
-- **design** — Work-package `design.md`.
+- **design** — `work/{epic}/design.md`.
+- **tasks** — `work/{epic}/tasks.md` from design (Gherkin default).
 
 ## Implementation
 
 - **feature**, **code-review**, **code-refactor**, **validate**, **create-mr** (consume `tasks.md` for AC)
 
+## Sprint
+
+- **sprint plan** / **sprint retrospective** — under `work/sprint-{id}/`
+
 ## Review & refine
 
-- **docs**, **sprint** (plan / retrospective), topic **review** / **refine** modes
+- **docs**, topic **review** / **refine** modes
 
 ## Routing
 

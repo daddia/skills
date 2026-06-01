@@ -1,95 +1,45 @@
 # Design — write mode
 
-Read [SKILL.md](../SKILL.md).
+You are a Senior Software Architect writing epic-level `design.md` for
+`work/{epic}/`. Resolve `{epic}` from the argument or `docs/product/backlog.md`.
 
+Read [SKILL.md](../SKILL.md) and [backlog/SKILL.md](../../backlog/SKILL.md).
 
-You are a Senior Software Architect writing a sprint-level design document for
-a work package. This document is the implementation specification the squad
-builds against. It lives at `work/{d}/{wp}/design.md` and sits one level below
-the parent solution document `docs/architecture/solution.md` (or a user-named path).
-References to "solution.md" mean that parent file.
+Parent solution: `docs/architecture/solution.md` — cite sections; do not re-narrate.
 
-Mode is passed as `--mode`:
+## Mode (`--mode`)
 
-- `--mode walking-skeleton` — Phase 0 / foundation sprint, 2–4 pages. Name the
-  one end-to-end slice, list the files shipped, state the acceptance gates.
-  Written after the foundation sprint completes or as a planning artefact
-  immediately before it starts.
-- `--mode tdd` — Sprint 2+, 5–10 pages. Full implementation spec before code.
-  References `solution.md` for architecture-wide patterns instead of redefining them.
-
-When no `--mode` is provided, ask: "Is this the foundation sprint (walking-skeleton)
-or a later sprint (tdd)?"
+- `walking-skeleton` — Phase 0, 2–4 pages
+- `tdd` — Sprint 2+, 5–10 pages
 
 ## Negative constraints
 
-The design.md MUST NOT contain:
+Do NOT put in design.md:
 
-- Architecture-wide patterns already in the parent solution.md
-  → cite `solution.md §{N.M}` instead; do not re-narrate
-- Business rationale → belongs in `product.md`
-- Phase sequencing or epic ordering → belongs in `roadmap.md`
-- Story-level acceptance criteria → belongs in `tasks.md` (use **tasks** skill after design)
+- Architecture-wide patterns already in solution.md — cite `solution.md §{N.M}`
+- Business strategy → `docs/product/product.md`
+- Phase sequencing → `docs/product/roadmap.md`
+- Task-level Gherkin → `work/{epic}/tasks.md` via **tasks**
 
-**Delete the `DRAFTING AIDE` comment block before saving the output file.**
+Delete the `DRAFTING AIDE` block before saving.
 
 ## Context
 
-<artifacts>
-[Provided by the caller:
-  Walking-skeleton mode: epic scope from docs/product/backlog.md, parent solution.md
-  TDD mode: parent epic in backlog.md, work/{wp}/design.md context
-  (if updating), docs/architecture/solution.md, relevant codebase
-  files, Figma link (if applicable)]
-</artifacts>
+[Epic row in backlog.md, solution.md, existing design.md if updating, codebase]
 
-## Steps (walking-skeleton mode)
+## Steps (walking-skeleton)
 
-1. Read the parent solution.md and the parent epic in docs/product/backlog.md
-2. Write §1 "The slice" — one paragraph: what end-to-end path the walking skeleton proves
-3. Write §2 "Files shipped" — exact paths with NEW/EVOLVE/KEEP labels and one-line descriptions
-4. Write §3 "Acceptance gates" — four subsections:
-   - §3.1 End-to-end path (the request/response round-trip succeeds)
-   - §3.2 Observability hook fires (one trace span, one log line)
-   - §3.3 Error path exercised (the typed error surface renders)
-   - §3.4 Scaffolds are complete + quality gates (typecheck, unit tests, axe on skeleton)
-5. Write §4 "What this WP did NOT deliver" — explicit list for later sprints to read
-6. Write §5 "Open questions closed during this sprint" — decisions resolved; note for solution refine
-7. Write §6 "Handoff to next WP" — what the next WP can assume is ready
-8. **Delete the `DRAFTING AIDE` comment block before saving.**
+1. Read solution.md and epic in backlog.md
+2. §1 The slice, §2 Files shipped, §3 Acceptance gates, §4 Out of scope for this epic
+3. §5 Open questions closed, §6 Handoff to next epic
 
-## Steps (TDD mode)
+## Steps (TDD)
 
-1. Read all context before writing anything
-2. Write §1 "Scope" — in scope, out of scope, capabilities this WP delivers (link to tasks.md when it exists)
-3. Write §2 "Architecture fit" — how this WP plugs into the parent solution.md; cite solution sections inline, do NOT re-narrate
-4. Write §3 "Files and components" — new files, modified files, files NOT modified; each with path + purpose
-5. Write §4 "Data contracts" — TypeScript signatures, Zod schemas, types introduced; code fences only
-6. Write §5 "Runtime view" — 2–4 key scenarios as text flows; focus on the paths debugged at 3am
-7. Write §6 "Cross-squad coordination" (omit section if not applicable) — interface boundaries, contracts, contact DRI
-8. Write §7 "Error paths" — per `CartMutationErrorCode` (or equivalent), surface-specific treatment
-9. Write §8 "Observability" — new trace spans, RED metrics, RUM timings, log lines introduced by this WP
-10. Write §9 "Testing strategy" — layer table (unit/integration/e2e/contract/a11y + scope + target)
-11. Write §10 "Acceptance gates" — the subset of `solution.md §2.1` quality goals this WP must satisfy
-12. Write §11 "Handoff" — what is stable when this WP closes, what comes next
-13. Write §12 "Open questions" — unresolved decisions; each with owner and how it blocks
-14. **Delete the `DRAFTING AIDE` comment block before saving.**
+1. Read all context
+2. §1 Scope, §2 Architecture fit, §3 Files, §4 Data contracts, §5 Runtime view
+3. §6 Cross-squad coordination (if applicable), §7 Error paths, §8 Observability
+4. §9 Testing strategy, §10 Acceptance gates, §11 Handoff, §12 Open questions
 
-## Quality rules
+## Output
 
-- Walking-skeleton: 2–4 pages. TDD: 5–10 pages.
-- Every cross-cutting pattern in TDD §7–8 MUST cite `solution.md` by section; do not restate the pattern
-- §3 in walking-skeleton must label every file as `NEW`, `EVOLVE`, or `KEEP`
-- §4 in walking-skeleton must be an explicit list — omitting an item implies the next sprint can assume it was done
-- §4 in TDD must contain only executable code fences — no prose descriptions of shapes
-- **Delete the `DRAFTING AIDE` comment block before saving the output file.**
-
-## Output format
-
-Write as a Markdown file with YAML frontmatter, saved as `work/{d}/{wp}/design.md`.
-
-Use [assets/design.template.md](../assets/design.template.md) as your structural scaffold.
-
-<example>
-See `examples/walking-skeleton.md` (walking-skeleton mode)
-</example>
+Save to `work/{epic}/design.md`. Use [assets/design.template.md](../assets/design.template.md).
