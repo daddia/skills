@@ -1,43 +1,34 @@
 # ADR — plan mode
 
-You are a Lead Architect identifying the consequential technical decisions that
-need ADRs for `$ARGUMENTS` before technical design can proceed.
-
-## Supporting files
-
-- Output template: [template.md](template.md)
-
-## Steps
-
-1. Read the requirements document, solution architecture, and existing ADR register for `$ARGUMENTS`
-2. Read any existing design documents or contracts that have already committed to patterns
-3. Identify every area where the requirements introduce ambiguity, new technology, new integration patterns, or architectural trade-offs
-4. For each area, ask: "Would deciding this differently change the architecture, data model, integration pattern, or technology?" — if yes, it may warrant an ADR
-5. Filter ruthlessly: reject anything covered by existing ADRs, anything that is a routine implementation choice, or anything with an obvious answer given current standards
-6. Classify each surviving decision as **Blocking** (must resolve before design can proceed) or **Deferrable** (can resolve during or after design)
-7. For each proposed ADR write: title (specific, not vague), one-sentence rationale (why consequential), priority, related existing ADRs
-8. List decisions explicitly rejected and why — this prevents the same candidates resurfacing in review
-9. Save output using `template.md` as the starting structure
-
-## Quality rules
-
-- Every proposed ADR addresses a genuinely consequential decision — if decided differently it would change the architecture
-- Titles are specific: "Cart mutation error-code taxonomy ownership", not "Error handling decision"
-- The rationale explains why the decision cannot be deferred, not just that it matters
-- The list is short: 3–8 ADRs for a major epic, fewer for smaller work
-- Blocking vs. Deferrable classification is justified
-- Related existing ADRs are always checked — do not propose an ADR for a decision already made
-- Decisions not warranting ADRs are explicitly listed as rejected with a reason
-
-## Anti-patterns to avoid
-
-- Proposing ADRs for routine choices already covered by coding standards or existing ADRs
-- Vague titles that do not describe a specific decision
-- Proposing too many ADRs — if everything is consequential, nothing is
-- Writing full ADR content instead of identifying and prioritising decisions
-- Ignoring existing ADRs that already address the topic
+You are a Lead Architect identifying consequential technical decisions that
+need ADRs before technical design can proceed.
 
 ## Output
 
-Save as `{domain}/decisions/proposed-adrs.md` using `template.md` as the scaffold.
-Once reviewed, each accepted item becomes an `ADR-####-*.md` file written with `adr write`.
+Update `docs/architecture/decisions/register.md` only — do **not** create
+`proposed-adrs.md`, `adr-plan.md`, or other plan files.
+
+Use [register-template.md](../register-template.md) for structure if the register
+does not exist yet.
+
+## Steps
+
+1. Read `docs/product/product.md`, `docs/architecture/solution.md`, and the
+   existing register at `docs/architecture/decisions/register.md`
+2. Identify areas with ambiguity, new technology, integration patterns, or
+   architectural trade-offs
+3. For each area: would deciding differently change architecture, data model,
+   integration, or technology? If yes, it may warrant an ADR
+4. Filter ruthlessly — reject routine choices and decisions already in Accepted ADRs
+5. Classify survivors as **Blocking** or **Deferrable**
+6. Update the **Proposed (plan backlog)** table in register.md with new or revised rows
+7. Update **Rejected candidates** with explicit rejections and reasons
+8. Bump `last_updated` in frontmatter
+
+## Quality rules
+
+- 3–8 proposed rows for a major initiative; fewer for small work
+- Titles are specific ("Cart mutation error-code taxonomy"), not vague
+- Do not write full ADR bodies in the register — only table rows
+- When a proposal is accepted for drafting, assign the next `ADR-####` from the
+  Accepted table and use **adr write**
