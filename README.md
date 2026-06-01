@@ -4,6 +4,59 @@ Opinionated skills that guide an AI agent through the full product delivery loop
 
 Each skill produces one clear artefact (a markdown file or code change). Skills chain together: the agent reads what you already wrote and knows what *not* to put in the wrong document.
 
+## Getting started
+
+Ask your agent:
+
+```text
+"Setup daddia skills locally from this repo:
+https://github.com/daddia/skills
+
+Clone it and tell me:
+- What skills I have and what they do?
+- How can I use the new skills?
+```
+
+### Install as a plugin
+
+#### Cursor
+
+```bash
+git clone https://github.com/daddia/skills.git ~/.cursor/plugins/local/daddia-skills
+```
+
+#### Claude Code
+
+```sh
+git clone https://github.com/daddia/skills.git ~/.claude/plugins/daddia-skills
+claude --plugin-dir ~/.claude/plugins/daddia-skills
+```
+
+### Install skills from [skills.sh](https://skills.sh)
+
+```bash
+# All skills from this repo
+npx skills@latest add daddia/skills
+
+# Or one skill at a time
+npx skills@latest add daddia/skills/backlog
+```
+
+### Try your first commands
+
+```text
+/product write --stage pitch
+/roadmap write
+/backlog write
+/design write checkout-foundation --mode walking-skeleton
+/tasks write checkout-foundation
+/implement CHK01-01
+/code-review
+/validate checkout-foundation
+```
+
+Not sure where to start? Use **skills-index**, or follow the [typical flow](#typical-flow) below.
+
 ## Skills overview
 
 | Stage | Key outcome(s) | Skills |
@@ -89,8 +142,8 @@ Invoke with the mode first: `/tasks write checkout-foundation`, `/sprint plan 3`
 | Skill | Modes | Description | Artefact |
 | ----- | ----- | ----------- | -------- |
 | **implement** | — | Implement a task against approved design and tasks | code |
-| **code-review** | review, fix | Review a branch or PR; **fix** addresses findings without behaviour changes | code review / code |
-| **validate** | run | Epic completion vs tasks and roadmap gates | validation report |
+| **code-review** | review | Review a branch or PR against design.md and tasks.md acceptance criteria | code review |
+| **code-review fix** | fix | Address review findings without behaviour changes | code |
 | **create-mr** | run | Merge request description from the branch | MR / PR |
 
 ### Release
@@ -107,43 +160,6 @@ Invoke with the mode first: `/tasks write checkout-foundation`, `/sprint plan 3`
 | **sprint** | plan, retrospective | `plan.md` before the sprint; `retrospective.md` after | `docs/work/sprint-{id}/plan.md`, `retrospective.md` |
 | **docs** | review, refine | Pre-sprint alignment or sprint-end doc pass on product, solution, and epic design | review / `docs/work/{epic}/refine-session.md` |
 | **skills-index** | run | “Which skill should I use?” for open-ended questions | routing |
-
-## Getting started
-
-### Install skills from [skills.sh](https://skills.sh)
-
-```bash
-# All skills from this repo
-npx skills@latest add daddia/skills
-
-# Or one skill at a time
-npx skills@latest add daddia/skills/backlog
-```
-
-### Install as a plugin
-
-For the full set in one package — all skills plus review helpers — install the **Space** plugin from this repository:
-
-1. Clone or copy this repo.
-2. Place it so `.cursor-plugin/plugin.json` (or `.claude-plugin/plugin.json`) is at the plugin root.
-3. In Cursor: `~/.cursor/plugins/local/space/` then reload the window. See [Cursor plugins](https://cursor.com/docs/plugins).
-
-Same skills; the plugin is convenience for local/team use.
-
-### First commands to try
-
-```text
-/product write --stage pitch
-/roadmap write
-/backlog write
-/design write checkout-foundation --mode walking-skeleton
-/tasks write checkout-foundation
-/implement CHK01-01
-/code-review
-/validate checkout-foundation
-```
-
-Not sure where to start? Use **skills-index**, or follow the [typical flow](#typical-flow) below.
 
 ## License
 
