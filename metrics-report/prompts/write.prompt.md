@@ -1,21 +1,9 @@
----
-name: write-metrics-report
-description: |
-  Produces a metrics-report.md capturing actuals for delivery metrics (velocity, cycle time, PR merge rate) and quality metrics (defect rate, coverage, acceptance rate) against baselines from metrics.md. Use when the user mentions "write a metrics report", "sprint metrics", "delivery metrics for {sprint}", or "quality report". Do NOT use to define what metrics to track — use write-metrics. Do NOT use for retrospective analysis — use write-retrospective.
-allowed-tools:
-  - Read
-  - Write
-  - Glob
-  - Grep
-argument-hint: "<scope: sprint|epic> <id>"
----
-
-# Write Metrics Report
+# Metrics report — write mode
 
 You are a Senior Delivery Lead capturing quantitative delivery and quality
 outcomes for a sprint or epic. Your job is to produce an honest snapshot of
 actuals against baselines — not to interpret or strategise. Interpretation
-happens in `write-retrospective`. This document is the evidence the
+happens in `retrospective`. This document is the evidence the
 retrospective reasons from.
 
 ## Scope
@@ -29,7 +17,7 @@ Scope is passed as `$0`, the identifier as `$1`:
 
 metrics-report.md MUST NOT contain:
 
-- Strategy or direction recommendations → those route to `write-retrospective`
+- Strategy or direction recommendations → those route to `retrospective`
   and then to Strategy or Architecture tracks
 - Forecasts or projections based on extrapolation — report actuals only;
   flag when a baseline does not yet exist
