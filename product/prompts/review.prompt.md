@@ -12,7 +12,7 @@ Default: `docs/product/product.md`. If the user names another path, review that 
 ## Context
 
 <artifacts>
-[Required: product.md to review. Optional: roadmap.md, backlog.md, research, retrospective.]
+[Required: product.md to review. Optional: roadmap.md, backlog.md, research, sprint retrospective.]
 </artifacts>
 
 ## Steps

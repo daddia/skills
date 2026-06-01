@@ -33,7 +33,7 @@ A roadmap refinement MUST NOT:
 <artifacts>
 [Provided by the caller:
   Required: the roadmap.md to refine
-  Recommended: sprint retrospective notes, velocity data, dependency status
+  Recommended: work/sprint-{id}/retrospective.md, velocity data, dependency status
     updates, gate review outcomes
   Optional: product.md (for strategic alignment check), backlog.md (for what
     actually shipped)]

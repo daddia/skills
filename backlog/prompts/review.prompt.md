@@ -16,7 +16,7 @@ For story-level Gherkin and sprint feasibility, use **tasks review** on
 <artifacts>
 [Required: backlog.md
 Recommended: product.md, roadmap.md, solution.md
-Optional: retrospective notes]
+Optional: sprint retrospective notes]
 </artifacts>
 
 ## Steps

@@ -30,6 +30,7 @@ docs/
 ```
 
 Work-package artefacts live under `work/{wp}/` (`design.md`, `tasks.md`, etc.).
+Sprint artefacts live under `work/sprint-{id}/` (`plan.md`, `retrospective.md`).
 
 Each skill documents default paths under `docs/`. If you name a different path in your prompt, the agent uses that instead.
 
@@ -67,10 +68,10 @@ Source: [github.com/daddia/space](https://github.com/daddia/space) under `packag
 | **code-refactor** | run | code |
 | **validate** | run | validation report |
 | **create-mr** | run | MR / PR |
-| **retrospective** | write | `retrospective.md` |
+| **sprint** | plan, retrospective | `work/sprint-{id}/plan.md`, `retrospective.md` |
 | **space-index** | run | routing |
 
-Invoke with mode first, e.g. `/product write --stage pitch`, `/tasks write work/checkout/01-foundations`. Override paths in natural language when needed.
+Invoke with mode first, e.g. `/product write --stage pitch`, `/sprint plan 3`, `/sprint retrospective 3`. Override paths in natural language when needed.
 
 ## Planning & strategy
 
@@ -91,7 +92,7 @@ Invoke with mode first, e.g. `/product write --stage pitch`, `/tasks write work/
 
 ## Review & refine
 
-- **docs**, **retrospective**, topic **review** / **refine** modes
+- **docs**, **sprint** (plan / retrospective), topic **review** / **refine** modes
 
 ## Routing
 

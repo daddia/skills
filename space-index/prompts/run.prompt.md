@@ -28,7 +28,7 @@ below to identify the best match and direct them to the right skill.
 | design | work/{wp}/design.md: write or review | design.md | discovery | architect | solution.md, backlog.md | design.md |
 | docs | Pre-sprint doc review or sprint-end refine-session | doc review / refine-session | refine / discovery | architect | product.md, solution.md | review / refine-session |
 | product | product.md: write, review, refine | docs/product/product.md | strategy / refine | pm | — / product.md | product.md |
-| retrospective | Sprint or epic retrospective | retrospective.md | refine | delivery | backlog.md | retrospective.md |
+| sprint | Sprint plan or retrospective | plan.md / retrospective.md | delivery / refine | delivery | tasks.md, backlog.md | plan.md / retrospective.md |
 | roadmap | Phased delivery roadmap | docs/product/roadmap.md | strategy / refine | pm | product.md | roadmap.md |
 | solution | Architecture solution.md | docs/architecture/solution.md | architecture / refine | architect | product.md | solution.md |
 | space-index | Routes vague requests to the right skill | skill-routing | utility | utility | — | skill-routing |

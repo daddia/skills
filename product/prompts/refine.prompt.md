@@ -11,7 +11,7 @@ Default: `docs/product/product.md`. If the user names another path, use it.
 ## Context
 
 <artifacts>
-[Required: product.md. Optional: roadmap.md, backlog.md, retrospective, sprint notes via --context.]
+[Required: product.md. Optional: roadmap.md, backlog.md, sprint retrospective, sprint notes via --context.]
 </artifacts>
 
 ## Steps
