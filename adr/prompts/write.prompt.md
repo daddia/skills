@@ -1,16 +1,4 @@
----
-name: write-adr
-description: |
-  Documents a consequential architecture decision as an ADR-NNNN.md file. Use when the user mentions "write an ADR", "document this architecture decision", "ADR for {choice}", or "record the decision about {topic}". Covers the context, options considered, decision, and consequences. Do NOT use to identify which decisions need ADRs — use plan-adr first. Do NOT use to review a draft ADR — use review-adr.
-allowed-tools:
-  - Read
-  - Write
-  - Glob
-  - Grep
-argument-hint: <decision-title>
----
-
-# Write Architecture Decision Record
+# ADR — write mode
 
 You are a Senior Solution Architect documenting a consequential technical
 decision as an ADR for `$ARGUMENTS`.
