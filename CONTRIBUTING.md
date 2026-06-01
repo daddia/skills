@@ -1,60 +1,56 @@
-# Contributing to delivery skills
+# Contributing to Space skills
 
-These skills follow the [Agent Skills](https://github.com/agentskills/agentskills) format and [skill-creation best practices](https://github.com/agentskills/agentskills/tree/main/docs/skill-creation).
+Skills live under `skills/`. Plugin manifests: `.claude-plugin/`, `.cursor-plugin/`.
+Repo page groupings: `skills.sh.json` ([customize docs](https://www.skills.sh/docs/customize)).
 
 ## Layout
 
 ```text
-{skill}/
-├── SKILL.md              # Metadata + router (keep lean)
-├── prompts/              # Mode instructions (progressive disclosure)
-├── assets/               # Output templates (*.template.md)
-├── examples/             # Reference outputs
-├── references/           # Optional deep reference (backlog owns shared conventions)
-├── evals/                # Output + trigger test cases
-└── scripts/              # Optional mechanical checks
+skills/{skill-name}/
+├── SKILL.md
+├── prompts/
+├── assets/
+├── examples/
+├── references/       # optional
+├── evals/            # evals.json + trigger-queries.json
+├── agents/           # optional sub-agents (code-review, validate)
+└── scripts/          # optional
+
+agents/               # plugin-level agents (eval-grader)
 ```
 
-Shared delivery rules: [backlog/references/delivery-conventions.md](backlog/references/delivery-conventions.md).
+Shared rules: [skills/backlog/references/delivery-conventions.md](skills/backlog/references/delivery-conventions.md).
 
 ## Changing a skill
 
-1. Update `SKILL.md` **description** when behaviour or routing changes (imperative “Use when…”, near-miss “Do NOT…”).
-2. Put procedural detail in `prompts/`, not in `SKILL.md`, unless it applies to every mode.
-3. Add **gotchas** when a real run needed a correction the model would repeat.
-4. Extend [delivery-conventions.md](backlog/references/delivery-conventions.md) for cross-skill rules (paths, boundaries).
-5. Add or update `evals/evals.json` and `evals/trigger-queries.json` for high-risk skills.
+1. Edit under `skills/{name}/`.
+2. Update `description` when routing changes.
+3. Add gotchas from real failures.
+4. Update `evals/` for high-risk skills.
+5. Add `agents/` when a task needs isolated context or parallel review.
+
+## Sub-agents
+
+Follow patterns in `skills/code-review/agents/` and official Claude plugin agents:
+
+- Frontmatter: `name`, `description`, `model`, `color`, `tools`
+- Body: **When to invoke**, process, output format
+- Parent SKILL.md lists when to spawn them
 
 ## Evaluations
 
-### Trigger accuracy
-
-See [optimizing descriptions](https://github.com/agentskills/agentskills/blob/main/docs/skill-creation/optimizing-descriptions.mdx).
-
-- Edit `evals/trigger-queries.json` (should-trigger + near-miss should-not-trigger).
-- Run each query 3×; target >50% trigger rate for positives, <50% for negatives.
-- Tune `description` on the train set; hold out ~40% for validation.
-
-### Output quality
-
-See [evaluating skills](https://github.com/agentskills/agentskills/blob/main/docs/skill-creation/evaluating-skills.mdx).
-
-- Edit `evals/evals.json` with realistic prompts and assertions.
-- Compare **with skill** vs **without** (or previous version).
-- Add assertions after the first run — not before.
+- `evals/evals.json` — output quality (with vs without skill)
+- `evals/trigger-queries.json` — description triggering
+- Grade runs with plugin `agents/eval-grader.md`
 
 ## Local validation
 
 ```bash
-chmod +x scripts/validate-skills.sh backlog/scripts/check-epic-paths.sh
+chmod +x scripts/validate-skills.sh skills/backlog/scripts/check-epic-paths.sh
 ./scripts/validate-skills.sh
-backlog/scripts/check-epic-paths.sh backlog/examples/backlog.md
 ```
-
-Optional: [skills-ref validate](https://github.com/agentskills/agentskills/tree/main/skills-ref) per skill directory when installed.
 
 ## Pull requests
 
-- One logical change per PR (skill + its evals).
-- Note which skills’ descriptions changed.
-- Run `./scripts/validate-skills.sh` before opening.
+- Run `./scripts/validate-skills.sh`
+- Update `skills.sh.json` if adding a skill that should appear in a curated group

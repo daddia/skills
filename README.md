@@ -1,20 +1,57 @@
 # Agent Skills for AI-First Product Delivery
 
-Opinionated agent skills for the full delivery loop — product strategy, architecture, backlog, design, implementation, review, and sprint-end refinement.
+Opinionated skills that guide an AI agent through the full product delivery loop — from strategy and architecture to epics, implementation, review, and sprint-end refinement. Use them in **Cursor**, **Claude Code**, or any [open agent skills](https://github.com/vercel-labs/skills) host.
 
-These skills are the executable form of a structured delivery method:
+Each skill produces one clear artefact (a markdown file or code change). Skills chain together: the agent reads what you already wrote and knows what *not* to put in the wrong document.
 
-- **Phase model** — Phase 0 (walking skeleton) → Phase 2+ (TDD)
-- **Topic skills with modes** — e.g. `product write`, `backlog review`, `feature implement`
-- **Artefact references** — `{source}:{path}` URI scheme for cross-repo links
-- **Gherkin** acceptance criteria by default; **EARS** when `--ears` or warranted
-- **Negative constraints** — every skill explicitly states what it is *not* for
+## What you get
 
-Designed to compose: each skill consumes upstream artefacts and produces a single
-named artefact downstream skills can read. Routing is description-based; **space-index**
-handles ambiguous requests.
+- **A consistent doc model** in your repo — product, roadmap, backlog, solution, per-epic design and tasks, sprint plans.
+- **Modes per topic** — `write`, `review`, and `refine` where it matters (e.g. `backlog write`, `tasks review`).
+- **Gherkin-first acceptance criteria** in `tasks.md`; optional **EARS** with `--ears` when rules are clearer than scenarios.
+- **Clear boundaries** — skills say what they are *not* for, so the agent does not dump architecture into the backlog or tasks into `product.md`.
+- **Help when you are unsure** — **skills-index** picks a skill and mode from a vague request.
 
-## Document layout (default)
+## Getting started
+
+### Install skills from [skills.sh](https://skills.sh)
+
+```bash
+# All skills from this repo
+npx skills@latest add daddia/skills
+
+# Or one skill at a time
+npx skills@latest add daddia/skills/backlog
+```
+
+### Install as a plugin (Cursor or Claude Code)
+
+For the full set in one package — all skills plus review helpers — install the **Space** plugin from this repository:
+
+1. Clone or copy this repo.
+2. Place it so `.cursor-plugin/plugin.json` (or `.claude-plugin/plugin.json`) is at the plugin root.
+3. In Cursor: `~/.cursor/plugins/local/space/` then reload the window. See [Cursor plugins](https://cursor.com/docs/plugins).
+
+Same skills; the plugin is convenience for local/team use.
+
+### First commands to try
+
+```text
+/product write --stage pitch
+/roadmap write
+/backlog write
+/design write checkout-foundation --mode walking-skeleton
+/tasks write checkout-foundation
+/feature implement CHK01-01
+/code-review
+/validate checkout-foundation
+```
+
+Not sure where to start? Use **skills-index**, or follow the [typical flow](#typical-flow) below.
+
+## Where files live in your project
+
+Default layout the skills expect (override paths in your prompt if your repo differs):
 
 ```text
 docs/
@@ -38,28 +75,31 @@ work/
     └── retrospective.md
 ```
 
-Each skill documents default paths under `docs/` and `work/{epic}/`. Epic folder
-`{epic}` is kebab-case from the epic title or short title (max two words). Override paths in your prompt when needed.
+**Epic slug `{epic}`** — kebab-case from the epic **title or short title**, at most two words (`Checkout Foundation` → `checkout-foundation`). Epic IDs like `CHK01` stay in the backlog table; resolve the slug from that row when invoking skills.
 
-Skills follow the [Agent Skills](https://github.com/agentskills/agentskills) layout:
-`SKILL.md`, `prompts/` for mode instructions, `assets/*.template.md` for artefact
-scaffolds, `examples/` for reference outputs, and `evals/` for trigger and output
-test cases. Shared path and boundary rules live in
-[backlog/references/delivery-conventions.md](backlog/references/delivery-conventions.md).
-See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring and evaluation workflow.
+Full path and boundary rules: [delivery conventions](skills/backlog/references/delivery-conventions.md).
 
-Skills work with [Cursor](https://cursor.com/docs/skills),
-[Claude Code](https://docs.claude.com/en/docs/claude-code/skills), and any
-[open agent skills](https://github.com/vercel-labs/skills) consumer.
+## Typical flow
 
-## Install
-
-```bash
-npx skills@latest add daddia/skills
-npx skills@latest add daddia/skills/backlog
+```text
+product → roadmap → backlog → solution (+ adr as needed)
+                              ↓
+                    design → tasks → feature → code-review
+                              ↓
+                         validate (epic done?)
+                              ↓
+              sprint plan / retro, docs refine (ongoing)
 ```
 
-Source: [github.com/daddia/space](https://github.com/daddia/space) under `packages/skills/`.
+| Stage | Skills |
+| ----- | ------ |
+| Strategy | **product**, **roadmap**, **backlog** |
+| Architecture | **solution**, **adr** |
+| Per epic | **design**, **tasks** |
+| Build & ship | **feature**, **code-review**, **create-mr**, **validate** |
+| Cadence | **sprint**, **docs** |
+
+For large PRs, **code-review** can use focused sub-agents (AC coverage vs `tasks.md`, scope vs `design.md`) so review stays thorough without one overloaded prompt.
 
 ## Skill catalogue
 
@@ -75,47 +115,42 @@ Source: [github.com/daddia/space](https://github.com/daddia/space) under `packag
 | **adr** | plan, write, review | `register.md`, `ADR-NNNN.md` |
 | **sprint** | plan, retrospective | `work/sprint-{id}/plan.md`, `retrospective.md` |
 | **feature** | implement | code |
-| **code-review** | run | code review |
-| **code-refactor** | run | code |
+| **code-review** | review, fix | code review / code |
 | **validate** | run | validation report |
 | **create-mr** | run | MR / PR |
-| **space-index** | run | routing |
+| **skills-index** | run | routing |
 
-Invoke with mode first, e.g. `/product write --stage pitch`, `/tasks write checkout-foundation`, `/sprint plan 3`.
+Invoke with the mode first: `/tasks write checkout-foundation`, `/sprint plan 3`.
 
-## Planning & strategy
+### Planning & strategy
 
-- **product** — Pitch or full `product.md`.
+- **product** — Pitch or full `product.md` (_why_, _who_, _what_).
 - **roadmap** — Outcome-based phases with exit criteria.
-- **backlog** — Product backlog (epics); optional `--stories` for small products.
+- **backlog** — Epics and work paths; optional `--stories` for small products.
 
-## Architecture & delivery per epic
+### Architecture & epic delivery
 
-- **solution** — Stub or full arc42-lite architecture.
-- **adr** — Proposed rows in `register.md`; full ADRs as `ADR-NNNN-{title}.md`.
-- **design** — `work/{epic}/design.md`.
-- **tasks** — `work/{epic}/tasks.md` from design (Gherkin default).
+- **solution** — Stub or full arc42-lite `solution.md`.
+- **adr** — Proposals in `register.md`; accepted decisions as `ADR-NNNN-{title}.md`.
+- **design** — `work/{epic}/design.md` (walking-skeleton or TDD).
+- **tasks** — `work/{epic}/tasks.md` with Gherkin AC from design.
 
-## Implementation
+### Implementation & sign-off
 
-- **feature**, **code-review**, **code-refactor**, **validate**, **create-mr** (consume `tasks.md` for AC)
+- **feature** — Implement against approved design and tasks.
+- **code-review** — Review a branch or PR; **fix** addresses findings without behaviour changes.
+- **validate** — Epic completion vs tasks and roadmap gates.
+- **create-mr** — Merge request description from the branch.
 
-## Sprint
+### Sprint & documentation
 
-- **sprint plan** / **sprint retrospective** — under `work/sprint-{id}/`
+- **sprint** — `plan.md` before the sprint; `retrospective.md` after.
+- **docs** — Pre-sprint alignment or sprint-end doc pass on product, solution, and epic design.
 
-## Review & refine
+### Skill Discovery
 
-- **docs**, topic **review** / **refine** modes
-
-## Routing
-
-- **space-index** — Pick skill and mode for vague requests.
-
-## Compatibility
-
-[open agent skills](https://github.com/vercel-labs/skills) — `.cursor/skills/`, `.claude/skills/`, `.agents/skills/`.
+- **skills-index** — “Which skill should I use?” for open-ended questions.
 
 ## License
 
-[MIT](LICENSE)
+Copyright (c) 2026 daddia. All rights reserved. Released under the [MIT](LICENSE).
