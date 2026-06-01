@@ -28,10 +28,10 @@ last_updated: <!-- YYYY-MM-DD -->
 | Step | Artefact                  | Skill                          | Status | Notes |
 | ---- | ------------------------- | ------------------------------ | ------ | ----- |
 | 1    | `domain/{d}/product.md`   | `product` write --stage pitch  | Draft  |       |
-| 2    | `domain/{d}/solution.md`  | `write-solution --stage stub`  | Draft  |       |
+| 2    | `domain/{d}/solution.md`  | `solution` write --stage stub    | Draft  |       |
 | 3    | `domain/{d}/roadmap.md`   | `roadmap` write                  | Draft  |       |
 | 4    | `domain/{d}/backlog.md`   | `backlog` write (domain scope) | Draft  |       |
-| 5    | `domain/{d}/contracts.md` | `write-contracts`              | Draft  |       |
+| 5    | `domain/{d}/contracts.md` | `contracts` write                | Draft  |       |
 
 ## Open questions
 
