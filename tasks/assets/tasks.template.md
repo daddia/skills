@@ -12,7 +12,7 @@ related:
 
 <!--
 DRAFTING AIDE — DELETE BEFORE SAVING.
-§3 tasks with EARS + Gherkin; §4 traceability and DoD.
+§3 tasks: Gherkin required; EARS optional (see SKILL.md).
 -->
 
 # Tasks -- {Work package}
@@ -32,7 +32,7 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 | Convention | Value |
 | ---------- | ----- |
 | Task ID | `{EPIC-ID}-{nn}` |
-| Acceptance | EARS + Gherkin per SKILL.md |
+| Acceptance | Gherkin required; EARS optional per SKILL.md |
 
 ## 3. Tasks
 
@@ -42,8 +42,6 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
   - **Depends on:**
   - **Deliverable:**
   - **Design:** [`./design.md`](design.md)
-  - **Acceptance (EARS):**
-    - WHEN , THE SYSTEM SHALL .
   - **Acceptance (Gherkin):**
 
     ```gherkin
@@ -52,6 +50,11 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
       When
       Then
     ```
+
+  <!-- Optional: include only with --ears or when EARS clarifies a rule Gherkin cannot carry alone
+  - **Acceptance (EARS):**
+    - WHEN , THE SYSTEM SHALL .
+  -->
 
 ## 4. Traceability and DoD
 
@@ -62,7 +65,7 @@ DRAFTING AIDE — DELETE BEFORE SAVING.
 
 ### Definition of Done
 
-- [ ] All EARS and Gherkin pass
+- [ ] All Gherkin scenarios pass; all stated EARS hold
 - [ ] Tests and CI green; review approved; PR merged
 
 ## 5. Handoff

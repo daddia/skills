@@ -12,7 +12,7 @@ Default: `docs/product/backlog.md`. If the user names another path, use it.
 ## Arguments
 
 - `--depth full` — detail for all roadmap phases (default: Now-phase epics only)
-- `--stories` — include story/task rows in this file (small products or explicit user request). Use lightweight AC only; full EARS/Gherkin → **tasks** skill at `work/{wp}/tasks.md`
+- `--stories` — include story/task rows in this file (small products or explicit user request). Use lightweight AC only; Gherkin → **tasks** at `work/{wp}/tasks.md`
 
 ## Context
 
@@ -34,7 +34,7 @@ Default: `docs/product/backlog.md`. If the user names another path, use it.
 ## Quality rules
 
 - Every epic has a named work package path (even "(planned)")
-- Do not put full EARS/Gherkin in the product backlog unless user explicitly insists — prefer **tasks** after design
+- Do not put full Gherkin in the product backlog unless user explicitly insists — prefer **tasks** after design
 - Out-of-scope: cite upstream docs, do not restate
 
 ## Output

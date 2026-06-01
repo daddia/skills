@@ -7,7 +7,7 @@ These skills are the executable form of a structured delivery method:
 - **Phase model** — Phase 0 (walking skeleton) → Phase 2+ (TDD)
 - **Topic skills with modes** — e.g. `product write`, `backlog review`, `feature implement`
 - **Artefact references** — `{source}:{path}` URI scheme for cross-repo links
-- **EARS + Gherkin** acceptance criteria at story level
+- **Gherkin** acceptance criteria by default; **EARS** when `--ears` or warranted
 - **Negative constraints** — every skill explicitly states what it is *not* for
 
 Designed to compose: each skill consumes upstream artefacts and produces a single

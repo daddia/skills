@@ -27,7 +27,9 @@ Recommended: design.md, docs/product/backlog.md (parent epic), solution.md]
 
 **Task independence.** Each task developable, reviewable, and mergeable independently?
 
-**Acceptance criteria.** Every task has ≥2 EARS + 1 Gherkin; EARS testable; Gherkin `Then` is observable.
+**Gherkin (required).** Every task has ≥1 scenario with observable `Then` clauses. Add a second scenario when an important edge is missing.
+
+**EARS (conditional).** If the user ran write with `--ears`, every task must have ≥2 testable EARS. If EARS appear without `--ears`, they must add value beyond Gherkin — flag redundant EARS for removal. Suggest EARS only as a non-blocking improvement where rules (taxonomy, idempotency, global SHALL) would help.
 
 **Traceability.** Each task links to design.md; traces to product outcome where applicable.
 

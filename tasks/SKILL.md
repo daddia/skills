@@ -1,23 +1,23 @@
 ---
 name: tasks
 description: |
-  Breaks a work-package design or spec into tasks.md with EARS + Gherkin acceptance
-  criteria. Default work/{wp}/tasks.md. Modes write, review, refine. Use after design
-  or from a spec — not for product epics (use backlog). Do NOT implement — use feature.
+  Breaks design or spec into tasks.md with Gherkin acceptance criteria (EARS when
+  --ears or warranted). Default work/{wp}/tasks.md. Modes write, review, refine.
+  Use after design — not for product epics (use backlog). Do NOT implement — use feature.
 allowed-tools:
   - Read
   - Write
   - Glob
   - Grep
-argument-hint: "<mode: write|review|refine> <work-package-path> [--context <notes>]"
+argument-hint: "<mode: write|review|refine> <work-package-path> [--ears] [--context <notes>]"
 ---
 
 # Tasks
 
 ## Artefact
 
-Default path: `work/{wp}/tasks.md` — implementable tasks or user stories for one work
-package, with EARS + Gherkin acceptance criteria.
+Default path: `work/{wp}/tasks.md` — implementable tasks with **Gherkin** acceptance
+criteria by default; **EARS** when `--ears` or selectively per task.
 
 ## Path resolution
 
@@ -34,11 +34,21 @@ to `work/{wp}/tasks.md` unless they give a full path.
 ## Canonical task schema
 
 Each task includes: Status, Priority, Estimate, Epic, Labels, Depends on,
-Deliverable, Design (section link), Acceptance (EARS), Acceptance (Gherkin).
+Deliverable, Design (section link), **Acceptance (Gherkin)**.
 
-- Every EARS statement: `WHEN/THE SYSTEM SHALL` or `WHEN … THE SYSTEM SHALL`
-- Every Gherkin scenario: `Given / When / Then`
-- Every task: at least two EARS statements and one Gherkin scenario
+**Required (every task):**
+
+- At least one Gherkin scenario with `Given` / `When` / `Then`
+- Prefer two scenarios when there is a happy path and a meaningful alternate (error, auth, empty state)
+- `Then` must describe observable outcomes, not implementation steps
+
+**Optional — Acceptance (EARS):**
+
+- Omit the EARS subsection when Gherkin is sufficient
+- Include EARS when the user passes `--ears` (then ≥2 EARS per task, still keep Gherkin)
+- Or add selectively when a rule is clearer as SHALL than as scenarios alone (error taxonomies, idempotency, cross-cutting invariants, audit/logging mandates)
+
+EARS format: `WHEN … THE SYSTEM SHALL …` or `THE SYSTEM SHALL …`
 
 ## Cross-artifact boundaries
 
@@ -62,3 +72,5 @@ Do NOT put in `tasks.md`:
 1. Mode: `write`, `review`, or `refine`.
 2. Resolve work-package path and `tasks.md` location.
 3. One prompt under [prompts/](prompts/).
+
+**write** — `--ears` for EARS on every task.

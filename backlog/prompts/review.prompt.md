@@ -8,7 +8,7 @@ Read [SKILL.md](../SKILL.md) for path resolution.
 
 Default: `docs/product/backlog.md`. User-named paths override.
 
-For story-level EARS/Gherkin and sprint feasibility, use **tasks review** on
+For story-level Gherkin and sprint feasibility, use **tasks review** on
 `work/{wp}/tasks.md` — not this skill.
 
 ## Context

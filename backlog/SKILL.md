@@ -29,14 +29,13 @@ path instead of the default.
   graph, delivery risks. Later phases are placeholders unless `--depth full`.
 - **With stories:** when the user requests `--stories`, a small product, or
   explicitly asks for tasks/stories in the product backlog — include story rows
-  or a story section **without** full EARS/Gherkin (that belongs in `tasks.md`
-  at work-package time via the **tasks** skill).
+  or a story section **without** full Gherkin (that belongs in `tasks.md` via **tasks**).
 
 ## Cross-artifact boundaries
 
 Do NOT put in the product backlog:
 
-- Full EARS + Gherkin for work-package implementation → `work/{wp}/tasks.md` via **tasks**
+- Gherkin (and optional EARS) for work-package implementation → `work/{wp}/tasks.md` via **tasks**
 - Architecture patterns or technical rationale → `docs/architecture/solution.md`
 - Business strategy → `docs/product/product.md`
 - Phase sequencing prose → `docs/product/roadmap.md`
