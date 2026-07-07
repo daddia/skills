@@ -9,5 +9,6 @@
   "license": "MIT",
   "keywords": ["product", "backlog", "gherkin", "architecture", "sprint", "space"],
   "skills": "./skills/",
-  "agents": "./agents/"
+  "agents": "./agents/",
+  "hooks": "./hooks/cursor/hooks.json"
 }

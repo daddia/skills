@@ -3,12 +3,12 @@
   "hooks": {
     "afterAgentResponse": [
       {
-        "command": "./hooks/ralph-capture.sh"
+        "command": "./hooks/cursor/ralph-capture.sh"
       }
     ],
     "stop": [
       {
-        "command": "./hooks/ralph-stop.sh",
+        "command": "./hooks/cursor/ralph-stop.sh",
         "loop_limit": null
       }
     ]
