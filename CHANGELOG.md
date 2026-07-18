@@ -6,6 +6,82 @@ Git tags and the `version` field in `.cursor-plugin/plugin.json` and
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.0.0] - 2026-07-19
+
+Ralph loop rebuild. The loop stopped after its first iteration; the cause was
+in the hook plumbing, not the design. This release fixes that, splits the
+command surface, moves loop state, and generalises the templates beyond
+software delivery.
+
+### Fixed
+
+- **The loop now continues past iteration 1.** Four defects, each independently
+  fatal:
+  - Both stop hooks ran an unguarded `cat .ralph-loop | head | tr` pipeline as
+    their first command under `set -euo pipefail`. A missing or unreadable
+    pointer file made the pipeline return non-zero, `set -e` killed the script
+    before it printed anything, and both agents read a silent non-zero exit as
+    "allow the stop".
+  - Frontmatter was parsed with `sed -n '/^---$/,/^---$/'`, whose range
+    restarts at every `---`. The shipped template had four, so 108 lines of
+    prompt body were parsed as frontmatter. Any body line beginning
+    `iteration:` or `max_iterations:` produced a multi-line value, failed
+    numeric validation, and deleted the loop file.
+  - The Claude transcript parse took `tail -1` of the assistant lines. Claude
+    Code writes each content block as its own JSONL line, so a turn ending on
+    a tool call, the normal case for a loop delegating to sub-agents, had no
+    text block and the completion promise was never seen.
+  - `sed "s/^iteration: .*/"` rewrote every matching line in the file,
+    including inside the prompt body.
+- Cursor `loop_limit` set to an explicit integer rather than `null`.
+- Promise comparison is literal, so a promise containing `*` or `[` no longer
+  pattern-matches and ends the loop early.
+
+### Added
+
+- `hooks/lib/ralph-common.sh` — shared decision logic. The two stop hooks
+  previously duplicated ~120 lines and had already diverged; only the Cursor
+  one used its project-dir variable.
+- **Session isolation.** `session_id` in the frontmatter stops a loop
+  conscripting every other session open in the same project.
+- **Hard ceiling** of 200 iterations, applied even to `max_iterations: 0`.
+- **Completion sentinel** as the primary promise signal on both agents, with
+  text scanning as the fallback.
+- `scripts/seed-ralph-loop.sh` — deterministic seeding. Placeholder
+  substitution moved out of the agent; unresolved placeholders are now a hard
+  error rather than a corrupt loop file.
+- `scripts/test-ralph-hooks.sh` (103 assertions) and
+  `scripts/test-seed-ralph-loop.sh` (66 assertions), wired into
+  `validate-skills.sh`.
+- `scripts/mutation-test.py` — reintroduces each historical defect and asserts
+  the suite catches it. 22 mutants killed, 3 documented as equivalent.
+- **Presets.** `engineering-delivery`, `ad-hoc`, and `custom`, with a generic
+  core template that owns the guardrails so a preset cannot weaken them.
+- `references/preset-authoring.md`, including a worked non-engineering example.
+- `validate-skills.sh` now checks skills.sh.json sync, eval JSON and
+  `skill_name`, shell syntax, hook executability, template placeholders, and
+  runs both Ralph suites. shellcheck runs when installed.
+
+### Changed
+
+- **BREAKING: `ralph` split into `ralph-loop` and `ralph-loop-setup`.**
+  `/ralph setup` is now `/ralph-loop-setup`; `/ralph start|status|cancel` are
+  now `/ralph-loop start|status|cancel`.
+- **BREAKING: loop state moved** from `.ralph/` to `.claude/loop/` or
+  `.cursor/loop/`, with per-run directories and an `archive/`. The
+  `.ralph-loop` pointer file and the `--ralph-dir` flag are gone: each hook
+  resolves its own base directory.
+- `cancel` archives the run directory instead of leaving it in place.
+- `ralph-loop-setup` proposes `tasks × 6 + 10` iterations for an epic rather
+  than the flat default of 50, which a 12-task epic would exceed.
+- Hooks use `set -uo pipefail`, not `set -euo pipefail`, with explicit error
+  handling throughout.
+
+### Migration
+
+Loops seeded by 1.x cannot be resumed. Cancel any in-flight loop, delete
+`.ralph/` and `.ralph-loop`, then re-seed with `/ralph-loop-setup`.
+
 ## [1.6.0] - 2026-07-04
 
 ### Added

@@ -1,150 +1,70 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
+#
 # Ralph loop Stop hook (Claude Code).
-# Blocks session exit while a loop is active and feeds the loop prompt back
-# as the next turn's input. Promise detection reads the last assistant
-# message from the session transcript (Claude Code has no response hook).
+#
+# Blocks session exit while a loop is active and feeds the loop prompt back as
+# the next turn's input.
 #
 # Claude Code Stop hook API:
-#   Input:  { "transcript_path": "<path>", ... }
-#   Output: { "decision": "block", "reason": "<prompt>", "systemMessage": "<msg>" }
-#           to continue, or exit 0 with no output to allow the stop.
+#   Input:  { "transcript_path": "...", "session_id": "...",
+#             "stop_hook_active": true|false, ... }
+#   Output: { "decision": "block", "reason": "<prompt>", "systemMessage": "..." }
+#           to continue, or exit 0 with no stdout to allow the stop.
 #
-# State files (seeded by the ralph skill, shared with the Cursor hooks):
-#   .ralph-loop       pointer file: one line containing the ralph base dir (e.g. .claude/ralph)
-#   {base}/loop.md    active loop file: YAML frontmatter + prompt body
-#   {base}/stall      stall-guard tracking (hash + consecutive-unchanged count)
+# All decision logic lives in hooks/lib/ralph-common.sh so the Claude and
+# Cursor hooks cannot drift apart. They previously duplicated ~120 lines and
+# had already diverged: only the Cursor script used its project-dir variable.
 
-set -euo pipefail
+set -uo pipefail
 
-HOOK_INPUT=$(cat)
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LIB="$HERE/../lib/ralph-common.sh"
 
-# Resolve base directory from pointer file; fall back to .ralph
-RALPH_BASE=$(cat ".ralph-loop" 2>/dev/null | head -1 | tr -d '[:space:]')
-RALPH_DIR="${RALPH_BASE:-.ralph}"
-LOOP_FILE="$RALPH_DIR/loop.md"
-DONE_FLAG="$RALPH_DIR/done"
-STALL_FILE="$RALPH_DIR/stall"
-
-STALL_LIMIT=3
-
-cleanup() {
-  rm -f "$LOOP_FILE" "$DONE_FLAG" "$STALL_FILE"
-}
-
-# No active loop - allow exit
-if [[ ! -f "$LOOP_FILE" ]]; then
+if [[ ! -f "$LIB" ]]; then
+  printf 'Ralph loop: shared library missing at %s. Allowing stop.\n' "$LIB" >&2
   exit 0
 fi
 
-# Parse loop file frontmatter
-FRONTMATTER=$(sed -n '/^---$/,/^---$/{ /^---$/d; p; }' "$LOOP_FILE")
-ITERATION=$(echo "$FRONTMATTER" | grep '^iteration:' | sed 's/iteration: *//')
-MAX_ITERATIONS=$(echo "$FRONTMATTER" | grep '^max_iterations:' | sed 's/max_iterations: *//')
-COMPLETION_PROMISE=$(echo "$FRONTMATTER" | grep '^completion_promise:' | sed 's/completion_promise: *//' | sed 's/^"\(.*\)"$/\1/')
-STATE_FILE=$(echo "$FRONTMATTER" | grep '^state_file:' | sed 's/state_file: *//' | sed 's/^"\(.*\)"$/\1/' || true)
+# shellcheck source=../lib/ralph-common.sh
+. "$LIB"
 
-if [[ ! "$ITERATION" =~ ^[0-9]+$ ]]; then
-  echo "Ralph loop: loop file corrupted (iteration: '$ITERATION'). Stopping." >&2
-  cleanup
+HOOK_INPUT="$(cat 2>/dev/null || true)"
+
+# Session identity, used by ralph_evaluate for session isolation.
+RALPH_SESSION_ID="$(printf '%s' "$HOOK_INPUT" | jq -r '.session_id // ""' 2>/dev/null || true)"
+export RALPH_SESSION_ID
+
+TRANSCRIPT_PATH="$(printf '%s' "$HOOK_INPUT" | jq -r '.transcript_path // ""' 2>/dev/null || true)"
+STOP_HOOK_ACTIVE="$(printf '%s' "$HOOK_INPUT" | jq -r '.stop_hook_active // false' 2>/dev/null || true)"
+
+# stop_hook_active tells us this stop was itself caused by a previous block.
+# We intentionally continue: that is exactly the Ralph technique. Runaway
+# protection comes from max_iterations, the hard ceiling, and the stall guard,
+# all enforced in ralph_evaluate. Read here so the contract is explicit.
+if [[ "$STOP_HOOK_ACTIVE" == "true" ]]; then
+  : # continuing a hook-driven turn; guards are enforced in ralph_evaluate
+fi
+
+LAST_TEXT="$(ralph_last_assistant_text "$TRANSCRIPT_PATH")"
+
+ralph_evaluate claude "$LAST_TEXT"
+
+if [[ "$RALPH_DECISION" != "continue" ]]; then
+  [[ -n "$RALPH_REASON" ]] && ralph_log "$RALPH_REASON"
   exit 0
 fi
 
-if [[ ! "$MAX_ITERATIONS" =~ ^[0-9]+$ ]]; then
-  echo "Ralph loop: loop file corrupted (max_iterations: '$MAX_ITERATIONS'). Stopping." >&2
-  cleanup
-  exit 0
-fi
+SYSTEM_MSG="$(ralph_system_message "$RALPH_NEXT_ITER" "$RALPH_PROMISE")"
 
-# Done flag (defensive; normally the promise is detected below)
-if [[ -f "$DONE_FLAG" ]]; then
-  echo "Ralph loop: completion promise fulfilled at iteration $ITERATION."
-  cleanup
-  exit 0
-fi
-
-# Max iterations reached
-if [[ $MAX_ITERATIONS -gt 0 ]] && [[ $ITERATION -ge $MAX_ITERATIONS ]]; then
-  echo "Ralph loop: max iterations ($MAX_ITERATIONS) reached. Run '/ralph status' to inspect progress."
-  cleanup
-  exit 0
-fi
-
-# Check the last assistant message for the completion promise
-TRANSCRIPT_PATH=$(echo "$HOOK_INPUT" | jq -r '.transcript_path // empty')
-
-if [[ -n "$TRANSCRIPT_PATH" ]] && [[ -f "$TRANSCRIPT_PATH" ]] && [[ "$COMPLETION_PROMISE" != "null" ]] && [[ -n "$COMPLETION_PROMISE" ]]; then
-  LAST_LINE=$(grep '"role":"assistant"' "$TRANSCRIPT_PATH" | tail -1 || true)
-  if [[ -n "$LAST_LINE" ]]; then
-    LAST_OUTPUT=$(echo "$LAST_LINE" | jq -r '
-      .message.content |
-      map(select(.type == "text")) |
-      map(.text) |
-      join("\n")
-    ' 2>/dev/null || echo "")
-    if [[ -n "$LAST_OUTPUT" ]]; then
-      PROMISE_TEXT=$(echo "$LAST_OUTPUT" | perl -0777 -pe 's/.*?<promise>(.*?)<\/promise>.*/$1/s; s/^\s+|\s+$//g; s/\s+/ /g' 2>/dev/null || echo "")
-      if [[ -n "$PROMISE_TEXT" ]] && [[ "$PROMISE_TEXT" = "$COMPLETION_PROMISE" ]]; then
-        echo "Ralph loop: completion promise '$COMPLETION_PROMISE' fulfilled at iteration $ITERATION."
-        cleanup
-        exit 0
-      fi
-    fi
-  fi
-fi
-
-# Stall guard: if a state file is declared and it has not changed for
-# STALL_LIMIT consecutive iterations, the loop is spinning without progress.
-if [[ -n "${STATE_FILE:-}" ]] && [[ "$STATE_FILE" != "null" ]] && [[ -f "$STATE_FILE" ]]; then
-  CURRENT_HASH=$(cksum "$STATE_FILE" | awk '{print $1}')
-  PREV_HASH=""
-  PREV_COUNT=0
-  if [[ -f "$STALL_FILE" ]]; then
-    PREV_HASH=$(awk '{print $1}' "$STALL_FILE")
-    PREV_COUNT=$(awk '{print $2}' "$STALL_FILE")
-    [[ "$PREV_COUNT" =~ ^[0-9]+$ ]] || PREV_COUNT=0
-  fi
-  if [[ "$CURRENT_HASH" == "$PREV_HASH" ]]; then
-    COUNT=$((PREV_COUNT + 1))
-  else
-    COUNT=1
-  fi
-  if [[ $COUNT -ge $STALL_LIMIT ]]; then
-    echo "Ralph loop: no progress in $STALL_LIMIT consecutive iterations (state file unchanged: $STATE_FILE). Stopping so a human can inspect. Run '/ralph status' for details."
-    cleanup
-    exit 0
-  fi
-  echo "$CURRENT_HASH $COUNT" > "$STALL_FILE"
-fi
-
-# Extract prompt text (everything after the closing --- of the frontmatter)
-PROMPT_TEXT=$(awk '/^---$/{i++; next} i>=2' "$LOOP_FILE")
-
-if [[ -z "$PROMPT_TEXT" ]]; then
-  echo "Ralph loop: no prompt text found in loop file. Stopping." >&2
-  cleanup
-  exit 0
-fi
-
-# Increment iteration atomically
-NEXT_ITERATION=$((ITERATION + 1))
-TEMP_FILE="${LOOP_FILE}.tmp.$$"
-sed "s/^iteration: .*/iteration: $NEXT_ITERATION/" "$LOOP_FILE" > "$TEMP_FILE"
-mv "$TEMP_FILE" "$LOOP_FILE"
-
-if [[ "$COMPLETION_PROMISE" != "null" ]] && [[ -n "$COMPLETION_PROMISE" ]]; then
-  SYSTEM_MSG="Ralph iteration $NEXT_ITERATION | To stop: output <promise>$COMPLETION_PROMISE</promise> ONLY when genuinely true - do not lie to exit."
-else
-  SYSTEM_MSG="Ralph iteration $NEXT_ITERATION | No completion promise set - loop runs until max_iterations."
-fi
-
-jq -n \
-  --arg prompt "$PROMPT_TEXT" \
+if ! jq -n \
+  --arg prompt "$RALPH_PROMPT" \
   --arg msg "$SYSTEM_MSG" \
-  '{
-    "decision": "block",
-    "reason": $prompt,
-    "systemMessage": $msg
-  }'
+  '{ "decision": "block", "reason": $prompt, "systemMessage": $msg }' 2>/dev/null; then
+  # If jq cannot render the payload the loop must stop rather than emit
+  # malformed JSON, which the agent would treat as a hook failure anyway.
+  ralph_log "failed to render hook JSON. Stopping."
+  ralph_clear_active "$RALPH_BASE"
+  exit 0
+fi
 
 exit 0

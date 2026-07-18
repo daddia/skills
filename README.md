@@ -65,7 +65,7 @@ Not sure where to start? Use **skills-index**, or follow the [typical flow](#typ
 | Planning | _What, why, and when?_ | **product**, **roadmap**, **backlog** |
 | Architecture | _How? Structure? Principles?_ | **solution**, **adr** |
 | Discovery | _Ready for Development_ | **design**, **tasks** |
-| Delivery | _Definition of Done_ | **implement**, **code-review**, **ux-design-review**, **merge-request**, **ralph** |
+| Delivery | _Definition of Done_ | **implement**, **code-review**, **ux-design-review**, **merge-request**, **ralph-loop** |
 | Release | _Ready for Release_ | **merge-request-review**, **validate** |
 | Refine | _What did we learn?_ | **sprint**, **docs** |
 
@@ -86,15 +86,23 @@ Not sure where to start? Use **skills-index**, or follow the [typical flow](#typ
             sprint retro, docs (ongoing)
 ```
 
-Or run the whole delivery stage autonomously: `/ralph setup {epic}` then
-`/ralph start` loops implement → code-review → fix → ux-design-review →
-commit per task, then epic review, validation, and the merge request —
-one step per iteration until the completion promise is genuinely true.
+Or run the whole delivery stage autonomously: `/ralph-loop-setup {epic}`
+then `/ralph-loop start` loops implement → code-review → fix →
+ux-design-review → commit per task, then epic review, validation, and the
+merge request — one step per iteration until the completion promise is
+genuinely true.
 
-The ralph skill is driven by this plugin's own stop hooks (`hooks/`),
-shipped for both Cursor and Claude Code. If you also have a standalone
-Ralph loop plugin installed (e.g. `ralph-loop-plugin` or `ralph-wiggum`),
-disable it — two stop hooks firing per turn would conflict.
+The loop is not limited to software. It ships three presets:
+`engineering-delivery` (the flow above), `ad-hoc` (repeat one prompt until
+done), and `custom` (your own steps). See
+[preset authoring](skills/ralph-loop/references/preset-authoring.md) for a
+worked non-engineering example.
+
+The ralph-loop skills are driven by this plugin's own stop hooks (`hooks/`),
+shipped for both Cursor and Claude Code. Loop state lives in `.claude/loop/`
+or `.cursor/loop/`. If you also have a standalone Ralph loop plugin installed
+(e.g. `ralph-loop-plugin` or `ralph-wiggum`), disable it — two stop hooks
+firing per turn would conflict.
 
 ## Where files live in your project
 
@@ -160,7 +168,8 @@ Invoke with the mode first: `/tasks write checkout-foundation`, `/sprint plan 3`
 | **code-review fix** | fix | Address review findings without behaviour changes | code |
 | **ux-design-review** | review, fix | Live-first UX review of implemented UI vs its design source (Figma via MCP, mockups, tokens): fidelity, accessibility (WCAG 2.2 AA), states, responsiveness, design-system conformity | UX review / code |
 | **merge-request** | create, babysit | Open an MR/PR on any provider (GitHub, GitLab, Bitbucket) with template-aware description; `babysit` drives it to merge-ready | MR / PR |
-| **ralph** | setup, start, status, cancel | Autonomous Ralph loop over an epic: one task per iteration through implement → review → fix → UX review → commit, then epic validation and MR; plugin hooks re-feed the loop until the completion promise | committed epic + MR |
+| **ralph-loop-setup** | (interview) | Seed and configure a Ralph loop: choose a preset (engineering delivery, ad-hoc, custom), resolve the environment, set the promise and iteration budget; writes the loop files, never starts them | seeded loop |
+| **ralph-loop** | start, status, cancel | Run an autonomous loop: one step per iteration, plugin hooks re-feed the prompt until the completion promise is genuinely true or a safety rail fires | committed epic + MR |
 
 ### Release
 

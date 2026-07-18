@@ -1,6 +1,6 @@
 # Environment resolution
 
-How `/ralph setup` resolves the repo-specific values substituted into the
+How `/ralph-loop-setup` resolves the repo-specific values substituted into the
 loop templates. Resolve everything ONCE at setup; the loop never re-detects.
 
 ## Branch (`{{BRANCH}}`)

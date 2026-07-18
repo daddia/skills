@@ -9,7 +9,7 @@
     "stop": [
       {
         "command": "./hooks/cursor/ralph-stop.sh",
-        "loop_limit": null
+        "loop_limit": 200
       }
     ]
   }

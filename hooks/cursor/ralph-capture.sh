@@ -1,48 +1,49 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
+#
 # Ralph loop afterAgentResponse hook (Cursor).
-# Checks whether the agent's response contains the configured completion
-# promise. If found, writes a done flag so the stop hook ends the loop.
+#
+# Scans the agent's response for the configured completion promise. On a match
+# it writes the `done` sentinel, which the stop hook reads to end the loop.
 #
 # Input:  { "text": "<assistant response text>" }
-# Output: none (fire-and-forget)
+# Output: none (fire and forget)
+#
+# Cursor gets a dedicated response hook, so promise detection here is exact.
+# The Claude hook has no equivalent event and falls back to scanning the
+# transcript, which is why the `done` sentinel is the primary signal on both
+# agents: the loop's `done` step writes it directly.
 
-set -euo pipefail
+set -uo pipefail
 
-HOOK_INPUT=$(cat)
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LIB="$HERE/../lib/ralph-common.sh"
 
-PROJECT_DIR="${CURSOR_PROJECT_DIR:-.}"
-# Resolve base directory from pointer file; fall back to .ralph
-RALPH_BASE=$(cat "$PROJECT_DIR/.ralph-loop" 2>/dev/null | head -1 | tr -d '[:space:]')
-RALPH_DIR="$PROJECT_DIR/${RALPH_BASE:-.ralph}"
-LOOP_FILE="$RALPH_DIR/loop.md"
-DONE_FLAG="$RALPH_DIR/done"
-
-# No active loop, nothing to do
-if [[ ! -f "$LOOP_FILE" ]]; then
+if [[ ! -f "$LIB" ]]; then
   exit 0
 fi
 
-# Extract completion promise from loop file frontmatter
-FRONTMATTER=$(sed -n '/^---$/,/^---$/{ /^---$/d; p; }' "$LOOP_FILE")
-COMPLETION_PROMISE=$(echo "$FRONTMATTER" | grep '^completion_promise:' | sed 's/completion_promise: *//' | sed 's/^"\(.*\)"$/\1/')
+# shellcheck source=../lib/ralph-common.sh
+. "$LIB"
 
-# No promise configured, nothing to check
-if [[ "$COMPLETION_PROMISE" = "null" ]] || [[ -z "$COMPLETION_PROMISE" ]]; then
-  exit 0
-fi
+HOOK_INPUT="$(cat 2>/dev/null || true)"
 
-RESPONSE_TEXT=$(echo "$HOOK_INPUT" | jq -r '.text // empty')
+BASE="$(ralph_base_dir cursor)"
+LOOP_FILE="$BASE/active.md"
 
-if [[ -z "$RESPONSE_TEXT" ]]; then
-  exit 0
-fi
+# No active loop, nothing to detect.
+[[ -f "$LOOP_FILE" ]] || exit 0
 
-# Check for <promise>TEXT</promise> in the response (first tag, whitespace normalised)
-PROMISE_TEXT=$(echo "$RESPONSE_TEXT" | perl -0777 -pe 's/.*?<promise>(.*?)<\/promise>.*/$1/s; s/^\s+|\s+$//g; s/\s+/ /g' 2>/dev/null || echo "")
+FM="$(ralph_frontmatter "$LOOP_FILE")" || FM=""
+[[ -n "$FM" ]] || exit 0
 
-if [[ -n "$PROMISE_TEXT" ]] && [[ "$PROMISE_TEXT" = "$COMPLETION_PROMISE" ]]; then
-  touch "$DONE_FLAG"
+PROMISE="$(ralph_field "$FM" completion_promise)"
+ralph_promise_is_set "$PROMISE" || exit 0
+
+RESPONSE_TEXT="$(printf '%s' "$HOOK_INPUT" | jq -r '.text // empty' 2>/dev/null || true)"
+[[ -n "$RESPONSE_TEXT" ]] || exit 0
+
+if ralph_promise_matches "$RESPONSE_TEXT" "$PROMISE"; then
+  : > "$BASE/done" 2>/dev/null || true
 fi
 
 exit 0

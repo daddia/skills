@@ -5,32 +5,56 @@
     {
       "title": "Strategy",
       "description": "Product vision, phased roadmap, and epic backlog.",
-      "skills": ["product", "roadmap", "backlog"]
+      "skills": [
+        "product",
+        "roadmap",
+        "backlog"
+      ]
     },
     {
       "title": "Architecture",
       "description": "Solution architecture and architecture decision records.",
-      "skills": ["solution", "adr"]
+      "skills": [
+        "solution",
+        "adr"
+      ]
     },
     {
       "title": "Epic delivery",
       "description": "Per-epic design, tasks, and documentation passes.",
-      "skills": ["design", "tasks", "docs"]
+      "skills": [
+        "design",
+        "tasks",
+        "docs"
+      ]
     },
     {
       "title": "Implementation",
       "description": "Build, review, validate, and ship changes.",
-      "skills": ["implement", "code-review", "ux-design-review", "merge-request", "merge-request-review", "validate", "ralph"]
+      "skills": [
+        "implement",
+        "code-review",
+        "ux-design-review",
+        "merge-request",
+        "merge-request-review",
+        "validate",
+        "ralph-loop-setup",
+        "ralph-loop"
+      ]
     },
     {
       "title": "Sprint",
       "description": "Sprint planning and retrospectives.",
-      "skills": ["sprint"]
+      "skills": [
+        "sprint"
+      ]
     },
     {
       "title": "Routing",
       "description": "Find the right skill for an open-ended request.",
-      "skills": ["skills-index"]
+      "skills": [
+        "skills-index"
+      ]
     }
   ]
 }

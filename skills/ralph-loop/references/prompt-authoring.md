@@ -1,6 +1,6 @@
 # Prompt authoring for Ralph loops
 
-Guidance for writing ad-hoc loop prompts (`/ralph setup --prompt "..."`)
+Guidance for writing ad-hoc loop prompts (`/ralph-loop-setup --prompt "..."`)
 and for tuning the epic templates. The loop re-feeds the same prompt every
 iteration — the prompt is the whole specification.
 

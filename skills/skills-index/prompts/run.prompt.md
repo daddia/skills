@@ -26,7 +26,8 @@ below to identify the best match and direct them to the right skill.
 | ux-design-review | UX review of implemented UI vs its design source: fidelity, accessibility, states, responsiveness; `fix` addresses findings | UX review / code | delivery | engineer | design source, UI diff | review / code |
 | merge-request | Open an MR/PR for the current branch on any provider (`create`); `babysit` drives it to merge-ready | MR / PR | delivery | engineer | — | MR / PR |
 | merge-request-review | Review an MR/PR as its reviewer; publish inline comments and a verdict | published review | delivery | engineer | MR / PR | published review |
-| ralph | Autonomous delivery loop over a whole epic: implement, review, fix, validate, commit, MR — one task per iteration until a completion promise (`setup`, `start`, `status`, `cancel`) | committed epic + MR | delivery | delivery | design.md, tasks.md | code / MR |
+| ralph-loop-setup | Seed and configure a Ralph loop: pick a preset (engineering delivery, ad-hoc, custom), resolve the environment, set the completion promise and iteration budget; never starts the loop | seeded loop | delivery | delivery | design.md, tasks.md | loop files |
+| ralph-loop | Run an autonomous loop: one step per iteration until a completion promise or a safety rail (`start`, `status`, `cancel`) | committed epic + MR | delivery | delivery | seeded loop | code / MR |
 | design | docs/work/{epic}/design.md: write or review | design.md | discovery | architect | solution.md, backlog.md | design.md |
 | docs | Pre-sprint doc review or sprint-end refine-session | doc review / refine-session | refine / discovery | architect | product.md, solution.md | review / refine-session |
 | product | product.md: write, review, refine | docs/product/product.md | strategy / refine | pm | — / product.md | product.md |
