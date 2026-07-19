@@ -10,13 +10,11 @@ description: >
   implement a single task once (implement), review a diff (code-review), or
   sign off an epic (validate) — the loop orchestrates those skills.
 license: MIT
-allowed-tools:
-  - Read
-  - Write
-  - Glob
-  - Grep
-  - Shell
+allowed-tools: Read Write Glob Grep Bash
 argument-hint: "[start|status|cancel] [--prompt \"...\"] [--max-iterations N] [--completion-promise TEXT]"
+metadata:
+  author: daddia
+  version: "1.0"
 ---
 
 # Ralph loop
