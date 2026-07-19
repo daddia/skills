@@ -34,6 +34,22 @@ When these principles conflict, the earlier one wins: **YAGNI > KISS > DRY**.
 - [ ] Key user journeys covered end-to-end where the stack supports it.
 - [ ] Coverage not weakened: existing tests kept; a wrong test is fixed, not deleted.
 
+## Data and contracts
+
+Apply when the diff touches migrations, schema definitions, persisted models,
+event payloads, or any published API. Findings here take the **Data Integrity**
+category. Rate against reversibility, not immediate blast radius: a bad
+migration outlives the deploy that shipped it.
+
+- [ ] Migration is reversible, or its irreversibility is deliberate, documented, and called out in the change description.
+- [ ] A rollback path exists and has been stated — not assumed.
+- [ ] Adding a non-nullable column supplies a default or a backfill; the backfill is batched, resumable, and safe to re-run.
+- [ ] Index creation on a large table uses the non-blocking form the engine provides (`CONCURRENTLY` or equivalent), or the lock window is acknowledged.
+- [ ] Schema change and the code that depends on it can deploy independently — expand/contract, not a single breaking step.
+- [ ] Changes to published API responses, event payloads, or shared schemas are additive; removals and type changes are versioned or gated.
+- [ ] Consumers of a changed contract are identified. "Who reads this field?" has an answer before the field changes shape.
+- [ ] Data written in one format and read in another has a migration for the in-flight case (queued messages, cached payloads, partially-migrated rows).
+
 ## Observability
 
 - [ ] Logging: structured, at boundaries; **no PII or secrets**; correct level (no debug spam in hot paths).

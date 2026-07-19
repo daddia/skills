@@ -3,7 +3,9 @@ name: acceptance-criteria-reviewer
 description: Use this agent when reviewing a code diff against the acceptance criteria linked to the change, in whatever form the repo/tracker provides (Gherkin, checklist, EARS, issue description). Typical triggers include pre-PR review, verifying an implementation, or checking that every changed behaviour maps to a stated criterion. See "When to invoke" in the agent body.
 model: inherit
 color: blue
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git diff:*), Bash(git log:*), Bash(gh:*), Bash(glab:*)
+metadata:
+  model_tier: standard
 ---
 
 You map code changes to acceptance criteria only.
@@ -34,12 +36,20 @@ You map code changes to acceptance criteria only.
 2. For each criterion, search the diff/codebase for evidence.
 3. Build coverage table: criterion → pass | fail | partial → evidence (path:line).
 
+## Budget
+
+At most **15 files** beyond the diff. Criteria coverage is breadth work: it is
+better to check every criterion shallowly than two exhaustively. If a criterion
+cannot be evidenced within budget, mark it `partial` and say what you could not
+reach.
+
 ## Scoring
 
-Classify each gap with a Category, Severity, and Confidence per
+Classify each gap with a Category, Severity, and a Confidence **prior** per
 [../references/finding-classification.md](../references/finding-classification.md).
-Default category: **Scope / AC**. Drop only Speculative findings; return the rest
-for the main review to rank and gate.
+Default category: **Scope / AC**. Your confidence is a prior;
+`finding-verifier` rates it independently afterwards. Drop only Speculative
+findings; return the rest.
 
 ## Output
 

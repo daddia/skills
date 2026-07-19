@@ -6,6 +6,100 @@ Git tags and the `version` field in `.cursor-plugin/plugin.json` and
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+Spec alignment pass across all skills against the Agent Skills specification
+(agentskills.io/specification), plus flattening of every remaining single-mode
+skill.
+
+### Changed
+
+- **`allowed-tools` is now a space-separated string** on every skill, per the
+  spec. The YAML-list form was non-conformant and silently ignored by clients
+  that parse the field as a string.
+- **`Shell` replaced with `Bash`** in `allowed-tools` — `Shell` is not a real
+  tool name, so those skills were declaring a permission that never resolved.
+  Affects `implement`, `merge-request`, `merge-request-review`,
+  `ralph-loop-setup`, `ux-design-review`.
+- **`metadata` block added** (`author`, `version`) to every skill, matching the
+  pattern already used by `code-review` and `code-review-fix`.
+- **`implement` and `validate` gained the tools they actually use** — `Edit`
+  for `implement`, `Write`/`Edit` for `validate`, which updates `tasks.md` and
+  `backlog.md` in its Phase 6 but declared read-only tools.
+- **Single-mode skills are flat.** `implement`, `merge-request-review`,
+  `skills-index`, and `validate` each had exactly one prompt file behind a
+  one-line router. The prompt is now inlined in `SKILL.md` and the `prompts/`
+  directory is deleted — one file to read instead of two, no indirection on a
+  branch that never forks. Multi-mode skills keep `prompts/`.
+- **`skills-index` output now points at its own template.**
+  `assets/skills-index.template.md` existed but nothing referenced it.
+
+---
+
+Code review rebuild. `code-review` is split into a read-only reviewer and a
+separate writing fixer, flattened to a single `SKILL.md`, and given the
+independent verification and merge protocol it was missing.
+
+### Changed
+
+- **BREAKING: `code-review fix` is removed.** Use the new `code-review-fix`
+  skill. No alias is kept: an alias would force `code-review` to keep `Write` in
+  `allowed-tools` and keep advertising fix behaviour in its description, which
+  is exactly the ambiguity and blast radius the split removes. `code-review` now
+  names `code-review-fix` as the next step in its output without being able to
+  invoke it.
+- **`code-review` is read-only.** Tools are constrained to
+  `Write(.agency/reviews/**)`; it cannot modify source, tests, config, or docs,
+  and cannot commit or comment on a provider.
+- **Both skills are flat.** `prompts/run.prompt.md` and `prompts/fix.prompt.md`
+  are folded into their `SKILL.md`. A single-mode skill's prompt is
+  unconditionally loaded, so the indirection only cost a guaranteed second read
+  and duplicated the sub-agent list across two files. `CONTRIBUTING.md` now
+  documents the rule: `prompts/` only for multi-mode skills.
+- **Confidence is now rated independently.** Sub-agents attach a *prior*; the new
+  `finding-verifier` agent rates each candidate without seeing the raising
+  agent's reasoning, name, or prior, and its rating replaces it. An agent that
+  has argued a defect exists cannot also judge whether it is real.
+- Sub-agent fan-out is capped by a review effort estimate (S/M/L) instead of
+  running every lens on every diff. Security-sensitive and data paths force L
+  regardless of diff size.
+- `best-practices-reviewer` trigger narrowed to a changed manifest/lockfile or a
+  newly introduced import. It is the only lens that reaches the network, and the
+  old "touches a library" trigger fired on nearly every diff.
+- Agent tools constrained from blanket `Bash` to the specific commands each needs.
+- Risk matrix: the high-severity / low-confidence cell now **escalates** as
+  `[warning] unverified` rather than silently dropping. A possible critical
+  defect is worth a human's attention even on thin evidence.
+
+### Added
+
+- **`code-review-fix` skill** — consumes labelled findings at an action-tier
+  threshold, makes behaviour-preserving changes, runs the project's validation
+  suite, commits in logical units, and updates review state. Can dispute a
+  finding with evidence rather than implementing it.
+- **`references/merge-protocol.md`** — dedupe key, category precedence, max
+  severity, and corroboration. Independent lenses agreeing was previously
+  discarded; it is now the strongest confidence signal available.
+- **`finding-verifier` agent** (fast tier, one per candidate finding) — argues
+  against each finding before rating it.
+- **`prior-review-comments-reviewer` agent** — mines review comments on prior PRs
+  touching the same files, where a team's unwritten standards actually live.
+- **Data Integrity category** and a "Data and contracts" checklist section —
+  migration reversibility, backfill safety, lock windows, contract compatibility.
+  Rated against recoverability, since a bad migration outlives its deploy.
+- **Incremental review** — `.agency/reviews/{branch}.json` records findings and
+  status, so a re-run reviews the delta and never re-raises a dismissed finding.
+- **Learnings** — `.agency/review-learnings.md`, scoped by glob, ranked below
+  written guidelines, capturing why a finding was rejected.
+- **CI output ingestion** — existing check logs, SARIF, and scanner artefacts are
+  read and reconciled. Scanner findings that fail the input-provenance test are
+  explicitly rebutted rather than forwarded.
+- **`metadata.model_tier`** (`fast`/`standard`/`deep`) on every agent, with
+  `model: inherit` retained so runners without model selection still work.
+- Reading budgets on every sub-agent.
+- `evals/evals.json` and `evals/trigger-queries.json` for both skills, with
+  negative routing cases in both directions.
+
 ## [2.0.0] - 2026-07-19
 
 Ralph loop rebuild. The loop stopped after its first iteration; the cause was

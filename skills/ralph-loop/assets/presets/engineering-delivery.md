@@ -51,7 +51,7 @@ Resolve `{TASK_ID}` from `current_item` and run only the step named by
 
 #### review_fix
 
-1. Launch a sub-agent: `/code-review fix`.
+1. Launch a sub-agent: `/code-review-fix`.
 2. Increment `fix_count`.
 3. Set `current_step: review`.
 
