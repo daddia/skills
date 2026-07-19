@@ -63,7 +63,7 @@ the diff do what the work item/PR description says, no more, no less).
 
 - Root and directory-level `AGENTS.md` / `CLAUDE.md`, `.cursor/rules`,
   `CONTRIBUTING.md`.
-- Already handled by `guideline-compliance-reviewer` — reuse its discovery,
+- Already handled by `conventions-reviewer` (Part A) — reuse its discovery,
   do not duplicate.
 
 ## 5. Signal (CI status and existing analysis)

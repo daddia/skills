@@ -2,7 +2,7 @@
 
 A stable, project-agnostic checklist applied to every review. Use
 **best-practices-reviewer** for library-specific, version-correct guidance and
-**guideline-compliance-reviewer** for written team rules. This file is for
+**conventions-reviewer** for this team's own written and spoken rules. This file is for
 timeless principles, with the team's stance where one exists. Do not flag
 textbook definitions the code obviously follows.
 

@@ -60,17 +60,24 @@ agent.
 | 3 or more | Raise to Confirmed unless the verifier refutes it |
 
 "Independent" means the agents did not share a derivation. `bug-scan-reviewer`
-and `guideline-compliance-reviewer` finding the same missing error handler is
+and `conventions-reviewer` finding the same missing error handler is
 corroboration: one reasoned from the code, the other from a written rule. Two
-agents both quoting the same AGENTS.md line is **not** corroboration; it is one
-piece of evidence counted twice. Collapse those to a single vote.
+findings resting on the same AGENTS.md line are **not** corroboration; that is
+one piece of evidence counted twice. Collapse those to a single vote.
+
+The same trap exists **inside** the two-part lenses. `conventions-reviewer`
+raising a rule from Part A and the same rule from a prior review comment in
+Part B is one source, not two — the agent is instructed to collapse it, and the
+merge step must not re-inflate it. Likewise an uncovered criterion and its
+matching scope drift from `requirements-reviewer` are one problem seen twice,
+not two independent votes.
 
 ## 5. Contradiction is surfaced, never silently resolved
 
 When agents disagree about whether something is a defect at all:
 
 - **Local rule beats external guidance.** If `best-practices-reviewer` cites
-  library docs saying "use X" and `guideline-compliance-reviewer` quotes a repo
+  library docs saying "use X" and `conventions-reviewer` quotes a repo
   rule saying "never X", the repo rule wins. The codebase's explicit decision
   outranks a general recommendation.
 - **Surface the conflict anyway**, as a `[suggestion]`, with both sources named.

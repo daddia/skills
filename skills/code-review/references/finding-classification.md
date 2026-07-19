@@ -25,7 +25,7 @@ merged finding takes the highest-precedence one (see
 | Bug Risk | Logic errors, edge cases, crashes | bug-scan-reviewer |
 | Stability | Resilience and availability under failure | quality-checklist (Resilience) |
 | Data Integrity | Data correctness and persistence: schema and migration safety, backfills, contract and payload compatibility, integration boundaries | quality-checklist (Data and contracts) |
-| Scope / AC | Alignment with linked acceptance criteria and declared scope (any source) | acceptance-criteria / design-drift |
+| Scope / AC | Alignment with linked acceptance criteria and declared scope (any source) | requirements-reviewer |
 | Best Practices | Library/framework/version-correct usage | best-practices-reviewer |
 | Performance | Inefficiency, N+1, resource use | quality-checklist (Performance) |
 | Maintainability | Structure, design, anti-patterns, readability | architecture-reviewer, quality-checklist |

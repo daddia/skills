@@ -60,9 +60,27 @@ independent verification and merge protocol it was missing.
   `finding-verifier` agent rates each candidate without seeing the raising
   agent's reasoning, name, or prior, and its rating replaces it. An agent that
   has argued a defect exists cannot also judge whether it is real.
+- **Sub-agents rationalised from eight to six** — five lenses plus the verifier.
+  An agent earns its own context window by reading a distinct *input source*, not
+  by covering a distinct topic. Two pairs failed that test and were merged:
+  - `acceptance-criteria-reviewer` + `design-drift-reviewer` →
+    **`requirements-reviewer`**. Both compared the diff against the same resolved
+    requirements, differing only in direction (missing vs extra). Merged, the
+    lens can connect an uncovered criterion to an unmapped hunk — usually the
+    same problem, previously reported as two.
+  - `guideline-compliance-reviewer` + `prior-review-comments-reviewer` →
+    **`conventions-reviewer`**. Both answer "what does this team require that
+    this code does not do", and both must quote a source. One reads written
+    rules, the other rules that were only ever said in a review comment.
+- **No sub-agent runs at the `deep` tier.** `architecture-reviewer` moves from
+  `deep` to `standard`. Every lens has a bounded context and an explicit reading
+  budget, which is a standard-tier job by construction; depth belongs in the
+  parent's synthesis, where the whole picture comes together.
 - Sub-agent fan-out is capped by a review effort estimate (S/M/L) instead of
   running every lens on every diff. Security-sensitive and data paths force L
   regardless of diff size.
+- `merge-protocol.md` corroboration rule extended to catch same-source
+  double-counting *within* the two merged lenses, not only across agents.
 - `best-practices-reviewer` trigger narrowed to a changed manifest/lockfile or a
   newly introduced import. It is the only lens that reaches the network, and the
   old "touches a library" trigger fired on nearly every diff.
@@ -81,9 +99,13 @@ independent verification and merge protocol it was missing.
   severity, and corroboration. Independent lenses agreeing was previously
   discarded; it is now the strongest confidence signal available.
 - **`finding-verifier` agent** (fast tier, one per candidate finding) — argues
-  against each finding before rating it.
-- **`prior-review-comments-reviewer` agent** — mines review comments on prior PRs
-  touching the same files, where a team's unwritten standards actually live.
+  against each finding before rating it. The highest-leverage use of the fast
+  tier: it is what makes one verifier per finding affordable, and independent
+  verification is worth more than a larger model rating its own work.
+- **Prior-review-comment mining**, as Part B of `conventions-reviewer` — review
+  comments on prior PRs touching the same files, where a team's unwritten
+  standards actually live. Capped at Possible confidence, since it reasons by
+  analogy from a comment about different code.
 - **Data Integrity category** and a "Data and contracts" checklist section —
   migration reversibility, backfill safety, lock windows, contract compatibility.
   Rated against recoverability, since a bad migration outlives its deploy.

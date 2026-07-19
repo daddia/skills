@@ -58,12 +58,28 @@ Follow patterns in `skills/code-review/agents/` and official Claude plugin agent
 - Body: **When to invoke**, process, budget, scoring, output format
 - Parent SKILL.md lists when to spawn them, with an explicit trigger per agent
 
+**One agent per input source.** The test for whether something deserves its own
+agent is not whether it is a distinct *topic* — it is whether it reads a
+distinct *input*, or needs isolation. Two agents reading the same bundle and
+applying the same kind of judgement should be one agent with two passes: they
+otherwise read the same source twice and lose the connections between their
+findings. `code-review`'s `requirements-reviewer` (coverage and drift) and
+`conventions-reviewer` (written rules and prior review comments) are merges made
+on exactly this basis.
+
 **Model tiers.** Declare `metadata.model_tier` (`fast`, `standard`, `deep`) and
 keep `model: inherit`. Hardcoding Anthropic model names breaks runners that do
 not know them; the tier is advisory, so a runner without model selection
-inherits and still works. Mechanical predicates, summarisation, and verification
-are `fast`; judgement against a bounded context is `standard`; whole-system
-reasoning is `deep`.
+inherits and still works.
+
+- `fast` — mechanical predicates, retrieval, summarisation, verification
+- `standard` — judgement against a bounded context. Most lenses belong here.
+- `deep` — whole-system reasoning
+
+**Sub-agents should rarely need `deep`.** An agent with a bounded context and an
+explicit reading budget is a standard-tier job by construction. Depth belongs in
+the parent's synthesis, where the whole picture comes together. If a sub-agent
+seems to need `deep`, its scope is probably too broad.
 
 **Budgets.** Give every agent an explicit reading ceiling. An agent without one
 will read the codebase, which is how a parallel review burns its context on

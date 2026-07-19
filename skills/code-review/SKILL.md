@@ -93,18 +93,17 @@ security-sensitive paths (auth, crypto, input handling) or data paths
 | Effort | Shape | Lens budget | Verification |
 | ------ | ----- | ----------- | ------------ |
 | **S** | < ~50 lines, < ~5 files, no sensitive or data paths | Inline only, no sub-agents | Your own judgement (no priors to check) |
-| **M** | Ordinary feature or fix | At most 3 agents: `bug-scan`, then the two highest-value triggered lenses | Blocking and warning candidates |
+| **M** | Ordinary feature or fix | At most 3 lenses: `bug-scan`, then the two highest-value triggered | Blocking and warning candidates |
 | **L** | Large, structural, security-sensitive, or data-affecting | Every triggered agent | Every candidate |
 
 Sensitive or data paths force **L** regardless of size. A three-line change to a
 migration or an auth check is not a small review.
 
 **Effort caps and triggers are ANDed.** Effort sets the ceiling on how many
-agents may run; the trigger table in §4.1 decides which are eligible. An agent
-runs only if it is both triggered and within budget. At **M**, when more than
-three agents trigger, keep `bug-scan` and choose the two with the most relevant
-context — a resolved acceptance criterion or a guideline file beats a
-speculative architecture pass.
+lenses may run; the trigger table in §4.1 decides which are eligible. A lens runs
+only if it is both triggered and within budget. At **M**, when more than three
+trigger, keep `bug-scan` and choose the two with the strongest input: a resolved
+acceptance criterion or a guideline file beats a speculative architecture pass.
 
 ## 4. Lenses
 
@@ -112,33 +111,52 @@ At **S**, review inline using the steps in §4.2 and skip to §5.
 
 ### 4.1 Sub-agents
 
-Spawn in parallel. Only those whose trigger fires — never all eight by reflex.
+Spawn in parallel. Only those whose trigger fires — never all of them by reflex.
 
-| Agent | Trigger | Tier |
-| ----- | ------- | ---- |
-| [bug-scan-reviewer](agents/bug-scan-reviewer.md) | Always, whenever spawning | standard |
-| [acceptance-criteria-reviewer](agents/acceptance-criteria-reviewer.md) | Acceptance criteria resolved in §2 | standard |
-| [design-drift-reviewer](agents/design-drift-reviewer.md) | A scope or design reference was found | standard |
-| [guideline-compliance-reviewer](agents/guideline-compliance-reviewer.md) | Repo has AGENTS.md, CLAUDE.md, or rules files | standard |
-| [best-practices-reviewer](agents/best-practices-reviewer.md) | Manifest or lockfile changed, **or** the diff introduces an import not already used in that module | standard |
-| [architecture-reviewer](agents/architecture-reviewer.md) | Diff adds modules, crosses layer boundaries, or adds cross-component dependencies | deep |
-| [prior-review-comments-reviewer](agents/prior-review-comments-reviewer.md) | Hosted PR/MR **and** the touched files have prior merged PR history | standard |
-| [finding-verifier](agents/finding-verifier.md) | Once per candidate finding, at step 6 | fast |
+Five lenses and one verifier. Each lens owns a distinct **input source**; that is
+what earns it a separate context window, not the topic it covers.
+
+| Agent | Reads | Trigger | Tier |
+| ----- | ----- | ------- | ---- |
+| [bug-scan-reviewer](agents/bug-scan-reviewer.md) | Diff hunks, git blame | Always, whenever spawning | standard |
+| [requirements-reviewer](agents/requirements-reviewer.md) | Acceptance criteria, scope reference | Criteria **or** a scope/design reference was resolved in §2 | standard |
+| [conventions-reviewer](agents/conventions-reviewer.md) | AGENTS.md/CLAUDE.md/rules, prior PR review comments | Repo has guideline files, **or** hosted PR with prior history on the touched files | standard |
+| [best-practices-reviewer](agents/best-practices-reviewer.md) | External library docs | Manifest or lockfile changed, **or** the diff introduces an import not already used in that module | standard |
+| [architecture-reviewer](agents/architecture-reviewer.md) | Sibling modules, architecture docs, ADRs | Diff adds modules, crosses layer boundaries, or adds cross-component dependencies | standard |
+| [finding-verifier](agents/finding-verifier.md) | One candidate finding, in isolation | Once per candidate, at step 6 | fast |
+
+Two lenses each cover both directions of one question, which is why there are
+five rather than seven. `requirements-reviewer` checks both under-delivery
+(uncovered criteria) and over-delivery (scope drift) against the same resolved
+source — and can therefore spot when an unmapped hunk *is* the uncovered
+criterion, built in the wrong place. `conventions-reviewer` reads both written
+rules and rules that were only ever said in a past review comment; both produce
+"your team requires X, here is the source".
+
+`finding-verifier` is not a lens. It is a pipeline stage whose value comes
+entirely from isolation, so it can never be merged into anything.
 
 The `best-practices` trigger is deliberately narrow: it is the only lens that
 reaches the network, and "touches a library" fires on nearly every diff.
 
-**Model tiers** are declared as `metadata.model_tier` on each agent, not as model
-names, so runners without model selection inherit and still work:
+**Model tiers** are declared as `metadata.model_tier` on each agent rather than
+as model names, so runners without model selection inherit and still work:
 
-| Tier | Use | Claude mapping |
-| ---- | --- | -------------- |
-| fast | Mechanical predicates, summarisation, per-finding verification | Haiku |
-| standard | Judgement against a bounded context | Sonnet |
-| deep | Whole-system reasoning | Opus |
+| Tier | Use | Claude mapping | Where |
+| ---- | --- | -------------- | ----- |
+| fast | Mechanical predicates, retrieval, summarisation, per-finding verification | Haiku | Steps 1–3, `finding-verifier` |
+| standard | Judgement against a bounded context | Sonnet | All five lenses |
+| deep | Whole-system reasoning | Opus | Synthesis only (steps 5–8) |
 
-Steps 1 to 3 run at **fast**. Synthesis from step 5 onward runs at the session's
-own model, since it needs the whole picture.
+No sub-agent runs at `deep`. Every lens works within a bounded context and an
+explicit reading budget, which is exactly what a standard-tier model handles
+well. Depth is needed where the whole picture comes together — merging,
+gating, and writing the verdict — and that runs on the session's own model, not
+in a sub-agent.
+
+Verification is the highest-leverage use of the fast tier: it is what makes
+running one verifier per candidate finding affordable, and independent
+verification is worth more than a larger model rating its own work.
 
 ### 4.2 Inline review
 

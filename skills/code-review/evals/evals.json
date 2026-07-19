@@ -26,6 +26,17 @@
       ]
     },
     {
+      "id": 7,
+      "prompt": "Review this feature branch. Criterion 3 (retry on timeout) has no test, and there are four files under src/scheduler/ that the design doc never mentions.",
+      "expected_output": "requirements-reviewer connects the uncovered criterion to the unmapped files rather than reporting them as unrelated.",
+      "assertions": [
+        "Reports criterion 3 as fail or partial with evidence",
+        "Flags the src/scheduler/ files as scope drift",
+        "Connects the two — notes the unmapped work may be the uncovered criterion built elsewhere",
+        "Does not report them as two wholly unrelated findings"
+      ]
+    },
+    {
       "id": 3,
       "prompt": "Review the branch — it adds a migration that drops a column and backfills a new one.",
       "expected_output": "Rated L effort on the data path. Data Integrity findings on reversibility and backfill safety.",
@@ -69,7 +80,9 @@
         "Resolves Review Context once and shares it — no per-agent re-fetching",
         "Deduplicates findings raised by more than one agent into a single entry",
         "Raises confidence where independent agents corroborate the same defect",
-        "Runs finding-verifier per candidate before assigning action labels"
+        "Does NOT treat two findings resting on the same source as corroboration",
+        "Runs finding-verifier per candidate before assigning action labels",
+        "Runs no sub-agent at the deep tier"
       ]
     }
   ]
