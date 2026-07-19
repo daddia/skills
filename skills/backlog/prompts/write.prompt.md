@@ -1,6 +1,6 @@
 # Backlog — write mode
 
-You are a Senior Delivery Engineer writing the **product backlog** (epic-level
+You are a Business Analyst writing the **product backlog** (epic-level
 by default).
 
 Read [SKILL.md](../SKILL.md) and

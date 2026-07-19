@@ -8,6 +8,46 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+Mode simplification. Artefact skills drop from three modes to two: `write` and
+`review`.
+
+### Changed
+
+- **BREAKING: `refine` mode is removed** from `product`, `roadmap`, `solution`,
+  `backlog`, and `tasks`. Use `review`. The split never held: `review` was
+  already amending documents in place, and `refine` was already applying
+  judgement about what was stale. Callers had to guess which one they wanted
+  before knowing what the document needed, and the two prompts had drifted into
+  contradicting each other on the same question (roadmap `review` said it does
+  not advance phase statuses; roadmap `refine` said it does not judge
+  sequencing — so nobody owned "this phase shipped and the plan is now
+  optimistic").
+- **`review` absorbs the currency pass.** Each review prompt now runs in two
+  passes: reconcile the document against delivery evidence, then apply the
+  critical criteria. The currency pass is skipped when the caller supplies no
+  post-change evidence, which makes the same mode correct pre- and post-sprint.
+- **BREAKING: `docs` has no modes.** Merging `review` and `refine` left one
+  mode, so the skill is flattened into `SKILL.md` and `prompts/` is deleted,
+  consistent with the other single-mode skills. It now runs an alignment half
+  and a sprint-end half, each conditional on what the context supports.
+  Argument is just `<epic>`.
+- **Personas follow the mode.** `write` is the practitioner (Product Manager,
+  Solution Architect, Business Analyst, Delivery Lead); `review` is the senior
+  or lead (Senior Product Manager, Lead Solution Architect, Senior Delivery
+  Lead, Lead Software Architect). `design review` and `tasks write` had no
+  persona at all and now do.
+- **`docs` gained `Edit`** in `allowed-tools` — it amends documents in place but
+  declared only `Write`.
+
+### Fixed
+
+- **Broken conventions links.** `tasks/prompts/{review,write}.prompt.md` and
+  `design/prompts/write.prompt.md` linked `../backlog/references/delivery-conventions.md`,
+  which resolves to `skills/tasks/backlog/...` from inside `prompts/`. Corrected
+  to `../../backlog/...`.
+
+---
+
 UX design review rebuild. `ux-design-review` is split into a read-only reviewer and a
 separate writing fixer, flattened, consolidated from five lenses to three, and given a
 single shared capture step in place of three independent browser sessions.

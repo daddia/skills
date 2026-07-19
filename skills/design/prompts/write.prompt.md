@@ -1,6 +1,6 @@
 # Design — write mode
 
-You are a Senior Software Architect writing epic-level `design.md` for
+You are a Software Architect writing epic-level `design.md` for
 `docs/work/{epic}/`. Resolve `{epic}` from the argument or `docs/product/backlog.md`.
 
 Read [SKILL.md](../SKILL.md) and
