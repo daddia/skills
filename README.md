@@ -145,21 +145,21 @@ Full path and boundary rules: [delivery conventions](skills/tasks/references/del
 
 | Skill | Modes | Description | Artefact |
 | ----- | ----- | ----------- | -------- |
-| **product** | write | Pitch or full `product.md` (_why_, _who_, _what_); review via `docs-review` | `docs/product/product.md` |
-| **roadmap** | write | Outcome-based phases with exit criteria; review via `docs-review` | `docs/product/roadmap.md` |
+| **product** | — | Pitch or full `product.md` (_why_, _who_, _what_); review via `docs-review` | `docs/product/product.md` |
+| **roadmap** | — | Outcome-based phases with exit criteria; review via `docs-review` | `docs/product/roadmap.md` |
 
 ### Architecture
 
 | Skill | Modes | Description | Artefact |
 | ----- | ----- | ----------- | -------- |
-| **solution** | write | Stub or full arc42-lite `solution.md`; review via `docs-review` | `docs/architecture/solution.md` |
+| **solution** | — | Stub or full arc42-lite `solution.md`; review via `docs-review` | `docs/architecture/solution.md` |
 | **adr** | plan, write, review | Proposals in `register.md`; accepted decisions as `ADR-NNNN-{title}.md` | `register.md`, `ADR-NNNN.md` |
 
 ### Discovery
 
 | Skill | Modes | Description | Artefact |
 | ----- | ----- | ----------- | -------- |
-| **design** | write | `docs/work/{epic}/design.md` (walking-skeleton or TDD); review via `docs-review` | `docs/work/{epic}/design.md` |
+| **design** | — | `docs/work/{epic}/design.md` (walking-skeleton or TDD); review via `docs-review` | `docs/work/{epic}/design.md` |
 | **tasks** | — | Decompose anything into delivery work: a product into epics, an epic or its design into stories and tasks with Gherkin AC, or a spec/RFC/PRD into both | `docs/product/backlog.md`, `docs/work/{epic}/tasks.md` |
 | **backlog-refine** | — | Groom an existing backlog or judge sprint readiness: reprioritise, split, re-estimate, defer. Amends in place and reports a verdict | `backlog.md`, `tasks.md` |
 

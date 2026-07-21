@@ -66,10 +66,30 @@ Version numbers match Git tags and `version` in `.cursor-plugin/plugin.json` and
   Fixed loop stalling at iteration 1. **Migration:** cancel 1.x loops, delete
   `.ralph/` / `.ralph-loop`, re-seed with `/ralph-loop-setup`.
 
-## [1.6.0] - 2026-07-04 — Added **ralph** skill and stop hooks.
-## [1.5.0] - 2026-07-04 — Added **ux-design-review** (review/fix).
-## [1.4.0] - 2026-07-04 — **create-merge-request** → **merge-request**; added **merge-request-review**.
-## [1.3.0] - 2026-07-04 — **create-mr** → **create-merge-request**; added `babysit`.
-## [1.2.0] - 2026-07-04 — Restructured **code-review** with sub-agents.
-## [1.1.0] - 2026-06-02 — **feature** → **implement**; plugin id → `daddia-skills`.
-## [1.0.0] - 2026-06-01 — Initial release.
+## [1.6.0] - 2026-07-04
+
+— Added **ralph** skill and stop hooks.
+
+## [1.5.0] - 2026-07-04
+
+— Added **ux-design-review** (review/fix).
+
+## [1.4.0] - 2026-07-04
+
+— **create-merge-request** → **merge-request**; added **merge-request-review**.
+
+## [1.3.0] - 2026-07-04
+
+— **create-mr** → **create-merge-request**; added `babysit`.
+
+## [1.2.0] - 2026-07-04
+
+— Restructured **code-review** with sub-agents.
+
+## [1.1.0] - 2026-06-02
+
+— **feature** → **implement**; plugin id → `daddia-skills`.
+
+## [1.0.0] - 2026-06-01
+
+— Initial release.

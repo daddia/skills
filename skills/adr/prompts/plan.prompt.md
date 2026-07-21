@@ -39,14 +39,14 @@ Resolve `{epic}` from the argument or the backlog, per
      draft it with **adr write**.
    - **Inline** — real but not standalone; it belongs as a line in `solution.md`
      rather than its own ADR. Record where it should go and hand off to
-     `solution write`; do not edit `solution.md` from here.
+     **solution**; do not edit `solution.md` from here.
    - **Defer** — cannot be settled yet. Add a **Proposed** row marked Deferrable
      with what would unblock it.
 4. Record the triage outcome for every candidate. A candidate that appears in
    none of the three lists has been dropped silently — that is the failure this
    pass exists to prevent.
 5. Where a promoted decision supersedes something already in `solution.md`, note
-   it for `solution write` to archive with
+   it for **solution** to archive with
    `<!-- ARCHIVED: superseded by ADR-#### -->`. Never delete superseded content.
 
 ## Survey pass
@@ -85,9 +85,9 @@ Plan mode MUST NOT:
 
 - Write ADR bodies — that is **adr write**
 - Edit `solution.md` — record the recommendation and hand off to
-  `solution write`
+  **solution**
 - Edit `design.md`, including archiving superseded sections — note what needs
-  archiving and let `solution write` do it
+  archiving and let **solution** do it
 - Delete rejected candidates — rejections stay recorded with their reason
 - Promote a decision that already has an Accepted ADR
 
@@ -99,5 +99,5 @@ Report in chat:
   triage outcome (omit when no epic was named)
 - **Surveyed** — new proposals from product/solution, Blocking or Deferrable
 - **Register changes** — rows added, revised, or rejected
-- **Handoffs** — which candidates need `adr write`, which need `solution write`,
+- **Handoffs** — which candidates need `adr write`, which need **solution**,
   and what needs archiving
