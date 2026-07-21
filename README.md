@@ -152,7 +152,7 @@ The rest take their argument directly (`/tasks checkout-foundation`,
 
 | Skill | Modes | Description | Artefact |
 | ----- | ----- | ----------- | -------- |
-| **solution** | write, review | Stub or full arc42-lite `solution.md` | `docs/architecture/solution.md` |
+| **solution** | write | Stub or full arc42-lite `solution.md`; review via `docs-review` | `docs/architecture/solution.md` |
 | **adr** | plan, write, review | Proposals in `register.md`; accepted decisions as `ADR-NNNN-{title}.md` | `register.md`, `ADR-NNNN.md` |
 
 ### Discovery
